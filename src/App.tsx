@@ -151,7 +151,7 @@ export default function App() {
   useEffect(() => { init() }, [init])
 
   return (
-    <div className="max-w-md mx-auto bg-dark-900 min-h-screen">
+    <div className="max-w-md mx-auto bg-dark-900 min-h-screen overflow-x-hidden w-full">
       <AnimatePresence mode="wait">
         {status === 'loading' && (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
