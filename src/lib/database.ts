@@ -229,3 +229,70 @@ export async function getPersonalRecords(userId: string) {
     .order('achieved_at', { ascending: false })
   return { data, error }
 }
+
+// ─── Exercises ────────────────────────────────────────────────────────────────
+/** Fetch all exercises from Supabase (public, no auth required) */
+export async function getExercises() {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .order('muscle_group', { ascending: true })
+  return { data, error }
+}
+
+/** Fetch exercises filtered by muscle_target (for program block generation) */
+export async function getExercisesByTarget(muscleTarget: string) {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .eq('muscle_target', muscleTarget)
+  return { data, error }
+}
+
+/** Fetch exercises filtered by equipment availability */
+export async function getExercisesByEquipment(equipment: string[]) {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .overlaps('equipment', equipment)
+  return { data, error }
+}
+
+// ─── User Programs ────────────────────────────────────────────────────────────
+export async function saveUserProgram(
+  userId: string,
+  program: {
+    duration_months: number
+    start_date: string
+    training_method: string
+    goal: string
+    experience: string
+    days_per_week: number
+    equipment: string
+  }
+) {
+  // Deactivate previous programs
+  await supabase
+    .from('user_programs')
+    .update({ is_active: false })
+    .eq('user_id', userId)
+
+  const { data, error } = await supabase
+    .from('user_programs')
+    .insert({ user_id: userId, ...program, is_active: true })
+    .select()
+    .single()
+  return { data, error }
+}
+
+export async function getActiveProgram(userId: string) {
+  const { data, error } = await supabase
+    .from('user_programs')
+    .select('*, program_blocks(*)')
+    .eq('user_id', userId)
+    .eq('is_active', true)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  return { data, error }
+}
