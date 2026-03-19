@@ -137,11 +137,26 @@ export type EquipmentTag =
   | 'pullup_bar'
   | 'bench'
 
+export type MuscleTarget =
+  // Pecho
+  | 'chest_upper' | 'chest_mid' | 'chest_lower'
+  // Espalda
+  | 'back_lats' | 'back_upper' | 'back_mid' | 'back_lower'
+  // Hombros
+  | 'shoulder_front' | 'shoulder_side' | 'shoulder_rear'
+  // Piernas
+  | 'quad' | 'hamstring' | 'glute' | 'calf' | 'adductor'
+  // Brazos
+  | 'bicep' | 'tricep' | 'forearm'
+  // Core
+  | 'abs' | 'obliques' | 'lower_back'
+
 export interface Exercise {
   id: string
   name: string
   nameEs: string
   muscleGroup: MuscleGroupArea
+  muscleTarget: MuscleTarget
   primaryMuscles: string[]
   secondaryMuscles: string[]
   equipment: EquipmentTag[]
