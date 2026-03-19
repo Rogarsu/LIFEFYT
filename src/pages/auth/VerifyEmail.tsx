@@ -5,7 +5,7 @@ export function VerifyEmail() {
   const { user } = useAuthStore()
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-dvh bg-dark-900 px-6 safe-top safe-bottom">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-dark-900 px-6 safe-top safe-bottom">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80&fit=crop"

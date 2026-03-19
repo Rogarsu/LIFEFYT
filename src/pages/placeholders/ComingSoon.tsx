@@ -19,7 +19,7 @@ export function ComingSoon({ title, subtitle, image }: Props) {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-dvh bg-dark-900 px-6 safe-top safe-bottom">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-dark-900 px-6 safe-top safe-bottom">
       <div className="absolute inset-0">
         <img src={image} alt="" className="w-full h-full object-cover opacity-10" />
         <div className="absolute inset-0 bg-dark-900/70" />

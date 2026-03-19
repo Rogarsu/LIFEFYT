@@ -9,6 +9,7 @@
 
   html {
     height: 100%;
+    height: -webkit-fill-available;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
   }
@@ -17,15 +18,16 @@
     @apply bg-dark-900 text-white font-body;
     margin: 0;
     padding: 0;
-    height: 100%;
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   #root {
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
   }

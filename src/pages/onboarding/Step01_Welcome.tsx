@@ -6,7 +6,7 @@ interface Props {
 
 export function Step01_Welcome({ onStart }: Props) {
   return (
-    <div className="relative flex flex-col min-h-dvh overflow-hidden">
+    <div className="relative flex flex-col min-h-screen overflow-hidden">
       {/* Full-bleed background */}
       <div className="absolute inset-0">
         <img
@@ -19,7 +19,7 @@ export function Step01_Welcome({ onStart }: Props) {
       </div>
 
       {/* Content */}
-      <div className="relative flex flex-col min-h-dvh px-6 safe-top safe-bottom">
+      <div className="relative flex flex-col min-h-screen px-6 safe-top safe-bottom">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

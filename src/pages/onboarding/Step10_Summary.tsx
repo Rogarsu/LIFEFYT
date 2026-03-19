@@ -121,7 +121,7 @@ export function Step10_Summary({ onFinish }: Props) {
 
   if (generating) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-dvh bg-dark-900 px-6">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-dark-900 px-6">
         {/* Animated background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-hero-glow opacity-60" />
@@ -177,7 +177,7 @@ export function Step10_Summary({ onFinish }: Props) {
   const priorityColor = ['text-brand-400', 'text-yellow-400', 'text-electric-400']
 
   return (
-    <div className="flex flex-col min-h-dvh bg-dark-900 safe-top safe-bottom">
+    <div className="flex flex-col min-h-screen bg-dark-900 safe-top safe-bottom">
       {/* Hero */}
       <div className="relative h-56 overflow-hidden flex-shrink-0">
         <img

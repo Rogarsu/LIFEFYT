@@ -148,7 +148,7 @@ export function ProfilePage() {
     : null
 
   return (
-    <div className="min-h-dvh bg-dark-900 safe-top pb-36">
+    <div className="min-h-screen bg-dark-900 safe-top pb-36">
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <div className="relative overflow-hidden px-5 pt-14 pb-8">

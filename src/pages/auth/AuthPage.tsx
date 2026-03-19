@@ -264,7 +264,7 @@ export function AuthPage() {
   }
 
   return (
-    <div className="relative flex flex-col min-h-dvh overflow-hidden">
+    <div className="relative flex flex-col min-h-screen overflow-hidden">
       {/* Full background */}
       <div className="absolute inset-0">
         <img
@@ -276,7 +276,7 @@ export function AuthPage() {
         <div className="absolute inset-0 bg-hero-glow opacity-70" />
       </div>
 
-      <div className="relative flex flex-col min-h-dvh safe-top safe-bottom">
+      <div className="relative flex flex-col min-h-screen safe-top safe-bottom">
         {/* Top logo */}
         <div className="flex items-center justify-center pt-14 pb-4">
           <motion.div

@@ -58,7 +58,7 @@ export function Dashboard({ onGoToRoutine, refreshKey }: Props) {
   const todayDone   = todayDay ? completedDays.has(todayDay.dayNumber) : false
 
   return (
-    <div className="flex flex-col min-h-dvh bg-dark-900 safe-top">
+    <div className="flex flex-col min-h-screen bg-dark-900 safe-top">
       {/* Header */}
       <div className="relative h-56 flex-shrink-0 overflow-hidden">
         <img

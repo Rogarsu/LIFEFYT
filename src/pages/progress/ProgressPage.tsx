@@ -228,7 +228,7 @@ export function ProgressPage() {
   ]
 
   return (
-    <div className="min-h-dvh bg-dark-900 safe-top pb-36">
+    <div className="min-h-screen bg-dark-900 safe-top pb-36">
       {/* Header */}
       <div className="px-5 pt-14 pb-4">
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}>

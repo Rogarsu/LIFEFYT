@@ -28,7 +28,7 @@ export function StepWrapper({ title, subtitle, children, onBack, className = '' 
       animate="animate"
       exit="exit"
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={`flex flex-col min-h-dvh bg-dark-900 safe-top safe-bottom ${className}`}
+      className={`flex flex-col min-h-screen bg-dark-900 safe-top safe-bottom ${className}`}
     >
       {/* Header */}
       <div className="flex items-center gap-4 px-5 pt-5 pb-4">

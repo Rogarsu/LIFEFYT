@@ -22,7 +22,7 @@ export function OnboardingFlow({ onComplete }: Props) {
   const noop = () => {}
 
   return (
-    <div className="bg-dark-900 min-h-dvh">
+    <div className="bg-dark-900 min-h-screen">
       <AnimatePresence mode="wait">
         {step === 1  && <Step01_Welcome      key="s1"  onStart={nextStep} />}
         {step === 2  && <Step02_Profile      key="s2"  onNext={noop} />}

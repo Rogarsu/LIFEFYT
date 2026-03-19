@@ -17,7 +17,7 @@ import type { NavTab }      from './components/layout/BottomNav'
 // ─── Loading ──────────────────────────────────────────────────────────────────
 function LoadingScreen() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-dvh bg-dark-900">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-dark-900">
       <div className="relative w-16 h-16">
         <div className="absolute inset-0 rounded-full bg-brand-500/20 animate-ping" />
         <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-glow-red">
@@ -151,7 +151,7 @@ export default function App() {
   useEffect(() => { init() }, [init])
 
   return (
-    <div className="max-w-md mx-auto bg-dark-900 min-h-dvh">
+    <div className="max-w-md mx-auto bg-dark-900 min-h-screen">
       <AnimatePresence mode="wait">
         {status === 'loading' && (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
