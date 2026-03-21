@@ -12,7 +12,8 @@ INSERT INTO exercises (
   instructions,
   sets_beginner, sets_intermediate, sets_advanced,
   reps_beginner, reps_intermediate, reps_advanced,
-  rest_beginner, rest_intermediate, rest_advanced
+  rest_beginner, rest_intermediate, rest_advanced,
+  training_location
 ) VALUES
   (
     'incline_press_barbell', 'Incline Barbell Bench Press', 'Press Inclinado con Barra',
@@ -22,7 +23,8 @@ INSERT INTO exercises (
     '{"Ajusta el banco entre 30-45°. Agarra la barra a una anchura mayor que los hombros.","Baja la barra hasta la clavícula de forma controlada (2-3 seg).","Empuja hacia arriba y ligeramente hacia atrás hasta extender los codos."}',
     '3', '4', '4-5',
     '10-12', '8-12', '6-10',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'incline_press_dumbbell', 'Incline Dumbbell Press', 'Press Inclinado con Mancuernas',
@@ -32,7 +34,8 @@ INSERT INTO exercises (
     '{"Banco a 30-45°. Sostén las mancuernas a la altura del pecho con codos a 75°.","Empuja hacia arriba y adentro hasta que las mancuernas casi se toquen.","Baja con control en 2-3 segundos manteniendo tensión en el pecho."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'incline_press_smith', 'Incline Smith Machine Press', 'Press Inclinado en Máquina Smith',
@@ -42,7 +45,8 @@ INSERT INTO exercises (
     '{"Coloca el banco inclinado bajo la barra Smith. Ajusta el agarre a anchura de hombros.","Desbloquea la barra y bájala hasta la parte superior del pecho.","Empuja hacia arriba de forma explosiva hasta casi extender los codos."}',
     '3', '3-4', '4',
     '12-15', '10-12', '8-12',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'incline_fly_dumbbell', 'Incline Dumbbell Fly', 'Aperturas Inclinadas con Mancuernas',
@@ -52,7 +56,8 @@ INSERT INTO exercises (
     '{"Banco a 30°. Sostén mancuernas con brazos semi-extendidos encima del pecho.","Abre los brazos en arco amplio bajando hasta sentir estiramiento en el pecho.","Cierra los brazos como si abrazaras un árbol grande. No bloquees los codos."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'cable_fly_low_to_high', 'Cable Crossover Low to High', 'Cruce de Poleas Bajo hacia Alto',
@@ -62,7 +67,8 @@ INSERT INTO exercises (
     '{"Poleas en posición baja. De pie en el centro, un pie adelante.","Lleva los cables hacia arriba y al frente, cruzando las manos a la altura del pecho.","Regresa lentamente al punto inicial manteniendo tensión constante."}',
     '3', '3-4', '4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'pec_deck_upper', 'Pec Deck (Upper Focus)', 'Contractora de Pecho Superior',
@@ -72,7 +78,8 @@ INSERT INTO exercises (
     '{"Ajusta el asiento para que los codos queden a la altura de los hombros o ligeramente por debajo.","Cierra los brazos hasta el centro apretando el pecho al final del recorrido.","Regresa con control sin soltar la tensión muscular."}',
     '3', '3', '3-4',
     '12-15', '12-15', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'push_up_feet_elevated', 'Feet Elevated Push Up', 'Flexión con Pies Elevados',
@@ -82,7 +89,8 @@ INSERT INTO exercises (
     '{"Coloca los pies sobre un banco o superficie elevada. Manos al ancho de hombros en el suelo.","Baja el pecho hacia el suelo manteniendo el cuerpo recto.","Empuja hacia arriba de forma explosiva. El ángulo activa el pecho superior."}',
     '3', '3-4', '4',
     '8-10', '10-15', '15-20',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'hammer_strength_incline', 'Hammer Strength Incline Press', 'Press Inclinado Hammer Strength',
@@ -92,7 +100,624 @@ INSERT INTO exercises (
     '{"Ajusta el asiento para que las asas queden a la altura del pecho superior.","Empuja las asas hacia arriba y al frente hasta casi extender los codos.","Regresa con control manteniendo los omóplatos juntos contra el respaldo."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'incline_press_barbell_close_grip', 'Close Grip Incline Barbell Press', 'Press Inclinado con Barra Agarre Cerrado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"triceps","shoulders"}', '{"barbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Agarra la barra con agarre cerrado (manos a anchura de hombros o menos).","Baja la barra hasta la parte superior del pecho de forma controlada.","Empuja hacia arriba. El agarre cerrado aumenta la activación del pecho superior e interno."}',
+    '3', '4', '4',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'incline_press_barbell_wide_grip', 'Wide Grip Incline Barbell Press', 'Press Inclinado con Barra Agarre Abierto',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"barbell","bench"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Agarra la barra con agarre ancho (más allá del ancho de hombros).","Baja la barra hasta la clavícula con un arco más amplio, maximizando el estiramiento.","Empuja hacia arriba. El agarre ancho amplía el rango de activación del pecho superior."}',
+    '3', '4', '4-5',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'incline_press_barbell_reverse_grip', 'Reverse Grip Incline Barbell Press', 'Press Inclinado con Barra Agarre Inverso (Supino)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"biceps","shoulders"}', '{"barbell","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30°. Agarra la barra con agarre supino (palmas hacia arriba/hacia ti), manos a anchura de hombros.","Baja la barra de forma controlada hasta la parte superior del pecho.","Empuja hacia arriba. El agarre inverso eleva la activación del pecho superior significativamente."}',
+    '3', '3-4', '4',
+    '10-12', '8-10', '6-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'incline_press_smith_unilateral', 'Unilateral Incline Smith Machine Press', 'Press Inclinado Smith Unilateral',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"machine","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco inclinado bajo la Smith. Trabaja un solo lado a la vez con una mano.","Baja la barra al lado del pecho superior trabajado de forma controlada.","Empuja hasta casi extender el codo. Corrige desequilibrios musculares."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'incline_press_multipower', 'Incline Multipower Press', 'Press Inclinado en Multipower',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"machine","bench"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco inclinado bajo la barra del multipower. Ajusta la altura inicial.","Desbloquea la barra y bájala a la parte superior del pecho de forma controlada.","Empuja hacia arriba siguiendo la guía fija de la máquina hasta casi extender los codos."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'incline_rack_pin_press', 'Incline Rack Pin Press', 'Press Inclinado con Pines (Rack Pin Press)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"triceps","shoulders"}', '{"barbell","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Configura los pines del rack en la posición de pecho (rango parcial). Banco a 30-45°.","Inicia el press desde la posición de pines, sin impulso previo (dead stop).","Empuja de forma explosiva hasta extender los codos. Mejora la fuerza en el punto débil."}',
+    '3', '4', '5',
+    '6-8', '5-8', '3-6',
+    150, 120, 90,
+    'gym'
+  ),
+  (
+    'incline_press_dumbbell_neutral', 'Neutral Grip Incline Dumbbell Press', 'Press Inclinado con Mancuernas Agarre Neutro',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Sostén las mancuernas con agarre neutro (palmas enfrentadas entre sí).","Baja las mancuernas hacia los lados del pecho manteniendo los codos cercanos al cuerpo.","Empuja hacia arriba y ligeramente hacia el centro. Reduce el estrés en el hombro."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_unilateral', 'Unilateral Incline Dumbbell Press', 'Press Inclinado con Mancuernas Unilateral',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","core"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Trabaja un brazo a la vez sosteniendo la mancuerna en el lado activo.","Baja la mancuerna de forma controlada hasta el pecho superior trabajado.","Empuja hacia arriba. El trabajo unilateral activa el core y corrige desequilibrios."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_alternating', 'Alternating Incline Dumbbell Press', 'Press Inclinado con Mancuernas Alternado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Empieza con ambas mancuernas en posición baja (pecho).","Empuja un brazo mientras el otro permanece en la posición baja, luego alterna.","Mantén tensión constante en el pecho alternando el lado activo en cada repetición."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_rotation', 'Incline Dumbbell Press with Rotation', 'Press Inclinado con Mancuernas y Rotación',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Empieza con agarre neutro (palmas enfrentadas) en posición baja.","Al empujar, rota las muñecas para terminar en agarre pronado (palmas al frente).","La rotación completa el rango de movimiento del pectoral y aumenta la contracción."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_pause', 'Incline Dumbbell Press with Pause', 'Press Inclinado con Mancuernas con Pausa',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Baja las mancuernas al pecho superior de forma controlada.","Pausa 2-3 segundos en la posición baja eliminando el impulso elástico.","Empuja con fuerza desde el dead stop. Aumenta la tensión mecánica en el pecho superior."}',
+    '3', '3-4', '4',
+    '8-10', '6-10', '6-8',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_plyo', 'Plyometric Incline Dumbbell Press', 'Press Inclinado con Mancuernas Pliométrico (con Palmada)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30-45°. Mancuernas ligeras. Baja de forma controlada hasta el pecho.","Empuja de forma explosiva soltando las mancuernas en el punto más alto y da una palmada.","Atrapa las mancuernas y repite. Desarrolla potencia explosiva en el pecho superior."}',
+    '3', '3', '3-4',
+    '6-8', '8-10', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'incline_fly_dumbbell_unilateral', 'Unilateral Incline Dumbbell Fly', 'Apertura Inclinada con Mancuerna Unilateral',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco a 30°. Sostén una sola mancuerna con el brazo semi-extendido sobre el pecho.","Baja el brazo en arco amplio hacia afuera hasta sentir estiramiento completo en el pecho.","Cierra el arco apretando el pecho. Trabaja un lado a la vez para igualar el desarrollo."}',
+    '3', '3', '3-4',
+    '12-15', '10-12', '10-12',
+    75, 60, 60,
+    'home'
+  ),
+  (
+    'cable_fly_incline_high', 'High Cable Fly on Incline Bench', 'Apertura con Polea Alta en Banco Inclinado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"cable","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco inclinado a 30-45° entre dos poleas en posición alta.","Acuéstate y toma los cables. Baja los brazos en arco hasta sentir estiramiento.","Cierra los brazos sobre el pecho apretando en el punto más alto. Tensión constante."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '10-12',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'pec_deck_reverse_upper', 'Reverse Pec Deck (Upper Chest)', 'Peck Deck Invertida (Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"machine"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Siéntate al revés en la Peck Deck (de cara al respaldo). Ajusta el asiento.","Agarra las almohadillas o asas con los brazos en posición adelantada.","Cierra los brazos hacia el centro con un arco que enfatice el pecho superior."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '10-12',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_seated_incline', 'Seated Incline Cable Crossover', 'Cable Cruzado Sentado en Banco Inclinado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{}', '{"cable","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco inclinado entre dos poleas. Siéntate reclinado en el banco.","Con poleas en posición media-baja, lleva los cables hacia arriba cruzando sobre el pecho.","Regresa con control manteniendo el ángulo inclinado para enfatizar el pecho superior."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_upper_unilateral', 'Unilateral Low Cable Fly (Upper Chest)', 'Cable Cruzado Unilateral Polea Baja (Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"core"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea en posición baja. De pie de lado a la máquina, agarra con una sola mano.","Lleva el cable hacia arriba y al frente cruzando el cuerpo hasta la altura del pecho.","Regresa lentamente controlando la tensión. Trabaja cada lado por separado."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_incline_bench_seated', 'Cable Fly Seated on Incline Bench', 'Cable Cruzado en Banco Inclinado Sentado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"cable","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco inclinado perpendicular al cable. Siéntate de frente con la polea al lado.","Toma el cable con el brazo opuesto al stack y tira cruzando el pecho hacia arriba.","Mantén el codo ligeramente flexionado durante todo el recorrido."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_rope_upper', 'Rope Cable Fly (Upper Chest)', 'Cable Cruzado con Cuerda (Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta una cuerda a la polea baja. De pie en el centro ligeramente inclinado.","Lleva los extremos de la cuerda hacia arriba y al frente separando las manos al final.","La cuerda permite rotación de muñecas para mayor rango de movimiento y contracción."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_bar_upper', 'Straight Bar Cable Fly (Upper Chest)', 'Cable Cruzado con Barra Recta (Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta una barra recta a la polea baja. De pie, agarre con ambas manos.","Lleva la barra hacia arriba y al frente en un arco controlado hasta la altura del pecho.","La barra fija obliga a un movimiento simétrico y estabiliza la trayectoria."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_low_to_high_unilateral', 'Unilateral Low-to-High Cable Fly', 'Cruce de Polea Baja Unilateral Banco Inclinado',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"core"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea baja. De pie con un paso adelante. Agarra con una mano y lleva el cable al frente-arriba.","Cruza la mano hacia el lado contrario a la altura del pecho superior.","Regresa lentamente manteniendo el codo ligeramente flexionado. Repite por cada lado."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'incline_press_plate_loaded', 'Plate-Loaded Incline Press Machine', 'Press Inclinado en Máquina Plate-Loaded',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"machine"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento para que las asas queden a la altura del pecho superior.","Carga los discos de forma equilibrada en ambos lados de la máquina.","Empuja hacia arriba y al frente hasta casi extender los codos. Regresa con control."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'hammer_strength_incline_unilateral', 'Hammer Strength Incline Press (Unilateral)', 'Hammer Strength Inclinado Unilateral',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"machine"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"En la Hammer Strength inclinada, trabaja un brazo a la vez.","Empuja el asa hacia arriba y al frente hasta casi extender el codo.","El trabajo unilateral permite cargas más específicas y corrige asimetrías."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cybex_incline_press', 'Cybex / Life Fitness Incline Press', 'Press Inclinado Cybex / LifeFitness',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento y el respaldo según la guía de la máquina para pecho superior.","Selecciona el peso en el stack y agarra las asas a la altura del pecho superior.","Empuja hacia arriba siguiendo el arco de la máquina. Aprieta el pecho al final."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'incline_press_dumbbell_fitball', 'Incline Dumbbell Press on Fitball', 'Press Inclinado con Mancuernas en Fitball',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps","core"}', '{"dumbbell","fitball"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Siéntate en el fitball y camina hacia adelante hasta que la parte superior de tu espalda descanse sobre la pelota en ángulo inclinado.","Sostén las mancuernas a la altura del pecho. Activa el core para estabilizar el cuerpo.","Empuja hacia arriba hasta casi extender los codos. La pelota añade trabajo de estabilización."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_press_dumbbell_fitball_unilateral', 'Unilateral Incline Dumbbell Press on Fitball', 'Press Inclinado Unilateral con Mancuerna en Fitball',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","core"}', '{"dumbbell","fitball"}',
+    3, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Recuéstate inclinado sobre el fitball. Trabaja un brazo a la vez.","El trabajo unilateral sobre la superficie inestable maximiza la activación del core.","Empuja la mancuerna hacia arriba manteniendo las caderas niveladas. Repite por lado."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_fly_fitball', 'Incline Dumbbell Fly on Fitball', 'Aperturas Inclinadas con Mancuernas en Fitball',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","core"}', '{"dumbbell","fitball"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Recuéstate en ángulo inclinado sobre el fitball. Sostén mancuernas con brazos extendidos.","Abre los brazos en arco hacia afuera hasta sentir estiramiento completo en el pecho superior.","Cierra los brazos sobre el pecho. La pelota exige control postural adicional."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 60,
+    'home'
+  ),
+  (
+    'incline_pullover_dumbbell', 'Incline Dumbbell Pullover (Upper Chest)', 'Pullover Inclinado con Mancuerna (Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"lats","triceps"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Recuéstate en banco o fitball inclinado con una mancuerna sostenida con ambas manos.","Lleva la mancuerna hacia atrás por encima de la cabeza en arco amplio hasta sentir estiramiento.","Regresa la mancuerna al punto de inicio pasando por encima del pecho. Activa el pecho superior."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bands_low', 'Incline Press with Bands (Anchored Low)', 'Press Inclinado con Bandas Ancladas Abajo',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bands","bench"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a un punto bajo (puerta, rack bajo). Recuéstate inclinado sosteniendo ambos extremos.","La resistencia va hacia abajo, simulando el vector de fuerza del press inclinado.","Empuja hacia arriba hasta extender los codos. Regresa con control resistiendo la banda."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bands_high', 'Incline Press with Bands (Anchored High)', 'Press Inclinado con Bandas Ancladas Arriba',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bands","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a un punto alto. Siéntate inclinado de espaldas al ancla sosteniendo los extremos.","La resistencia aumenta progresivamente a medida que extiendes los brazos hacia arriba.","Empuja hacia adelante-arriba hasta extender los codos. La curva de fuerza es diferente al peso libre."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bands_cross', 'Cross-Band Incline Press', 'Press Inclinado con Bandas Cruzadas',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bands","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa dos bandas cruzadas pasando por la espalda y agarradas con las manos contrarias.","Las bandas cruzadas añaden resistencia lateral además de la resistencia frontal.","Empuja hacia arriba y ligeramente hacia el centro. El cruce potencia la aducción del pecho."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bands_dumbbells', 'Incline Press with Bands + Dumbbells', 'Press Inclinado con Bandas + Mancuernas',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bands","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca una banda alrededor de la espalda y pásala por las mancuernas para añadir resistencia.","La combinación crea una curva de fuerza ascendente (más resistencia al extender).","Empuja hasta extensión completa. La banda más el peso libre maximizan la tensión total."}',
+    '3', '3-4', '4',
+    '8-10', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'incline_fly_bands', 'Incline Fly with Resistance Bands', 'Aperturas Inclinadas con Bandas Elásticas',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{}', '{"bands","bench"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla bandas detrás de ti a la altura de los hombros o más bajo. Sostén un extremo en cada mano.","Con brazos semi-extendidos, cierra los brazos hacia el frente en arco amplio.","Enfócate en la contracción del pecho al final del recorrido. Regresa con control."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'crossover_bands', 'Band Crossover (Low to High)', 'Crossover con Bandas (Simulando Poleas — Bajo a Alto)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla bandas a puntos bajos a cada lado. De pie en el centro, agarra un extremo en cada mano.","Lleva las manos hacia arriba y al frente cruzándolas a la altura del pecho superior.","Simula el movimiento de la polea baja a alta. Mantén tensión constante en todo el recorrido."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bands_back_wrap', 'Band Press (Wrapped Around Back)', 'Press con Banda Rodeando la Espalda',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bands"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pasa la banda por detrás de la espalda y sujeta un extremo en cada mano a la altura del pecho.","Empuja ambas manos hacia adelante y arriba hasta extender los codos.","La banda rodeando la espalda permite el movimiento sin ningún anclaje externo."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_bottles', 'Incline Press with Water Bottles / Jugs', 'Press Inclinado con Botellas de Agua / Garrafas',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa botellas llenas de agua, garrafas o cualquier objeto manejable como mancuernas improvisadas.","Recuéstate en ángulo inclinado (silla, sofá, cama inclinada). Sostén los objetos a la altura del pecho.","Empuja hacia arriba hasta casi extender los codos. Perfecto para entrenar en casa sin equipo."}',
+    '3', '4', '4',
+    '15-20', '15-25', '20-30',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'incline_press_backpack', 'Incline Press with Weighted Backpack', 'Press Inclinado con Mochila Lastrada',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Llena una mochila con libros, botellas u otros objetos pesados. Sujétala con ambas manos.","Recuéstate en ángulo inclinado y realiza el press con la mochila como peso libre.","Permite añadir carga progresiva sin necesidad de mancuernas. Controla el peso."}',
+    '3', '3-4', '4',
+    '10-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'incline_fly_bottles', 'Incline Fly with Water Bottles', 'Aperturas Inclinadas con Botellas de Agua',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa botellas de agua llenas como mancuernas ligeras. Recuéstate en ángulo inclinado.","Abre los brazos en arco hacia afuera hasta sentir estiramiento en el pecho superior.","Cierra los brazos sobre el pecho. Ideal para principiantes o para volumen alto."}',
+    '3', '3-4', '4',
+    '15-20', '15-20', '20-25',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'push_up_elevated_low', 'Feet Elevated Push Up (Low — Chair)', 'Flexión con Pies Elevados Baja (Silla 20-30cm)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Coloca los pies sobre una silla baja o escalón (20-30cm). Manos en el suelo al ancho de hombros.","Baja el pecho hacia el suelo manteniendo el cuerpo recto de cabeza a talones.","Empuja hacia arriba. La elevación baja es el punto de entrada a las flexiones inclinadas."}',
+    '3', '3-4', '4',
+    '8-12', '12-20', '20-25',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_high', 'Feet Elevated Push Up (High — Table)', 'Flexión con Pies Elevados Alta (Mesa 60-70cm)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Coloca los pies sobre una mesa o superficie alta (60-70cm). Cuerpo formando una línea diagonal pronunciada.","Baja el pecho hacia el suelo controlando la posición con el core activo.","Empuja hacia arriba. La mayor elevación aumenta la activación del pecho superior."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_wall', 'Feet on Wall Push Up (Near Vertical)', 'Flexión con Pies en Pared (Casi Vertical)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps","core"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Camina los pies por la pared hasta quedar casi vertical (ángulo 70-80°).","Las manos en el suelo cerca de la pared. El cuerpo casi perpendicular al suelo.","Baja la cabeza hacia el suelo y empuja. Activa intensamente el pecho superior y los hombros."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '10-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_wide', 'Wide Hands Feet-Elevated Push Up', 'Flexión Pies Elevados Manos Anchas',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos en el suelo significativamente más anchas que los hombros.","Baja el pecho entre las manos sintiendo el estiramiento amplio en el pecho.","El agarre ancho con pies elevados maximiza el rango de activación del pecho superior."}',
+    '3', '3-4', '4',
+    '8-12', '12-18', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_close', 'Diamond / Close Hands Feet-Elevated Push Up', 'Flexión Pies Elevados Manos en Diamante',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos en el suelo formando un diamante o muy juntas bajo el pecho.","Baja el pecho hacia las manos manteniendo los codos pegados al cuerpo.","El agarre cerrado con pies elevados activa el pecho superior interno y el tríceps."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_arc', 'Arc Hands Feet-Elevated Push Up', 'Flexión Pies Elevados Manos en Arco',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos en el suelo en arco: dedos apuntando hacia afuera, codos a 45°.","Baja el pecho al suelo siguiendo la línea de los antebrazos.","La posición en arco distribuye el trabajo de forma diferente en el pecho superior."}',
+    '3', '3-4', '4',
+    '8-12', '12-18', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_supine', 'Reverse / Supine Hands Feet-Elevated Push Up', 'Flexión Pies Elevados Manos en Supinación (Dedos hacia Atrás)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"biceps","shoulders"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos en el suelo con los dedos apuntando hacia los pies (supinación).","Los codos se mueven hacia afuera al bajar, aumentando el rango de activación del pecho superior.","Empuja hacia arriba. El agarre en supinación es inusual y activa músculos de forma diferente."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_unilateral', 'One-Arm Feet-Elevated Push Up', 'Flexión Pies Elevados Unilateral (Una Mano)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"core","shoulders","triceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Mano activa bajo el pecho, mano libre en la espalda baja.","Baja el pecho hacia el suelo de forma controlada. Mantén las caderas niveladas.","Empuja con un solo brazo. Requiere fuerza y control excepcionales del core."}',
+    '3', '3', '3-4',
+    '3-5', '5-8', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_clap', 'Clap Feet-Elevated Push Up', 'Flexión Pies Elevados con Aplauso',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja de forma controlada hasta casi tocar el suelo con el pecho.","Empuja de forma explosiva elevando las manos del suelo y da un aplauso en el punto máximo.","Aterriza con codos ligeramente flexionados. Desarrolla potencia explosiva en el pecho superior."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_double_clap', 'Double Clap Feet-Elevated Push Up', 'Flexión Pies Elevados con Doble Aplauso',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Empuja de forma ultra-explosiva para ganar suficiente altura en el aire.","Da un aplauso debajo del pecho y otro encima antes de aterrizar.","Nivel élite de potencia pliométrica. Sólo para avanzados con buena técnica base."}',
+    '3', '3', '3',
+    '2-4', '4-6', '5-8',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_pause', 'Pause Feet-Elevated Push Up', 'Flexión Pies Elevados con Pausa (Isométrica)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja de forma controlada hasta la posición baja.","Pausa 3-5 segundos en el punto más bajo eliminando el rebote elástico.","Empuja hacia arriba desde el dead stop. La pausa aumenta el tiempo bajo tensión."}',
+    '3', '3-4', '4',
+    '5-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_eccentric', 'Slow Eccentric Feet-Elevated Push Up', 'Flexión Pies Elevados Excéntrica Lenta (5-10 seg)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja en 5-10 segundos de forma perfectamente controlada hasta el suelo.","Empuja hacia arriba en 1-2 segundos normales. El trabajo excéntrico lento maximiza el daño muscular.","Reduce las repeticiones pero aumenta el tiempo bajo tensión. Favorece la hipertrofia."}',
+    '3', '3-4', '4',
+    '4-6', '6-8', '8-10',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_rings', 'Gymnastic Rings Feet-Elevated Push Up', 'Flexión en Anillas con Pies Elevados',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Coloca anillas de gimnasia a la altura del suelo. Pies elevados. Agarra las anillas.","La inestabilidad de las anillas activa músculos estabilizadores adicionales en todo el cuerpo.","Baja controlando la rotación de las anillas y empuja hacia arriba. Dificultad máxima."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_medball', 'Medicine Ball Hands Feet-Elevated Push Up', 'Flexión Manos en Balón Medicinal con Pies Elevados',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Coloca las manos sobre un balón medicinal con pies elevados. Mayor rango de movimiento.","Baja hasta que el pecho toque el balón, lo que aumenta el estiramiento del pecho.","La superficie inestable del balón añade activación de estabilizadores."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_elevated_unstable', 'Unstable Surface Feet-Elevated Push Up', 'Flexión Pies Elevados en Superficie Inestable (Colchoneta / Toalla)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","core"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos sobre una colchoneta gruesa, toalla doblada o almohadón en el suelo.","La superficie inestable bajo las manos obliga a mayor activación de los músculos estabilizadores.","Baja y empuja controlando el movimiento lateral. Útil para variedad en el entrenamiento."}',
+    '3', '3-4', '4',
+    '8-12', '12-18', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'dip_incline_45', 'Incline 45° Dip (Upper Chest Focus)', 'Fondos Inclinados 45° (Énfasis Pecho Superior)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Usa barras en V o barras paralelas ajustadas. Inclina el torso hacia adelante a ~45°.","Baja el cuerpo de forma controlada hasta que los codos superen los 90°.","Empuja hacia arriba manteniendo el ángulo del torso. La inclinación fuerza el pecho superior."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'dip_weighted_upper', 'Weighted Dip (Chest Focus)', 'Fondos con Peso (Énfasis Pecho)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Usa un cinturón de lastre o sujeta una mancuerna entre los tobillos/muslos.","Inclina el torso hacia adelante a 30-45° para maximizar la activación del pecho.","Baja hasta 90° de flexión de codo y empuja hacia arriba de forma explosiva."}',
+    '3', '3-4', '4-5',
+    '6-8', '6-10', '5-8',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'dip_wide_grip_upper', 'Wide Grip Dip (Chest Focus)', 'Fondos Agarre Ancho (Énfasis Pecho)',
+    'upperBody', 'chest_upper',
+    '{"chest"}', '{"shoulders","triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Usa barras con separación más ancha de lo habitual. Inclina el torso hacia adelante.","El agarre ancho reduce la participación del tríceps y aumenta la del pecho.","Baja de forma controlada y empuja hacia arriba apretando el pecho en el punto máximo."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
   ),
   (
     'bench_press_barbell', 'Barbell Bench Press', 'Press de Banca con Barra',
@@ -102,7 +727,8 @@ INSERT INTO exercises (
     '{"Acuéstate en el banco con los pies apoyados en el suelo. Arco natural en la espalda baja.","Agarra la barra a una anchura mayor que los hombros. Retrae los omóplatos.","Baja la barra hasta el pecho medio de forma controlada y empuja explosivamente hacia arriba."}',
     '3', '4', '5',
     '8-10', '8-12', '6-10',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'bench_press_dumbbell', 'Dumbbell Bench Press', 'Press de Banca con Mancuernas',
@@ -112,7 +738,8 @@ INSERT INTO exercises (
     '{"Acuéstate con mancuernas a la altura del pecho, codos a 75° del cuerpo.","Empuja hacia arriba y adentro hasta que las mancuernas casi se toquen arriba.","Baja con control en 2-3 segundos hasta sentir estiramiento en el pecho."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'bench_press_smith', 'Smith Machine Bench Press', 'Press de Banca en Máquina Smith',
@@ -122,7 +749,8 @@ INSERT INTO exercises (
     '{"Coloca el banco plano bajo la barra Smith. Agarre al ancho de hombros.","Baja la barra al pecho de forma controlada. La máquina guía el movimiento.","Empuja hasta casi extender los codos. No bloquees completamente."}',
     '3', '3-4', '4',
     '12-15', '10-12', '8-12',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'dumbbell_fly_flat', 'Flat Dumbbell Fly', 'Aperturas con Mancuernas en Banco Plano',
@@ -132,7 +760,8 @@ INSERT INTO exercises (
     '{"Acuéstate en banco plano con mancuernas extendidas sobre el pecho.","Abre los brazos en arco amplio bajando hasta sentir estiramiento completo.","Cierra los brazos como si abrazaras un barril. Aprieta el pecho arriba."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'cable_fly_mid', 'Cable Fly Mid', 'Cruce de Poleas Medio',
@@ -142,7 +771,8 @@ INSERT INTO exercises (
     '{"Poleas a la altura de los hombros. De pie en el centro con un pie adelante.","Lleva los cables al frente cruzando las manos a la altura del ombligo.","Regresa lentamente controlando la apertura sin perder tensión en el pecho."}',
     '3', '3-4', '4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'pec_deck_flat', 'Pec Deck Machine', 'Contractora de Pecho',
@@ -152,7 +782,8 @@ INSERT INTO exercises (
     '{"Siéntate con la espalda recta contra el respaldo. Ajusta el asiento.","Cierra los brazos hasta el centro apretando el pecho en el punto máximo.","Regresa con control sin dejar caer el peso. Mantén tensión constante."}',
     '3', '3', '3-4',
     '12-15', '12-15', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'push_up_standard', 'Standard Push Up', 'Flexión de Brazos Estándar',
@@ -162,7 +793,8 @@ INSERT INTO exercises (
     '{"Posición de plancha alta, manos al ancho de hombros. Cuerpo recto de cabeza a talones.","Baja el pecho al suelo manteniendo los codos a 45° del cuerpo.","Empuja hacia arriba de forma explosiva. Aprieta el pecho arriba."}',
     '3', '3-4', '4',
     '8-12', '12-20', '20-30',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'push_up_wide', 'Wide Grip Push Up', 'Flexión con Agarre Ancho',
@@ -172,7 +804,8 @@ INSERT INTO exercises (
     '{"Manos significativamente más anchas que los hombros. Dedos apuntando hacia afuera.","Baja el pecho entre las manos sintiendo el estiramiento en el pecho.","Empuja hacia arriba apretando el pecho en la posición alta."}',
     '3', '3-4', '4',
     '8-12', '12-20', '20-30',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'hammer_strength_flat', 'Hammer Strength Flat Press', 'Press Plano Hammer Strength',
@@ -182,7 +815,1108 @@ INSERT INTO exercises (
     '{"Siéntate con la espalda apoyada. Agarra las asas a la altura del pecho medio.","Empuja hacia adelante hasta casi extender los codos. Aprieta el pecho.","Regresa con control hasta sentir estiramiento completo en el pecho."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'bench_press_barbell_close_grip', 'Close Grip Bench Press', 'Press de Banca con Barra Agarre Cerrado',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Agarra la barra con agarre cerrado (manos a anchura de hombros o menos).","Baja la barra al centro del pecho de forma controlada.","Empuja hacia arriba. Activa el pecho medio interno y el tríceps."}',
+    '3', '4', '4-5',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'bench_press_barbell_wide_grip', 'Wide Grip Bench Press', 'Press de Banca con Barra Agarre Abierto',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"shoulders"}', '{"barbell","bench"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Agarra la barra con agarre muy ancho (más allá del ancho de hombros).","Baja la barra al pecho medio con un arco más amplio maximizando el estiramiento pectoral.","Empuja hacia arriba. El agarre ancho aumenta el rango de activación del pecho externo."}',
+    '3', '4', '4-5',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'bench_press_barbell_reverse_grip', 'Reverse Grip Bench Press', 'Press de Banca con Barra Agarre Inverso (Supino)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"biceps","shoulders"}', '{"barbell","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Agarra la barra con agarre supino (palmas hacia ti), manos a anchura de hombros.","Baja la barra al pecho de forma controlada con los codos cercanos al cuerpo.","Empuja hacia arriba. El agarre inverso activa el pecho superior y biceps secundariamente."}',
+    '3', '3-4', '4',
+    '10-12', '8-10', '6-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'bench_press_barbell_chains', 'Bench Press with Chains', 'Press de Banca con Barra y Cadenas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"barbell","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuelga cadenas en cada extremo de la barra. En posición baja las cadenas reposan en el suelo (menos carga); al subir se levantan (más carga).","Baja la barra al pecho de forma controlada. El movimiento es igual que el press estándar.","Empuja con fuerza. La resistencia acomodante elimina el punto débil al final del recorrido."}',
+    '3', '4', '4-5',
+    '6-8', '5-8', '4-6',
+    150, 120, 90,
+    'gym'
+  ),
+  (
+    'bench_press_barbell_resistance_bands', 'Bench Press with Resistance Bands', 'Press de Banca con Barra y Bandas Elásticas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"barbell","bench","bands"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ancla bandas al suelo o rack y fíjalas a la barra. La resistencia aumenta al extender los brazos.","La curva de fuerza acomodante obliga a máxima activación muscular en todo el rango de movimiento.","Usa menos peso en barra que en press estándar. Ideal para desarrollar velocidad y potencia."}',
+    '3', '4', '4-5',
+    '6-8', '5-8', '4-6',
+    150, 120, 90,
+    'gym'
+  ),
+  (
+    'bench_press_smith_unilateral', 'Unilateral Smith Machine Bench Press', 'Press de Banca Smith Unilateral',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco plano bajo la Smith. Trabaja un brazo a la vez con una sola mano.","Baja la barra al centro del pecho del lado trabajado de forma controlada.","Empuja hasta casi extender el codo. Ideal para corregir desequilibrios bilaterales."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'bench_press_multipower', 'Flat Multipower Press', 'Press Plano en Multipower',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine","bench"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco plano bajo la barra del multipower. Ajusta la altura inicial de la barra.","Baja la barra al pecho medio de forma controlada siguiendo la guía fija.","Empuja hacia arriba hasta casi extender los codos. La guía fija favorece la técnica."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'bench_press_rack_pin_flat', 'Flat Rack Pin Press', 'Press Plano con Pines (Rack Pin Press)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"barbell","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Configura los pines del rack en posición de pecho (dead stop). Banco plano.","Inicia el press desde los pines sin impulso previo (desde posición muerta).","Empuja explosivamente. Elimina el estiramiento elástico, máxima activación muscular."}',
+    '3', '4', '5',
+    '6-8', '5-8', '3-6',
+    150, 120, 90,
+    'gym'
+  ),
+  (
+    'bench_press_dumbbell_neutral', 'Neutral Grip Dumbbell Bench Press', 'Press de Banca con Mancuernas Agarre Neutro',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Mancuernas con agarre neutro (palmas enfrentadas entre sí).","Baja las mancuernas hacia los lados del pecho manteniendo los codos más cercanos al cuerpo.","Empuja hacia arriba y ligeramente hacia el centro. Reduce el estrés en el hombro."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_unilateral', 'Unilateral Dumbbell Bench Press', 'Press de Banca con Mancuerna Unilateral',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","shoulders"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Trabaja un brazo a la vez. El brazo libre reposa sobre el pecho o a los lados.","Baja la mancuerna al pecho del lado trabajado de forma controlada.","Empuja hacia arriba. El trabajo unilateral activa el core y corrige desequilibrios."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_alternating', 'Alternating Dumbbell Bench Press', 'Press de Banca con Mancuernas Alternado',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Empieza con ambas mancuernas en posición baja.","Empuja un brazo hasta arriba mientras el otro permanece abajo. Alterna continuamente.","Mantén el core estable contrarrestando el desequilibrio de carga."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_rotation', 'Dumbbell Bench Press with Rotation', 'Press de Banca con Mancuernas con Rotación',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"shoulders","triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Empieza con agarre neutro (palmas enfrentadas) en posición baja.","Al empujar, rota las muñecas para terminar con las palmas hacia los pies (pronado).","La rotación completa el arco de aducción del pectoral. Aprieta el pecho arriba."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_pause', 'Dumbbell Bench Press with Pause', 'Press de Banca con Mancuernas con Pausa en el Pecho',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Baja las mancuernas al pecho de forma controlada.","Pausa 2-3 segundos en la posición baja eliminando el rebote elástico.","Empuja desde el dead stop. La pausa aumenta el tiempo bajo tensión y la activación neuromuscular."}',
+    '3', '3-4', '4',
+    '8-10', '6-10', '6-8',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_plyo', 'Plyometric Dumbbell Bench Press', 'Press de Banca con Mancuernas Pliométrico (con Palmada)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"dumbbell","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Usa mancuernas ligeras. Baja de forma controlada.","Empuja explosivamente soltando las mancuernas en el punto alto y da una palmada.","Atrapa las mancuernas y repite. Desarrolla potencia explosiva del pecho medio."}',
+    '3', '3', '3-4',
+    '6-8', '8-10', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_wrist_rotation', 'Dumbbell Bench Press with Wrist Rotation', 'Press de Banca con Mancuernas con Giro de Muñeca',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"forearm","shoulders"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Empieza con agarre neutro. Realiza el press de forma normal.","En el punto más alto, añade un giro de muñeca en supinación-pronación para máxima contracción.","El giro al final del recorrido aumenta la activación de la porción esternal del pectoral."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_fly_flat_unilateral', 'Unilateral Flat Dumbbell Fly', 'Apertura con Mancuerna Unilateral en Banco Plano',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Sostén una sola mancuerna con el brazo semi-extendido sobre el pecho.","Baja el brazo en arco amplio hacia afuera hasta el estiramiento máximo del pecho.","Cierra en arco apretando el pecho. Trabaja cada lado por separado."}',
+    '3', '3', '3-4',
+    '12-15', '10-12', '10-12',
+    75, 60, 60,
+    'home'
+  ),
+  (
+    'cable_fly_flat_low', 'Flat Cable Fly (Low Pulley)', 'Apertura Plana con Polea Baja',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"cable","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco plano entre dos poleas bajas. Acuéstate con una polea a cada lado.","Tira los cables hacia arriba en arco hasta que las manos se encuentren sobre el pecho.","La polea baja crea una trayectoria diferente al aportar tensión constante desde abajo."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '10-12',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_flat_high', 'Flat Cable Fly (High Pulley)', 'Apertura Plana con Polea Alta',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"cable","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco plano entre dos poleas altas. Acuéstate con cables descendiendo hacia el pecho.","Baja los cables abriendo los brazos en arco hasta el estiramiento máximo.","Cierra los brazos sobre el pecho. La polea alta aumenta la tensión en la posición de estiramiento."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '10-12',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'dumbbell_fly_flat_angle_variable', 'Variable Angle Dumbbell Fly', 'Aperturas en Banco Plano con Ángulo Variable',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Banco plano. Realiza aperturas variando el ángulo del brazo en cada repetición (30°, 60°, 90°).","Los distintos ángulos estimulan diferentes fibras del pecho medio en la misma serie.","Usa un peso que permita control total en todos los ángulos. Excelente para variedad."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'cable_crossover_mid_unilateral', 'Unilateral Cable Crossover (Mid)', 'Cable Cruzado Unilateral Posición Media',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea a la altura del hombro. De pie de lado a la máquina, agarra con una sola mano.","Lleva el cable al frente y hacia el lado contrario cruzando el cuerpo a la altura del pecho.","Regresa lentamente manteniendo tensión. Trabaja cada lado por separado."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_crossover_rope_mid', 'Rope Cable Crossover (Mid)', 'Cable Cruzado con Cuerda Posición Media',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta cuerda a dos poleas a la altura del hombro. De pie en el centro.","Lleva los extremos de la cuerda al frente separando las manos al final del movimiento.","La cuerda permite rotación de muñecas para mayor contracción del pecho medio."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_crossover_bar_mid', 'Straight Bar Cable Crossover (Mid)', 'Cable Cruzado con Barra Recta Posición Media',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta barra recta a polea a la altura del pecho. De pie frente a la máquina.","Tira la barra hacia el pecho en un arco horizontal. La barra fija obliga a movimiento simétrico.","Extiende los brazos con control. Mejor aislamiento con la guía de la barra."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_press_flat_low', 'Low Cable Press on Flat Bench', 'Press en Polea Baja con Banco Plano',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"cable","bench"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un banco plano perpendicular a la polea baja. Acuéstate con la polea a la altura del banco.","Sostén el cable con una o dos manos. Empuja hacia arriba como si fuera un press.","La tensión constante del cable diferencia el perfil de resistencia del peso libre."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_press_flat_low_unilateral', 'Unilateral Low Cable Press on Flat Bench', 'Press en Polea Baja Unilateral con Banco Plano',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","triceps"}', '{"cable","bench"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco plano frente a polea baja. Trabaja un brazo a la vez.","La rotación del tronco que se genera al trabajar unilateralmente activa el core.","Empuja hacia arriba y ligeramente al centro. Repite por cada lado."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_press_flat_high', 'High Cable Press on Flat Bench', 'Press en Polea Alta con Banco Plano',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"cable","bench"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco plano entre poleas altas. Acuéstate y sostén los cables que descienden desde arriba.","Empuja los cables hacia abajo y al frente hasta extender los codos.","La dirección de la resistencia (desde arriba) crea un ángulo de activación diferente."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_fly_contracting_mid', 'Cable Fly Contraction Focus (Mid)', 'Contractora de Pecho en Polea (Cable Fly)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas a la altura del pecho. De pie en el centro, un pie adelante.","Lleva los cables al frente cruzando las manos y apretando el pecho intensamente al final.","Sostén la contracción 1-2 segundos en el punto máximo. Regresa con control."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    60, 60, 45,
+    'gym'
+  ),
+  (
+    'bench_press_plate_loaded', 'Plate-Loaded Flat Chest Press Machine', 'Press de Pecho Plano en Máquina Plate-Loaded',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento para que las asas queden a la altura del pecho medio.","Carga los discos de forma equilibrada. Empuja hacia adelante hasta casi extender los codos.","Regresa con control hasta el estiramiento completo. La máquina fija la trayectoria."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'hammer_strength_flat_unilateral', 'Hammer Strength Flat Press (Unilateral)', 'Hammer Strength Plano Unilateral',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"En la Hammer Strength plana, trabaja un brazo a la vez.","Empuja el asa hacia adelante hasta casi extender el codo del lado trabajado.","Corrige asimetrías musculares. Cada lado trabaja independientemente con carga propia."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cybex_flat_press', 'Cybex / Life Fitness Flat Chest Press', 'Press de Pecho Plano Cybex / LifeFitness',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento y selecciona el peso en el stack. Espalda apoyada en el respaldo.","Agarra las asas a la altura del pecho. Empuja hacia adelante siguiendo el arco de la máquina.","Regresa con control. La máquina selectorizada permite ajustes precisos de carga."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'converging_chest_machine', 'Converging Chest Press Machine', 'Máquina de Pectoral Convergente',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La máquina convergente dirige los brazos hacia el centro durante el press, imitando la aducción natural del pectoral.","Ajusta el asiento. Los brazos convergen en el punto final mejorando la contracción muscular.","Empuja hasta que las asas casi se toquen al frente. Excelente aislamiento del pecho medio."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'chest_machine_independent_arms', 'Independent Arms Chest Press Machine', 'Máquina de Pectoral con Brazos Independientes',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cada brazo opera de forma independiente. Permite trabajar asimetrías sin compensación del brazo fuerte.","Empuja un brazo o ambos según el objetivo. El movimiento independiente aísla mejor cada pectoral.","Controla la velocidad de regreso en cada brazo por separado."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lever_press_machine', 'Lever Chest Press Machine', 'Máquina de Press de Palanca (Lever Press)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"machine"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La máquina de palanca usa un eje de rotación fijo que crea una curva de resistencia diferente al arco libre.","Ajusta el asiento para que el eje de la máquina quede alineado con el hombro.","Empuja la palanca hacia adelante. El arco fijo de la palanca crea tensión constante en todo el rango."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'dip_vertical_mid', 'Vertical Dip (Chest Mid Focus)', 'Fondos en Barras Paralelas Verticales (Énfasis Pecho Medio)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Barras paralelas. Torso vertical (erguido) o con ligera inclinación hacia adelante (10-15°).","Baja hasta que los codos formen 90°. El torso vertical enfatiza el tríceps y el pecho medio.","Empuja hacia arriba hasta extender los codos. Controla la postura durante todo el movimiento."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'dip_weighted_mid', 'Weighted Dip (Vertical)', 'Fondos con Peso (Torso Vertical)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Usa cinturón de lastre o sujeta mancuerna entre tobillos. Torso vertical.","Baja hasta 90° de flexión de codo. El peso adicional aumenta la carga progresivamente.","Empuja hacia arriba de forma controlada. Uno de los mejores ejercicios de pecho/tríceps."}',
+    '3', '3-4', '4-5',
+    '6-8', '6-10', '5-8',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'dip_close_grip_mid', 'Close Grip Dip', 'Fondos con Agarre Estrecho',
+    'upperBody', 'chest_mid',
+    '{"triceps"}', '{"chest"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Barras paralelas colocadas más juntas de lo habitual o usa las caras internas de las barras.","El agarre estrecho reduce la separación de los codos, aumentando la participación del tríceps.","Baja con control y empuja hacia arriba. Buena variación para el tríceps y el pecho interno."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'dip_wide_grip_mid', 'Wide Grip Dip (Neutral Torso)', 'Fondos Agarre Ancho (Torso Neutro)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Barras más anchas de lo habitual. Torso en posición neutra (ni muy inclinado ni muy erguido).","El agarre ancho y el torso neutro distribuyen el trabajo entre pecho medio y tríceps.","Baja con control y empuja hacia arriba. Maximiza el estiramiento del pecho en la posición baja."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'dip_controlled_lean_mid', 'Controlled Lean Dip', 'Fondos con Inclinación Controlada',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Barras paralelas. Inclina el torso hacia adelante un ángulo preciso (20-25°) de forma consciente.","Mantén el mismo ángulo de inclinación durante todo el set sin variar.","La inclinación controlada permite ajustar el énfasis entre pecho medio y pecho inferior."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'floor_press_dumbbell', 'Dumbbell Floor Press', 'Press de Suelo con Mancuernas (Floor Press)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"dumbbell"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Acuéstate en el suelo con las rodillas flexionadas. Sostén mancuernas a la altura del pecho.","El suelo limita el rango de movimiento (codos tocan el suelo), enfocando la parte alta del movimiento.","Empuja hacia arriba hasta extender los codos. Ideal sin banco — activa pecho y tríceps."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'floor_press_dumbbell_pause', 'Dumbbell Floor Press with Pause', 'Press de Suelo con Mancuernas con Pausa',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"dumbbell"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"En posición de floor press, baja hasta que los codos toquen el suelo.","Pausa 2-3 segundos completamente en el suelo (codos apoyados, sin tensión elástica).","Empuja desde cero. El dead stop en el suelo maximiza la activación neuromuscular."}',
+    '3', '3-4', '4',
+    '8-10', '6-10', '6-8',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pullover_flat_dumbbell', 'Flat Dumbbell Pullover', 'Pullover Plano con Mancuerna',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"lats","triceps"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Acuéstate en banco plano con una mancuerna grande sostenida con ambas manos sobre el pecho.","Baja la mancuerna en arco por encima de la cabeza hasta sentir estiramiento en el pecho y dorsal.","Regresa en arco. Clásico ejercicio de expansión torácica y desarrollo del pecho medio."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_dumbbell_fitball_flat', 'Flat Dumbbell Press on Fitball', 'Press Plano con Mancuernas en Fitball',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"dumbbell","fitball"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca la parte media de la espalda sobre el fitball con caderas levantadas y cuerpo horizontal.","Sostén las mancuernas a la altura del pecho. El fitball activa glúteos y core para mantenerse estable.","Empuja hacia arriba como en banco plano. La inestabilidad añade trabajo de estabilización."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_fly_fitball_flat', 'Flat Dumbbell Fly on Fitball', 'Aperturas Planas con Mancuernas en Fitball',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core"}', '{"dumbbell","fitball"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Espalda sobre fitball en posición horizontal. Caderas elevadas (puente de glúteo activo).","Abre los brazos en arco amplio hacia abajo hasta el estiramiento completo del pecho.","Cierra los brazos sobre el pecho. El fitball exige control adicional de todo el cuerpo."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 60,
+    'home'
+  ),
+  (
+    'pullover_flat_dumbbell_fitball', 'Flat Pullover on Fitball', 'Pullover Plano en Fitball',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"lats","core"}', '{"dumbbell","fitball"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Espalda sobre fitball en posición horizontal. Sostén mancuerna grande con ambas manos.","Baja en arco por encima de la cabeza hasta el estiramiento máximo del pecho y dorsal.","Regresa en arco sobre el pecho. El fitball añade mayor rango de movimiento que el banco."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_bands_anchored_back', 'Flat Band Press (Anchored Behind)', 'Press Plano con Bandas Ancladas Detrás',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bands","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a un punto detrás de ti o bajo el banco. Acuéstate sosteniendo los extremos.","La banda ejerce resistencia horizontal al empujar hacia adelante sobre el pecho.","Empuja hasta extender los codos. Simula el vector del press de banca."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_bands_flat_low', 'Flat Band Press (Low Anchor)', 'Press Plano con Bandas Ancladas Abajo',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bands","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a un punto bajo (pata del banco, puerta baja). Acuéstate sobre el banco.","Los extremos de la banda suben desde abajo resistiendo el empuje.","Empuja hacia arriba como en press estándar. El anclaje bajo cambia el vector de fuerza."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_bands_cross_flat', 'Cross-Band Flat Press', 'Press Plano con Bandas Cruzadas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bands","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa dos bandas cruzadas pasando por la espalda agarradas con las manos contrarias.","Las bandas cruzadas añaden resistencia lateral al press aumentando la aducción del pecho.","Empuja hacia arriba y ligeramente al centro. El cruce potencia la contracción del pectoral."}',
+    '3', '3-4', '4',
+    '12-15', '10-15', '10-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_bands_dumbbells_flat', 'Flat Press with Bands + Dumbbells', 'Press Plano con Bandas + Mancuernas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"dumbbell","bands","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pasa una banda por las mancuernas y anclada bajo el banco para añadir resistencia acomodante.","El peso de las mancuernas más la tensión de la banda crea mayor carga total en extensión.","Empuja hasta extensión completa. La combinación maximiza la activación del pecho medio."}',
+    '3', '3-4', '4',
+    '8-10', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_fly_bands_flat', 'Flat Fly with Resistance Bands', 'Aperturas Planas con Bandas Elásticas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla bandas detrás de ti a la altura de los hombros. De pie o acostado sosteniendo los extremos.","Con brazos semi-extendidos, cierra los brazos hacia el frente en arco amplio.","Aprieta el pecho al centro. Regresa con control resistiendo la apertura de la banda."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'crossover_bands_flat', 'Band Crossover (Mid Height)', 'Crossover con Bandas Posición Media (Simulando Poleas)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla bandas a puntos laterales a la altura de los hombros. De pie en el centro.","Lleva las manos al frente cruzándolas a la altura del pecho como en una polea media.","Aprieta el pecho en el punto central. Excelente para simular el cable crossover en casa."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'bench_press_bands_back_wrap_flat', 'Flat Band Press (Wrapped Around Back)', 'Press Plano con Banda Rodeando la Espalda',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bands"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pasa la banda por detrás de la espalda sosteniendo un extremo en cada mano.","Empuja hacia adelante o hacia arriba (según la posición del cuerpo) hasta extender los codos.","Sin necesidad de anclaje externo. Puedes hacerlo acostado en el suelo o sentado."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'floor_press_barbell_home', 'Barbell Floor Press (Home)', 'Press de Suelo con Barra (Casa con Rack)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"barbell"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Si tienes barra y discos en casa, acuéstate en el suelo con la barra sobre el pecho.","Los codos tocan el suelo en la posición baja, limitando el rango de movimiento.","Empuja hacia arriba hasta extender los codos. Más seguro que el press en banco sin spotter."}',
+    '3', '4', '4-5',
+    '8-12', '6-10', '5-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'push_up_weighted_backpack', 'Weighted Backpack Push Up', 'Flexión con Mochila Lastrada',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Llena una mochila con libros u objetos pesados y póntela en la espalda.","Posición estándar de flexión. El peso en la espalda añade resistencia.","Baja y empuja como en una flexión normal. Progresión clave sin pesas convencionales."}',
+    '3', '3-4', '4',
+    '8-12', '8-15', '10-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'bench_press_bottles_flat', 'Flat Press with Water Bottles / Jugs', 'Press Plano con Botellas de Agua / Garrafas',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa botellas llenas de agua o garrafas como mancuernas improvisadas.","Acuéstate en superficie plana (suelo, sofa, banco) sosteniendo los objetos a la altura del pecho.","Empuja hacia arriba como en press estándar. Opción práctica sin equipo formal."}',
+    '3', '4', '4',
+    '15-20', '15-25', '20-30',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'pullover_flat_bottle', 'Flat Pullover with Bottle / Jug', 'Pullover Plano con Botella / Garrafa',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"lats"}', '{"dumbbell","bench"}',
+    1, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa una garrafa grande o botella con agua como peso. Sostén con ambas manos.","Acuéstate plano y baja en arco por encima de la cabeza hasta sentir el estiramiento.","Regresa en arco sobre el pecho. Ideal para iniciarse en el pullover sin equipo."}',
+    '3', '3-4', '4',
+    '15-20', '12-15', '12-15',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'dumbbell_fly_bottles_flat', 'Flat Fly with Water Bottles', 'Aperturas Planas con Botellas de Agua',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa botellas de agua llenas como mancuernas ligeras.","Acuéstate en superficie plana. Abre los brazos en arco hacia abajo.","Cierra los brazos sobre el pecho. Perfecto para principiantes o series de alto volumen."}',
+    '3', '3-4', '4',
+    '15-20', '15-20', '20-25',
+    60, 60, 45,
+    'home'
+  ),
+  (
+    'trx_press_inclined', 'TRX Push Up (Inclined Body)', 'Press en TRX (Posición Inclinada)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bands","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Agarra las asas del TRX con el cuerpo en ángulo inclinado (45-60°). Cuanto más inclinado, más fácil.","Baja el pecho hacia las asas flexionando los codos, manteniendo el core activo.","Empuja hacia arriba hasta extender los brazos. La inestabilidad del TRX activa estabilizadores."}',
+    '3', '3-4', '4',
+    '10-15', '10-15', '12-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_press_horizontal', 'TRX Push Up (Horizontal Body)', 'Press en TRX (Posición Horizontal)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core","shoulders"}', '{"bands","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Cuerpo casi paralelo al suelo, agarrando las asas del TRX. Máxima dificultad.","Baja el pecho hacia las asas manteniendo el cuerpo completamente recto.","Empuja hacia arriba. El TRX en posición horizontal es equivalente a una flexión estándar pero inestable."}',
+    '3', '3', '3-4',
+    '6-10', '8-12', '10-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'trx_fly', 'TRX Chest Fly', 'Aperturas en TRX',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core"}', '{"bands","bench"}',
+    3, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"De pie inclinado hacia adelante, agarrando asas del TRX con brazos extendidos al frente.","Abre los brazos en arco hacia los lados bajando el cuerpo, como una apertura.","Cierra los brazos regresando a la posición inicial. Muy exigente para el pecho y el core."}',
+    '3', '3', '3-4',
+    '8-10', '8-12', '10-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'rings_dip_flat', 'Ring Dip', 'Fondos en Anillas de Gimnasia',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Sujétate a las anillas con los brazos extendidos. Anillas a la altura de las caderas.","Baja flexionando los codos e inclinando levemente el torso. Las anillas se balancean.","Empuja hacia arriba. Los fondos en anillas son uno de los ejercicios de pecho más exigentes."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'rings_press_flat', 'Ring Push Up', 'Press / Flexión en Anillas de Gimnasia',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Anillas bajas a la altura del suelo. Posición de flexión agarrando las anillas.","Baja el pecho hacia las anillas mientras se balancean, exigiendo control máximo.","Empuja hacia arriba. La inestabilidad de las anillas activa más músculo que la flexión estándar."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_knee', 'Knee Push Up', 'Flexión con Rodillas en Suelo (Principiante)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    1, 'compound', 1.2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Apoya las rodillas en el suelo con el cuerpo formando una línea diagonal. Manos al ancho de hombros.","Baja el pecho hacia el suelo flexionando los codos hasta 90°.","Empuja hacia arriba. Ideal para principiantes y para construir la base antes de la flexión completa."}',
+    '3', '3', '3',
+    '8-12', '15-20', '20-25',
+    90, 60, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_bench', 'Incline Push Up (Hands Elevated)', 'Flexión con Manos Elevadas en Banco / Silla',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight","bench"}',
+    1, 'compound', 1.2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Coloca las manos en un banco, silla o superficie elevada con el cuerpo inclinado (pies en suelo).","Cuanto más alta la superficie, más fácil. Gradualmente baja la altura para aumentar dificultad.","Baja el pecho hacia la superficie y empuja. Excelente progresión para principiantes."}',
+    '3', '3-4', '4',
+    '10-15', '15-20', '20-25',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_arc_flat', 'Arc Hands Push Up', 'Flexión con Manos en Arco',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Manos en posición de arco: dedos apuntando hacia afuera, muñecas más adelantadas que los hombros.","Baja el pecho al suelo siguiendo la línea de los antebrazos.","La posición en arco varía el ángulo de los codos distribuyendo el trabajo de forma diferente."}',
+    '3', '3-4', '4',
+    '8-12', '12-18', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_supine_flat', 'Reverse / Supine Hands Push Up', 'Flexión con Manos en Supinación (Dedos hacia Atrás)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"biceps"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Manos en el suelo con los dedos apuntando hacia los pies (posición de supinación).","Los codos se mueven ligeramente diferente al bajar, activando el bícep como secundario.","Baja y empuja. Variación inusual que estimula el pecho y el bícep de forma diferente."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_diamond_flat', 'Diamond Push Up', 'Flexión en Diamante',
+    'upperBody', 'chest_mid',
+    '{"triceps"}', '{"chest"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Junta las manos formando un triángulo o diamante bajo el esternón.","Baja el pecho hacia las manos manteniendo los codos pegados al cuerpo.","Excelente para el tríceps y el pecho interno. Progresión desde close-grip hasta diamante."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_two_chairs', 'Push Up Between Two Chairs', 'Flexión con Manos en Dos Sillas (Mayor Recorrido)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca dos sillas estables con el asiento hacia fuera. Apoya una mano en cada silla.","Baja el pecho MÁS ABAJO del nivel de las manos, obteniendo un rango de movimiento mayor.","El mayor estiramiento del pecho aumenta la tensión en la posición baja. Precaución con la estabilidad."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '12-18',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_medball_flat', 'Push Up Hands on Medicine Ball', 'Flexión con Manos en Balón Medicinal',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Apoya ambas manos sobre un balón medicinal. El balón añade inestabilidad.","Baja el pecho hacia el balón manteniendo los brazos estables sobre la superficie redonda.","Empuja hacia arriba. La inestabilidad activa más músculo estabilizador del pecho y core."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_books', 'Push Up Hands on Stacked Books', 'Flexión con Manos en Libros Apilados',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Apila libros gruesos o revistas a cada lado. Coloca una mano en cada pila.","La altura de los libros permite bajar más el pecho, aumentando el rango de movimiento.","Baja con control y empuja hacia arriba. Alternativa casera a las paralelas."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-18',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_step', 'Push Up Hands on Step / Stair', 'Flexión con Manos en Escalón / Escalera',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa el escalón de una escalera o un step como superficie elevada para las manos.","Baja el pecho hacia el escalón. El borde del escalón permite algo de recorrido extra.","Empuja hacia arriba. Progresión natural entre manos en el suelo y manos en silla alta."}',
+    '3', '3-4', '4',
+    '10-15', '12-18', '15-20',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_unilateral_flat', 'One-Arm Push Up', 'Flexión con Una Sola Mano',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Mano activa bajo el pecho, pies más separados que lo normal para estabilidad. Mano libre en la espalda.","Baja el cuerpo de forma controlada manteniendo las caderas paralelas al suelo.","Empuja con un solo brazo. Uno de los ejercicios de pecho más desafiantes con peso corporal."}',
+    '3', '3', '3-4',
+    '3-5', '5-8', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_archer', 'Archer Push Up', 'Flexión de Arquero (Archer Push Up)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición con manos muy separadas. Baja hacia un lado flexionando ese codo mientras el otro permanece casi extendido.","El brazo extendido sirve de soporte lateral mientras el brazo doblado hace el trabajo principal.","Alterna lados. Es una progresión hacia la flexión con una mano."}',
+    '3', '3', '3-4',
+    '4-6', '6-8', '8-10',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_spiderman', 'Spiderman Push Up', 'Flexión Spiderman (Rodilla al Codo)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","hip_flexors","triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión estándar. Al bajar, lleva una rodilla hacia el codo del mismo lado.","Regresa la rodilla al subir. Alterna el lado en cada repetición.","Combina el trabajo de pecho con activación del core y movilidad de cadera."}',
+    '3', '3-4', '4',
+    '8-12', '12-16', '16-20',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_diamond_unilateral', 'Unilateral Diamond Push Up', 'Flexión Diamante Unilateral',
+    'upperBody', 'chest_mid',
+    '{"triceps"}', '{"chest","core"}', '{"bodyweight"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición con una mano en posición de diamante y la otra extendida al lado.","Baja hacia el lado de la mano en diamante concentrando la fuerza en ese lado.","Muy avanzado. Activa tríceps y pecho de forma unilateral intensa."}',
+    '3', '3', '3',
+    '3-5', '5-8', '6-10',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_hip_elevation', 'Push Up with Hip Elevation', 'Flexión con Elevación de Cadera',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"shoulders","core"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión. Al bajar el pecho, eleva las caderas formando un ángulo en V invertida.","Empuja hacia arriba mientras las caderas bajan de nuevo a posición de plancha.","El movimiento de cadera añade trabajo de hombros y aumenta la activación total del torso."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-18',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_reaching', 'Reaching Push Up', 'Flexión con Alcance Frontal',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión. Al subir, extiende un brazo hacia adelante mientras el otro sostiene el cuerpo.","Mantén el equilibrio con una mano por un momento antes de bajar el brazo.","Alterna el brazo que alcanza. Activa el core para resistir la rotación del tronco."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-18',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_lateral_slide', 'Lateral Sliding Push Up', 'Flexión con Deslizamiento Lateral',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"En superficie deslizante (toalla en suelo liso) coloca las manos en posición estándar.","Baja y al empujar desliza ambas manos hacia un lado. Repite deslizando al otro lado.","El deslizamiento lateral activa el pecho de forma diferente desafiando la estabilidad."}',
+    '3', '3', '3-4',
+    '6-10', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_walking', 'Walking Push Up', 'Flexión Caminando (Walking Push Ups)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión estándar. Realiza una flexión, luego desplaza las manos a la derecha.","Realiza otra flexión en la nueva posición. Camina de vuelta con otra flexión en cada paso.","El desplazamiento lateral cambia el ángulo de trabajo en cada repetición."}',
+    '3', '3-4', '4',
+    '6-10', '8-12', '10-16',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_t_rotation', 'T-Push Up (Trunk Rotation)', 'Flexión con Rotación de Tronco (T Push Up)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","obliques","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión. Al subir, rota el tronco levantando un brazo hacia el techo formando una T.","Sostén la posición T 1-2 segundos y regresa. Alterna el lado en cada repetición.","Combina el trabajo de pecho con rotación de tronco y fortalecimiento del core."}',
+    '3', '3-4', '4',
+    '8-10', '10-14', '12-16',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_clap', 'Clap Push Up', 'Flexión con Aplauso',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición estándar. Baja de forma controlada hasta casi tocar el suelo con el pecho.","Empuja explosivamente elevando las manos del suelo y da un aplauso en el punto más alto.","Aterriza con codos semi-flexionados para absorber el impacto. Desarrolla potencia del pecho."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_double_clap', 'Double Clap Push Up', 'Flexión con Doble Aplauso',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja de forma ultra-explosiva para ganar suficiente altura.","Da un aplauso delante del pecho y otro detrás de la espalda antes de aterrizar.","Nivel élite de potencia. Solo para atletas con gran base de fuerza."}',
+    '3', '3', '3',
+    '2-4', '4-6', '5-8',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'push_up_hands_lift', 'Push Up with Hands Off Ground', 'Flexión con Elevación de Manos del Suelo',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja de forma explosiva hasta que las manos se separen del suelo sin necesidad de aplaudir.","El objetivo es el impulso explosivo, no el aplauso. Más fácil que el push-up con aplauso.","Aterriza suavemente y repite. Buena progresión hacia flexiones pliométricas avanzadas."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_360', '360° Rotation Push Up', 'Flexión con Vuelta Olímpica (360°)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja con máxima potencia explosiva elevando el cuerpo entero del suelo.","En el aire, rota el cuerpo 360° antes de aterrizar en posición de flexión.","Nivel extremo de potencia y coordinación. Solo para atletas con entrenamiento pliométrico sólido."}',
+    '3', '3', '3',
+    '1-2', '2-4', '4-6',
+    180, 150, 120,
+    'bodyweight'
+  ),
+  (
+    'push_up_chest_clap', 'Chest Clap Push Up', 'Flexión con Palmada en el Pecho',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja explosivamente y en el punto más alto da una palmada en el pecho antes de aterrizar.","Distinto del aplauso (manos entre sí), aquí la mano golpea el pecho propio.","Requiere más height de despegue que el push-up con aplauso estándar."}',
+    '3', '3', '3-4',
+    '3-5', '5-8', '6-10',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_back_clap', 'Behind-the-Back Clap Push Up', 'Flexión con Palmada Detrás de la Espalda',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja con máxima potencia llevando las manos detrás de la espalda para aplaudir.","La mano va detrás de la espalda y regresa antes de aterrizar. Exige más potencia que el aplauso frontal.","Nivel élite. Combina potencia horizontal y coordinación motriz fina."}',
+    '3', '3', '3',
+    '2-3', '3-5', '5-8',
+    150, 120, 90,
+    'bodyweight'
+  ),
+  (
+    'push_up_hand_jump', 'Hand Jump Push Up', 'Flexión con Salto de Manos',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Las manos empiezan juntas. Empuja explosivamente abriendo las manos a una posición más ancha.","Aterriza con las manos en posición ancha, baja y empuja regresando a posición cerrada.","Combina fuerza explosiva con cambio de posición de manos en cada repetición."}',
+    '3', '3', '3-4',
+    '4-6', '6-8', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_pause_bottom', 'Push Up with Bottom Pause', 'Flexión con Pausa en Posición Baja (3-5 seg)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición estándar. Baja de forma controlada hasta la posición baja.","Mantén la posición baja 3-5 segundos sin tocar el suelo, músculo bajo máxima tensión isométrica.","Empuja hacia arriba. La pausa elimina el rebote elástico y aumenta significativamente el tiempo bajo tensión."}',
+    '3', '3-4', '4',
+    '5-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_pause_midpoint', 'Push Up with Mid-Point Pause', 'Flexión con Pausa en Mitad del Recorrido',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Baja lentamente hasta la mitad del recorrido (codos a 90°) y mantén 3 segundos.","Continúa bajando hasta la posición baja, luego empuja hacia arriba.","La pausa a mitad activa las fibras musculares de forma diferente al ejercicio continuo."}',
+    '3', '3-4', '4',
+    '5-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hold_isometric', 'Push Up Hold (Isometric)', 'Sostén Isométrico en Posición Baja de Flexión',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Baja a la posición de flexión (pecho cerca del suelo) y mantén la posición.","Sostén durante 10-30 segundos manteniendo el músculo bajo tensión isométrica constante.","Regresa a posición alta o descansa. Excelente para acumular tiempo bajo tensión."}',
+    '3', '3-4', '4',
+    '10-15s', '15-25s', '25-45s',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_pause_top', 'Push Up with Top Pause', 'Flexión con Pausa en Posición Alta',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empuja hacia arriba hasta la posición alta y mantén los brazos extendidos 3 segundos.","Aprieta el pecho en la posición alta antes de bajar para la siguiente repetición.","La pausa arriba aumenta la contracción del pecho en el rango corto del movimiento."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-18',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_eccentric', 'Slow Eccentric Push Up (5 sec)', 'Flexión Excéntrica Lenta (5 seg de bajada)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición estándar. Baja en exactamente 5 segundos controlando cada centímetro del recorrido.","Empuja hacia arriba en 1-2 segundos normales. La fase excéntrica lenta es la clave.","La bajada lenta genera más daño muscular y mayor hipertrofia que las repeticiones normales."}',
+    '3', '3-4', '4',
+    '4-6', '6-8', '8-10',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_eccentric_superslow', 'Super Slow Eccentric Push Up (10 sec)', 'Flexión Excéntrica Superslow (10 seg de bajada)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Baja en exactamente 10 segundos con movimiento completamente uniforme.","Empuja hacia arriba normalmente. El estrés metabólico y mecánico es máximo.","Reduce las repeticiones al mínimo. 3-5 reps en 10 seg es un set brutalmente efectivo."}',
+    '3', '3', '3-4',
+    '3-4', '4-5', '5-6',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_eccentric_assisted', 'Eccentric Push Up with Assisted Concentric', 'Flexión Excéntrica con Ayuda para Subir',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Baja lentamente en 3-5 segundos usando toda la fuerza del pecho.","Al llegar abajo, usa las rodillas o un compañero para ayudarte a subir.","Ideal para personas que aún no pueden hacer flexiones completas pero quieren entrenar excéntricamente."}',
+    '3', '3', '3',
+    '5-8', '8-10', '10-12',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_mat', 'Push Up on Mat / Soft Surface', 'Flexión en Colchoneta / Superficie Blanda',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Realiza la flexión sobre una colchoneta, toalla gruesa, almohadón, cojín o superficie blanda.","La superficie inestable bajo las manos activa más los músculos estabilizadores del pecho y hombros.","Ajusta la firmeza de la superficie para aumentar o reducir la dificultad."}',
+    '3', '3-4', '4',
+    '8-12', '12-18', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_sliding_discs', 'Push Up with Sliding Discs', 'Flexión con Discos Deslizantes',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca discos deslizantes o platos de plástico bajo las manos en superficie lisa.","Al bajar, desliza las manos hacia afuera abriendo los brazos (como una apertura + press).","Al subir, desliza las manos hacia el centro. Combina fuerza y movilidad en el mismo movimiento."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_sliding_towels', 'Push Up with Sliding Towels', 'Flexión con Toallas Deslizantes',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","shoulders"}', '{"bodyweight"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa toallas dobladas bajo las manos en suelo de madera o parquet liso.","Al bajar, desliza las manos hacia afuera en apertura mientras el pecho baja al suelo.","Al subir, junta las toallas. Alternativa accesible a los discos deslizantes."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_diamond_opening', 'Diamond to Wide Push Up', 'Flexión Diamante con Apertura de Manos',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empieza en posición diamante. Baja y al empujar salta o desliza las manos a posición ancha.","Baja en posición ancha y al empujar regresa a posición diamante.","Alterna entre agarre cerrado y ancho activando diferentes partes del pecho en cada rep."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_hand_spread', 'Hand Spread Push Up', 'Flexión con Separación de Manos',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Empieza con manos juntas al centro. Al bajar, desliza las manos hacia afuera a posición ancha.","Al subir, arrastra las manos de vuelta hacia el centro.","El movimiento dinámico de las manos trabaja el pecho en diferentes ángulos en cada repetición."}',
+    '3', '3-4', '4',
+    '6-10', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_combo_fly', 'Push Up + Fly Combo', 'Flexión + Apertura (Combinación en un Movimiento)',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core"}', '{"bodyweight"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Usando discos deslizantes o toallas: baja en apertura (como una fly) mientras el pecho desciende.","Al subir, cierra las manos hacia el centro combinando el push-up y la apertura en un solo movimiento.","Este movimiento compuesto activa el pecho en los dos patrones fundamentales simultáneamente."}',
+    '3', '3', '3-4',
+    '4-6', '6-8', '8-10',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_rotation_trunk', 'Push Up with Trunk Rotation', 'Flexión con Rotación de Tronco',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"core","obliques"}', '{"bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión. Al subir, rota el tronco levantando un brazo al costado (no al techo).","La rotación parcial activa los oblicuos sin llegar a la posición T completa.","Más accesible que el T push-up completo. Alterna el lado de rotación."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-18',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'push_up_glute_kick', 'Push Up with Glute Kick', 'Flexión con Patada de Glúteo',
+    'upperBody', 'chest_mid',
+    '{"chest"}', '{"glute","core"}', '{"bodyweight"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1534368420009-621bfab424a8?w=600&q=80&fit=crop',
+    '{"Posición de flexión. Al subir, eleva una pierna hacia atrás y arriba activando el glúteo.","Alterna la pierna que patea en cada repetición. Mantén el core firme.","Combina trabajo de pecho con activación de glúteos en un movimiento funcional completo."}',
+    '3', '3-4', '4',
+    '10-14', '12-16', '14-20',
+    75, 60, 45,
+    'bodyweight'
   ),
   (
     'decline_press_barbell', 'Decline Barbell Press', 'Press Declinado con Barra',
@@ -192,7 +1926,8 @@ INSERT INTO exercises (
     '{"Banco declinado a -15 a -30°. Asegura los pies. Agarre al ancho de hombros.","Baja la barra hasta el pecho inferior de forma controlada.","Empuja hacia arriba y ligeramente hacia la cabeza hasta extender los codos."}',
     '3', '4', '4-5',
     '10-12', '8-12', '6-10',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'decline_press_dumbbell', 'Decline Dumbbell Press', 'Press Declinado con Mancuernas',
@@ -202,7 +1937,8 @@ INSERT INTO exercises (
     '{"Banco declinado. Sostén las mancuernas a la altura del pecho inferior.","Empuja hacia arriba y ligeramente adentro hasta casi tocar las mancuernas.","Baja con control en 2-3 segundos hasta el estiramiento máximo."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'chest_dip', 'Chest Dip', 'Fondos en Barras (Pecho)',
@@ -212,7 +1948,8 @@ INSERT INTO exercises (
     '{"Agarra las barras paralelas. Inclina el torso hacia adelante (30-45°).","Baja el cuerpo hasta que los codos formen 90°, sintiendo estiramiento en el pecho.","Empuja hacia arriba usando el pecho inferior. Mantén la inclinación hacia adelante."}',
     '3', '3-4', '4',
     '6-8', '8-12', '12-15',
-    120, 90, 75
+    120, 90, 75,
+    'bodyweight'
   ),
   (
     'cable_fly_high_to_low', 'Cable Crossover High to Low', 'Cruce de Poleas Alto hacia Bajo',
@@ -222,7 +1959,8 @@ INSERT INTO exercises (
     '{"Poleas en posición alta. De pie en el centro, un pie adelante para estabilidad.","Lleva los cables hacia abajo y al frente, cruzando las manos a la altura de las caderas.","Regresa lentamente al punto inicial controlando la apertura."}',
     '3', '3-4', '4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'push_up_decline', 'Decline Push Up', 'Flexión Declinada',
@@ -232,7 +1970,8 @@ INSERT INTO exercises (
     '{"Manos en el suelo al ancho de hombros. Pies elevados en una silla o banco.","Baja el pecho hacia el suelo manteniendo el cuerpo recto.","Empuja hacia arriba de forma explosiva. Activa el pecho inferior."}',
     '3', '3-4', '4',
     '8-12', '12-20', '20-30',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'dip_assisted', 'Assisted Dip Machine', 'Fondos Asistidos en Máquina',
@@ -242,7 +1981,580 @@ INSERT INTO exercises (
     '{"Selecciona el peso de asistencia. A mayor asistencia, menor dificultad.","Inclina el torso hacia adelante para activar más el pecho.","Baja hasta 90° de flexión de codo, luego empuja hacia arriba."}',
     '3', '3', '3-4',
     '10-12', '10-12', '12-15',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'decline_press_barbell_close_grip', 'Decline Close-Grip Barbell Press', 'Press Declinado Agarre Cerrado con Barra',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado 15-30°. Agarra la barra a la anchura de los hombros o ligeramente más estrecho.","Baja la barra hacia el esternón inferior de forma controlada.","Empuja hacia arriba activando pecho inferior y tríceps simultáneamente."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'decline_press_barbell_wide_grip', 'Decline Wide-Grip Barbell Press', 'Press Declinado Agarre Ancho con Barra',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"shoulders","triceps"}', '{"barbell","bench"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Agarra la barra más ancho que en el press estándar.","Baja hacia el esternón inferior manteniendo los codos a 75-80°.","Empuja explosivamente activando el pecho exterior-inferior."}',
+    '3', '4', '4-5',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'decline_press_barbell_reverse_grip', 'Decline Reverse-Grip Barbell Press', 'Press Declinado Agarre Supino con Barra',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Agarra la barra con agarre supino (palmas hacia arriba).","Baja controlando la posición. El agarre cambia el ángulo de activación.","Empuja manteniendo las muñecas neutras. Requiere práctica y flexibilidad."}',
+    '3', '3', '3-4',
+    '10-12', '8-10', '6-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'decline_press_barbell_chains', 'Decline Barbell Press with Chains', 'Press Declinado con Cadenas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuelga cadenas en la barra. La resistencia aumenta al extender los codos.","Mantén la cadena tocando el suelo en la posición baja para resistencia variable.","Ideal para potencia y fuerza máxima en la extensión completa."}',
+    '3', '3-4', '4',
+    '8-10', '6-8', '4-6',
+    120, 90, 90,
+    'gym'
+  ),
+  (
+    'decline_press_barbell_bands', 'Decline Barbell Press with Resistance Bands', 'Press Declinado con Bandas Elásticas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench","bands"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ancla las bandas en los extremos del banco y pásalas por encima de la barra.","La resistencia aumenta progresivamente al extender los codos.","Controla la fase excéntrica ante la mayor tensión de las bandas."}',
+    '3', '3-4', '4',
+    '8-10', '6-10', '6-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'decline_press_smith', 'Decline Smith Machine Press', 'Press Declinado en Máquina Smith',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco declinado bajo la Smith. Agarra la barra al ancho de hombros.","La guía de la Smith estabiliza el movimiento. Ideal para principiantes.","Baja hasta el esternón inferior y empuja de forma controlada."}',
+    '3', '4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'decline_press_smith_unilateral', 'Unilateral Decline Smith Machine Press', 'Press Declinado Unilateral en Máquina Smith',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Mismo setup que el press declinado Smith pero presiona con un solo brazo.","Mantén el cuerpo estable y activa el core para contrarrestar el desequilibrio.","Alterna los brazos o completa todas las reps de un lado antes de cambiar."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'decline_press_multipower', 'Decline Multipower Press', 'Press Declinado en Multipower',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine","bench"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco declinado en la Multipower/Smith de guía vertical.","Ajusta la posición para que la barra baje hacia el esternón inferior.","Controla la fase excéntrica 2-3 segundos antes de empujar."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'decline_press_rack_pin', 'Decline Rack Pin Press', 'Press Declinado Parcial en Rack',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"barbell","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca los pines del rack para limitar el rango de movimiento (mitad superior).","Inicia el movimiento desde la posición baja estática (dead stop).","Útil para trabajo de fuerza máxima en el rango de extensión."}',
+    '3', '3', '4',
+    '6-8', '4-6', '3-5',
+    120, 120, 90,
+    'gym'
+  ),
+  (
+    'decline_press_dumbbell_neutral', 'Decline Dumbbell Press Neutral Grip', 'Press Declinado con Mancuernas Agarre Neutro',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Mancuernas con agarre neutro (palmas enfrentadas).","Baja con codos a 45° del torso para reducir estrés en el hombro.","Empuja hacia arriba y ligeramente adentro convergiendo las mancuernas."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_press_dumbbell_unilateral', 'Unilateral Decline Dumbbell Press', 'Press Declinado Unilateral con Mancuerna',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Presiona una mancuerna mientras la otra descansa en el pecho.","Mantén estabilidad del tronco para evitar rotaciones laterales.","Alterna los brazos o completa todas las reps de un lado."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_press_dumbbell_alternating', 'Alternating Decline Dumbbell Press', 'Press Declinado Alternado con Mancuernas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Sostén ambas mancuernas arriba. Baja y sube de forma alterna.","Una mancuerna baja mientras la otra mantiene posición arriba.","Mayor tiempo bajo tensión y trabajo de estabilización."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '10-12 c/lado', '8-10 c/lado',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_press_dumbbell_pause', 'Decline Dumbbell Press with Pause', 'Press Declinado con Mancuernas y Pausa',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Baja las mancuernas y mantén 2 segundos en posición baja.","Elimina el impulso elástico para mayor activación muscular.","Empuja con fuerza desde la posición estática."}',
+    '3', '3', '3-4',
+    '8-10', '8-10', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_fly_dumbbell', 'Decline Dumbbell Fly', 'Apertura Declinada con Mancuernas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Mancuernas arriba con brazos casi extendidos.","Abre los brazos en arco hasta sentir estiramiento en el pecho inferior.","Cierra siguiendo el mismo arco. Mantén codos ligeramente flexionados."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'decline_fly_dumbbell_unilateral', 'Unilateral Decline Dumbbell Fly', 'Apertura Declinada Unilateral con Mancuerna',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado. Trabaja un lado a la vez para mayor concentración.","Abre el brazo en arco amplio y cierra exprimiendo el pecho inferior.","Mantén la otra mano en el pecho o apoyada para estabilidad."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'cable_fly_decline', 'Cable Crossover Decline (Low to High)', 'Cruce de Poleas Declinado (Bajo a Alto)',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas en posición alta. Lleva los cables hacia abajo y al centro cruzando.","Enfoca la contracción en el pecho inferior mientras los brazos convergen abajo.","Regresa controlado. Mantén ligera flexión en los codos."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_fly_decline_unilateral', 'Unilateral Cable Fly Decline', 'Apertura Declinada Unilateral en Cable',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea alta. Trabaja un lado a la vez, llevando el cable hacia abajo y al centro.","Mayor rango de cruce y contracción unilateral del pecho inferior.","Mantén el cuerpo estable usando el core y la mano libre para equilibrio."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'pec_deck_decline', 'Pec Deck Decline', 'Pec Deck Declinado',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"machine"}',
+    1, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento alto para que los brazos trabajen en ángulo declinado.","Une los brazos al frente apretando el pecho inferior al final del movimiento.","Regresa lentamente sin perder la tensión muscular."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_press_decline', 'Cable Press Decline', 'Press en Cable Declinado',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"cable"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas altas. De pie inclinado hacia adelante. Empuja los cables hacia abajo y al frente.","Mantén el torso estable y activa el pecho inferior al presionar.","Controla la vuelta con resistencia constante."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_crossover_decline', 'Cable Crossover Decline', 'Cruce de Cables Declinado con Cruce',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"cable"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas altas. Cruza los cables por debajo del esternón para máximo recorrido.","Mantén la contracción 1 segundo en el punto de máximo cruce.","Regresa abriendo lentamente hasta el estiramiento completo."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'hammer_strength_decline', 'Hammer Strength Decline Press', 'Press Declinado en Hammer Strength',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento para que los mangos queden a la altura del pecho inferior.","Empuja los mangos hacia adelante y abajo siguiendo el arco de la máquina.","Controla la vuelta manteniendo tensión en el pecho en todo momento."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'hammer_strength_decline_unilateral', 'Unilateral Hammer Strength Decline Press', 'Press Declinado Unilateral en Hammer Strength',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Misma posición que el press Hammer Strength pero trabaja un solo brazo.","Usa la mano libre para estabilizar el cuerpo contra la máquina.","Mayor contracción unilateral. Alterna o completa un lado y luego el otro."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'plate_loaded_decline_press', 'Plate-Loaded Decline Press Machine', 'Press Declinado en Máquina con Carga de Discos',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Carga discos en los brazos de la máquina de press declinado.","Empuja en el ángulo guiado. La máquina asegura el patrón de movimiento.","Ideal para trabajar con cargas altas con mayor seguridad."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lever_press_decline', 'Lever Decline Press Machine', 'Press Declinado en Palanca',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento de la máquina de palanca declinada a la altura correcta.","Empuja los mangos hacia adelante siguiendo el arco de la palanca.","Controla el regreso. Útil para alto volumen con baja demanda estabilizadora."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'chest_dip_weighted', 'Weighted Chest Dip', 'Fondos con Lastre para Pecho',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Añade lastre con cinturón o chaleco. Inclina el torso hacia adelante 30-45°.","Baja hasta 90° de flexión de codo o hasta sentir estiramiento en pecho.","Empuja hacia arriba y ligeramente hacia adelante manteniendo la inclinación."}',
+    '3', '3-4', '4',
+    '6-8', '8-10', '8-12',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'chest_dip_forward_lean', 'Chest Dip Maximum Forward Lean', 'Fondo Máximo Inclinado para Pecho Inferior',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"En las barras paralelas inclina el torso lo máximo posible hacia adelante.","Baja hasta máximo estiramiento del pecho. Rodillas flexionadas hacia atrás.","Empuja manteniendo el torso inclinado durante todo el movimiento."}',
+    '3', '3-4', '4',
+    '6-8', '8-12', '12-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'pullover_decline_barbell', 'Decline Barbell Pullover', 'Pullover Declinado con Barra',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"lats","triceps"}', '{"barbell","bench"}',
+    3, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Banco declinado ligero. Sostén la barra con agarre cerrado sobre el pecho.","Baja la barra por detrás de la cabeza en arco amplio. Mantén codos semiflexionados.","Regresa al punto inicial siguiendo el mismo arco. Activa pecho y espalda."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'decline_press_dumbbell_home', 'Decline Dumbbell Press (Home)', 'Press Declinado con Mancuernas en Casa',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa una silla, banco de casa o superficie elevada para declinar el torso.","Pies elevados en el sofá o cama. Mancuernas a la altura del pecho inferior.","Empuja hacia arriba activando el pecho inferior. Controla la bajada."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'floor_press_hip_elevated', 'Floor Press with Hip Bridge', 'Press en Suelo con Cadera Elevada',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","glutes"}', '{"dumbbell"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado en el suelo, eleva la cadera como en un puente de glúteos.","Sostén las mancuernas y presiona hacia arriba con el cuerpo en ángulo declinado.","Mantén la cadera alta durante todo el movimiento para simular la declinación."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_fly_dumbbell_home', 'Decline Dumbbell Fly (Home)', 'Apertura Declinada con Mancuernas en Casa',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Recuesta en posición declinada usando sofá/cama con pies elevados.","Abre los brazos en arco hacia afuera y abaja hasta sentir estiramiento en pecho inferior.","Cierra siguiendo el mismo arco. Mantén codos ligeramente flexionados."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'pullover_decline_dumbbell_home', 'Decline Dumbbell Pullover (Home)', 'Pullover Declinado con Mancuerna en Casa',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"lats"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Posición declinada en silla o sofá. Sostén una mancuerna con ambas manos.","Baja la mancuerna por detrás de la cabeza hasta sentir estiramiento profundo.","Regresa al punto inicial activando pecho y espalda conjuntamente."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_press_dumbbell_fitball', 'Decline Dumbbell Press on Fitball', 'Press Declinado con Mancuernas en Fitball',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"dumbbell","fitball"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Siéntate en el fitball y rueda hacia adelante hasta que la pelota soporte la cabeza-hombros.","Deja caer las caderas por debajo del nivel del fitball para crear ángulo declinado.","Presiona las mancuernas hacia arriba. El fitball añade inestabilidad y activación del core."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'decline_press_bands_high_anchor', 'Decline Band Press High Anchor', 'Press Declinado con Bandas Ancla Alta',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bands"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla las bandas en un punto alto (puerta, poste). De pie o recostado con cabeza hacia el ancla.","Empuja las bandas hacia abajo y al frente para activar el pecho inferior.","Controla la vuelta resistiendo la tensión de las bandas."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'decline_fly_bands', 'Decline Band Fly', 'Apertura Declinada con Bandas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"bands"}',
+    1, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Bandas ancladas en punto alto a cada lado. Tira hacia abajo y al centro en arco.","Simula el movimiento de apertura-cierre de pec deck para pecho inferior.","Mantén codos semiflexionados y contrae el pecho al final del movimiento."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'decline_crossover_bands', 'Decline Band Crossover', 'Cruce Declinado con Bandas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{}', '{"bands"}',
+    1, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Bandas ancladas en puntos altos. Cruza los brazos por debajo del esternón.","Mayor recorrido que la apertura estándar. Máxima contracción en el cruce.","Mantén 1 segundo en posición cruzada antes de abrir."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'decline_press_improvised_bottles', 'Decline Press with Water Bottles', 'Press Declinado con Botellas de Agua',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    1, 'compound', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados en sofá o silla. Sostén botellas de agua como si fueran mancuernas.","Presiona hacia arriba en ángulo declinado activando el pecho inferior.","Útil como iniciación cuando no se dispone de equipamiento convencional."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '20-25',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'decline_fly_dumbbell_fitball', 'Decline Dumbbell Fly on Fitball', 'Apertura Declinada con Mancuernas en Fitball',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"core"}', '{"dumbbell","fitball"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Posición declinada sobre el fitball (caderas más bajas que hombros).","Abre los brazos en arco amplio hasta sentir estiramiento en pecho inferior.","El fitball añade inestabilidad aumentando la activación del core."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_press_decline', 'TRX Decline Press', 'Press Declinado en TRX',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bands","bench"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies anclados en el TRX/suspensión. Manos en el suelo en posición push-up.","El cuerpo queda declinado con pies más altos que cabeza.","Realiza flexiones en esta posición inclinada. Activa el pecho inferior."}',
+    '3', '3', '3-4',
+    '8-12', '10-15', '15-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'rings_press_decline', 'Rings Decline Press', 'Press Declinado en Anillas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bands","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies en anillas o TRX. Manos en el suelo. Cuerpo declinado.","Realiza flexiones con el cuerpo inclinado. Mayor inestabilidad que el TRX.","Las anillas permiten rotación natural de las muñecas para mayor comodidad."}',
+    '3', '3', '3-4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'push_up_decline_very_high', 'Decline Push Up Very High (80-100cm)', 'Flexión Declinada Muy Alta (80-100cm)',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","shoulders"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies en superficie muy alta (80-100cm): silla alta, encimera, barra. Manos en el suelo.","Mayor inclinación = mayor énfasis en el pecho inferior.","Baja el pecho hacia el suelo. Empuja activamente el pecho inferior al subir."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_wide', 'Decline Wide Push Up', 'Flexión Declinada Manos Anchas',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"shoulders"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos más anchas que los hombros (1.5x la anchura).","Mayor activación del pecho exterior-inferior.","Baja hasta que el pecho toque casi el suelo. Sube explosivo."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_close', 'Decline Diamond Push Up', 'Flexión Declinada Agarre Diamante',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos en forma de diamante (pulgares e índices tocándose).","Mayor activación del triceps y pecho interno-inferior.","Mantén los codos cerca del cuerpo durante todo el movimiento."}',
+    '3', '3-4', '4',
+    '6-10', '10-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_supinated', 'Decline Push Up Supinated Grip', 'Flexión Declinada Agarre Supino',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"biceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Gira las manos hacia afuera (dedos apuntando a los lados o hacia atrás).","El agarre supino cambia el ángulo de activación del pecho inferior.","Requiere flexibilidad de muñeca. Comienza con ángulo suave."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '12-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_one_arm', 'Decline One-Arm Push Up', 'Flexión Declinada a Una Mano',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Mano dominante en el suelo, la otra en la espalda.","Separa los pies para mayor base de apoyo. Inclina el torso ligeramente.","Baja con control y empuja activamente el pecho inferior."}',
+    '3', '3', '3-4',
+    '3-5 c/lado', '5-8 c/lado', '8-12 c/lado',
+    120, 90, 75,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_archer', 'Decline Archer Push Up', 'Flexión Declinada Arquero',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Manos muy separadas. Baja hacia un lado mientras el otro brazo se extiende.","Alterna los lados. Progresión hacia la flexión a una mano.","Activa el pecho inferior del lado que trabaja principalmente."}',
+    '3', '3', '3-4',
+    '4-6 c/lado', '6-10 c/lado', '10-12 c/lado',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_clap', 'Decline Clap Push Up', 'Flexión Declinada con Palmada',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja con control y explota hacia arriba lo suficiente para dar una palmada.","Trabaja la potencia del pecho inferior y la coordinación.","Aterriza suavemente absorbiendo el impacto al bajar."}',
+    '3', '3', '3-4',
+    '4-6', '6-10', '8-12',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_pause_bottom', 'Decline Push Up Pause at Bottom', 'Flexión Declinada con Pausa Abajo',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja hasta posición inferior y mantén 2-3 segundos.","Elimina el reflejo de estiramiento para mayor demanda muscular.","Empuja desde la posición estática para mayor activación del pecho inferior."}',
+    '3', '3-4', '4',
+    '6-8', '8-10', '10-12',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_eccentric', 'Decline Slow Eccentric Push Up', 'Flexión Declinada Excéntrica Lenta',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Baja muy lentamente (5-8 segundos) controlando el descenso.","La fase excéntrica lenta causa mayor daño muscular y adaptación.","Sube de forma normal o explosiva tras el descenso controlado."}',
+    '3', '3-4', '4',
+    '6-8', '8-10', '10-12',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_feet_fitball', 'Decline Push Up Feet on Fitball', 'Flexión Declinada con Pies en Fitball',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight","fitball"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies apoyados en el fitball. Manos en el suelo. La esfera añade inestabilidad.","Mantén la cadera alineada. El core trabaja intensamente para estabilizar.","Realiza la flexión con control para mantener el equilibrio sobre el fitball."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '12-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'push_up_decline_sliding_discs', 'Decline Push Up with Sliding Discs', 'Flexión Declinada con Discos Deslizantes',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Discos deslizantes (o paños) bajo las manos.","Al bajar, desliza las manos hacia afuera abriendo los brazos.","Sube cerrando los brazos hacia el centro. Combina press y apertura."}',
+    '3', '3', '3-4',
+    '6-8', '8-12', '10-15',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_decline_t_rotation', 'Decline T Push Up with Rotation', 'Flexión Declinada en T con Rotación',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"shoulders","core"}', '{"bodyweight","bench"}',
+    3, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Pies elevados. Tras subir de la flexión, rota el cuerpo levantando un brazo.","Forma una T con el cuerpo. Alterna la rotación a cada lado.","Mayor trabajo de core y hombro además del pecho inferior."}',
+    '3', '3-4', '4',
+    '6-8 c/lado', '8-10 c/lado', '10-12 c/lado',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'push_up_modified_decline_knee', 'Modified Decline Push Up (Knee)', 'Flexión Declinada Modificada (Rodillas)',
+    'upperBody', 'chest_lower',
+    '{"chest"}', '{"triceps"}', '{"bodyweight","bench"}',
+    1, 'compound', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Rodillas en el suelo. Pies elevados en sofá/silla para crear ángulo declinado.","Versión modificada para principiantes que trabajan el pecho inferior.","Progresa a la versión de pies extendidos cuando domines esta."}',
+    '3', '3', '3-4',
+    '10-15', '15-20', '20-25',
+    75, 60, 45,
+    'bodyweight'
   ),
   (
     'pull_up', 'Pull Up', 'Dominadas',
@@ -252,7 +2564,8 @@ INSERT INTO exercises (
     '{"Agarra la barra con las palmas hacia afuera, más ancho que los hombros.","Tira hacia arriba llevando el pecho a la barra. Activa los dorsales.","Baja de forma controlada hasta extender completamente los brazos."}',
     '3', '4', '4-5',
     '3-6', '6-10', '8-12',
-    120, 90, 75
+    120, 90, 75,
+    'home'
   ),
   (
     'chin_up', 'Chin Up', 'Dominadas Supinas',
@@ -262,7 +2575,8 @@ INSERT INTO exercises (
     '{"Agarra la barra con palmas hacia ti (supino) al ancho de hombros.","Tira hacia arriba llevando el mentón sobre la barra. Codos hacia abajo.","Baja con control hasta extensión completa. Mayor activación de bíceps."}',
     '3', '4', '4-5',
     '4-6', '6-10', '8-12',
-    120, 90, 75
+    120, 90, 75,
+    'home'
   ),
   (
     'lat_pulldown_wide', 'Wide Grip Lat Pulldown', 'Jalón al Pecho Agarre Ancho',
@@ -272,7 +2586,8 @@ INSERT INTO exercises (
     '{"Siéntate con las rodillas bajo el rodillo. Agarra la barra más ancha que los hombros.","Jala la barra hacia el pecho superior apretando los dorsales al final.","Regresa lentamente hasta extensión completa. No balancees el torso."}',
     '3', '4', '4-5',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'lat_pulldown_neutral', 'Neutral Grip Lat Pulldown', 'Jalón Agarre Neutro',
@@ -282,7 +2597,8 @@ INSERT INTO exercises (
     '{"Usa una barra con agarre neutro (palmas enfrentadas) al ancho de hombros.","Jala hacia abajo llevando las manos a los lados del pecho.","Aprieta los dorsales en la posición baja y regresa con control."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'single_arm_dumbbell_row', 'Single Arm Dumbbell Row', 'Remo con Mancuerna a Una Mano',
@@ -292,7 +2608,8 @@ INSERT INTO exercises (
     '{"Apoya una mano y rodilla en el banco. Espalda paralela al suelo.","Jala la mancuerna hacia la cadera llevando el codo hacia atrás y arriba.","Aprieta el dorsal en la parte alta y baja con control."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'straight_arm_pulldown', 'Straight Arm Pulldown', 'Jalón de Dorsal con Brazos Rectos',
@@ -302,7 +2619,8 @@ INSERT INTO exercises (
     '{"De pie frente a la polea alta. Agarra la barra con brazos casi extendidos.","Lleva la barra hacia abajo hasta las caderas manteniendo los brazos rectos.","Aprieta los dorsales y regresa lentamente. Excelente aislamiento."}',
     '3', '3', '3-4',
     '12-15', '12-15', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'dumbbell_pullover', 'Dumbbell Pullover', 'Pullover con Mancuerna',
@@ -312,7 +2630,8 @@ INSERT INTO exercises (
     '{"Acuéstate transversal en el banco. Solo la parte alta de la espalda apoyada.","Sostén la mancuerna con ambas manos sobre el pecho, brazos semi-extendidos.","Baja la mancuerna hacia atrás de la cabeza en arco. Regresa apretando dorsal."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'assisted_pull_up', 'Assisted Pull Up', 'Dominadas Asistidas',
@@ -322,7 +2641,8 @@ INSERT INTO exercises (
     '{"Ajusta el peso de asistencia. Más peso = menos dificultad.","Tira hacia arriba llevando el pecho a la barra, codos abajo y atrás.","Baja lentamente hasta extensión completa. Reduce asistencia progresivamente."}',
     '3', '3-4', '4',
     '8-12', '8-12', '10-15',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'barbell_row', 'Barbell Bent Over Row', 'Remo con Barra Inclinado',
@@ -332,7 +2652,8 @@ INSERT INTO exercises (
     '{"Inclina el torso a 45° con la barra colgando. Espalda recta y neutral.","Jala la barra hacia el ombligo apretando la espalda al final del recorrido.","Baja con control hasta brazos extendidos. Mantén la espalda recta en todo momento."}',
     '3', '4', '4-5',
     '8-10', '6-10', '5-8',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'seated_cable_row', 'Seated Cable Row', 'Remo en Polea Sentado',
@@ -342,7 +2663,8 @@ INSERT INTO exercises (
     '{"Siéntate con pies en el soporte, espalda recta y ligera inclinación adelante.","Jala el mango hacia el abdomen llevando los codos atrás y apretando la espalda.","Regresa con control hasta brazos extendidos. No te balancees."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'face_pull', 'Face Pull', 'Face Pull con Polea',
@@ -352,7 +2674,8 @@ INSERT INTO exercises (
     '{"Polea a la altura de los ojos. Usa la cuerda con agarre neutro.","Jala hacia la cara separando las manos y llevando los codos hacia afuera.","Aprieta los romboides y deltoides posteriores al final. Regresa con control."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'barbell_shrug', 'Barbell Shrug', 'Encogimientos con Barra',
@@ -362,7 +2685,8 @@ INSERT INTO exercises (
     '{"De pie con la barra en agarre prono al frente. Brazos extendidos.","Eleva los hombros hacia las orejas lo más alto posible. Aprieta 1 segundo.","Baja lentamente. No hagas círculos con los hombros, solo movimiento vertical."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'dumbbell_shrug', 'Dumbbell Shrug', 'Encogimientos con Mancuernas',
@@ -372,7 +2696,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas a los lados. Mayor rango de movimiento que con barra.","Eleva los hombros lo más alto posible. Pausa 1-2 segundos arriba.","Baja de forma controlada. Permite mayor amplitud de movimiento."}',
     '3', '3', '3-4',
     '12-15', '12-15', '12-15',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'chest_supported_row', 'Chest Supported Dumbbell Row', 'Remo con Mancuernas en Banco Inclinado',
@@ -382,7 +2707,8 @@ INSERT INTO exercises (
     '{"Recuéstate boca abajo en banco inclinado a 45°. Mancuernas colgando.","Jala las mancuernas hacia arriba llevando los codos al techo.","Aprieta los romboides y la espalda media. Baja con control."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'machine_row_chest', 'Machine Chest Supported Row', 'Remo en Máquina con Soporte de Pecho',
@@ -392,7 +2718,8 @@ INSERT INTO exercises (
     '{"Ajusta el asiento y el pecho contra el soporte. Agarra las asas.","Jala hacia atrás llevando los codos al máximo recorrido.","Aprieta la espalda media y regresa con control."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'cable_row_wide', 'Wide Grip Cable Row', 'Remo en Polea Agarre Ancho',
@@ -402,7 +2729,8 @@ INSERT INTO exercises (
     '{"Usa barra larga en la polea baja. Agarre prono más ancho que los hombros.","Jala hacia el abdomen llevando los codos al lado del cuerpo.","Activa romboides y espalda media apretando en la posición final."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'deadlift_conventional', 'Conventional Deadlift', 'Peso Muerto Convencional',
@@ -412,7 +2740,8 @@ INSERT INTO exercises (
     '{"Barra sobre los empeines. Cadera hacia atrás, espalda recta, agarre al ancho de caderas.","Empuja el suelo alejándolo y estira las caderas hacia adelante al subir.","Baja controlado: caderas atrás primero, luego dobla las rodillas al llegar a las tibias."}',
     '3', '4', '4-5',
     '5-6', '4-6', '3-5',
-    180, 150, 120
+    180, 150, 120,
+    'gym'
   ),
   (
     'hyperextension', 'Hyperextension', 'Hiperextensión de Espalda',
@@ -422,7 +2751,8 @@ INSERT INTO exercises (
     '{"Posiciona las caderas en el borde del banco de hiperextensiones. Pies asegurados.","Baja el torso hacia el suelo manteniendo la espalda recta (no arqueada).","Levanta el torso hasta que quede en línea con las piernas. Aprieta los glúteos arriba."}',
     '3', '3-4', '4',
     '10-15', '10-15', '12-20',
-    75, 60, 60
+    75, 60, 60,
+    'bodyweight'
   ),
   (
     'good_morning', 'Good Morning', 'Buenos Días con Barra',
@@ -432,7 +2762,8 @@ INSERT INTO exercises (
     '{"Barra en la nuca. De pie con rodillas ligeramente flexionadas.","Inclina el torso hacia adelante empujando las caderas hacia atrás.","Regresa a posición erguida apretando glúteos e isquiotibiales."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 75
+    90, 75, 75,
+    'gym'
   ),
   (
     'back_extension_machine', 'Back Extension Machine', 'Extensión de Espalda en Máquina',
@@ -442,7 +2773,8 @@ INSERT INTO exercises (
     '{"Ajusta la máquina al tamaño de tu torso. Siéntate con espalda recta.","Empuja contra el soporte extendiendo la espalda hacia atrás.","Regresa con control a la posición inicial sin dejar caer el peso."}',
     '3', '3', '3-4',
     '12-15', '12-15', '12-15',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'superman', 'Superman', 'Superman',
@@ -452,7 +2784,1768 @@ INSERT INTO exercises (
     '{"Boca abajo en el suelo con brazos extendidos al frente.","Eleva simultáneamente brazos, pecho y piernas del suelo. Pausa 2 segundos.","Baja con control. Excelente para activación lumbar sin carga."}',
     '3', '3', '3-4',
     '10-12', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'pull_up_close_grip', 'Close Grip Pull Up', 'Dominada Agarre Cerrado (Prono)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","triceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80&fit=crop',
+    '{"Agarra la barra con agarre prono, manos a la anchura de los hombros o más juntas.","Tira hacia arriba llevando el pecho a la barra. Mayor activación del dorsal interno.","Baja de forma controlada hasta extensión completa."}',
+    '3', '4', '4-5',
+    '3-5', '6-10', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_supine_wide', 'Wide Grip Chin Up', 'Dominada Agarre Supino Ancho',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80&fit=crop',
+    '{"Agarra la barra con agarre supino más ancho que los hombros (palmas hacia ti).","Tira hacia arriba llevando el mentón o el pecho a la barra.","El agarre supino ancho activa más el dorsal externo y el bíceps."}',
+    '3', '4', '4-5',
+    '3-6', '6-10', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_supine_close', 'Close Grip Chin Up', 'Dominada Agarre Supino Cerrado',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    1, 'compound', 1.8, 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80&fit=crop',
+    '{"Agarre supino cerrado (palmas hacia ti, manos juntas o a anchura de hombros).","Tira hacia arriba llevando el mentón sobre la barra. Activa más el bíceps.","El agarre supino cerrado es el más accesible para principiantes."}',
+    '3', '4', '4-5',
+    '4-8', '8-12', '10-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pull_up_neutral_grip', 'Neutral Grip Pull Up', 'Dominada Agarre Neutro (Palmas Enfrentadas)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80&fit=crop',
+    '{"Usa una barra con agarres en L o anillas. Palmas enfrentadas entre sí.","Tira hacia arriba hasta que las manos queden a los lados del pecho.","Agarre más ergonómico para el hombro. Activa el dorsal y el braquial."}',
+    '3', '4', '4-5',
+    '4-6', '6-10', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_mixed_grip', 'Mixed Grip Pull Up', 'Dominada Agarre Mixto (Una Supina, Una Prona)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&q=80&fit=crop',
+    '{"Una mano en agarre prono y la otra en supino. Anchura aproximada a los hombros.","El agarre mixto crea asimetría y mayor demanda estabilizadora.","Alterna el lado que va supino entre series o repeticiones."}',
+    '3', '3', '3-4',
+    '3-5 c/lado', '5-8 c/lado', '6-10 c/lado',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_weighted', 'Weighted Pull Up (Weight Belt)', 'Dominada con Lastre (Cinturón con Disco)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Añade un disco con cinturón de lastre o un chaleco lastrado.","Realiza la dominada con agarre prono o supino según el objetivo.","El lastre permite sobrecarga progresiva más allá del peso corporal."}',
+    '3', '3-4', '4-5',
+    '3-5', '5-8', '6-10',
+    150, 120, 90,
+    'home'
+  ),
+  (
+    'pull_up_one_arm', 'One Arm Pull Up', 'Dominada Unilateral (Una Mano)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","core"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarra la barra con una sola mano. La otra puede sujetar la muñeca o el antebrazo para asistencia parcial.","Tira con máxima fuerza hacia arriba hasta que el mentón supere la barra.","Nivel élite. Requiere meses de preparación con progresiones unilaterales."}',
+    '2', '3', '3-4',
+    '1-2 c/lado', '2-4 c/lado', '4-6 c/lado',
+    180, 150, 120,
+    'home'
+  ),
+  (
+    'pull_up_towel_grip', 'Towel Grip Pull Up', 'Dominada con Agarre de Toalla',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","forearms"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuelga dos toallas de la barra. Agarra una toalla con cada mano.","Realiza la dominada tirando de las toallas. Activa intensamente el antebrazo y agarre.","Más difícil que la dominada estándar por la inestabilidad y la demanda de agarre."}',
+    '3', '3', '3-4',
+    '2-4', '4-8', '6-10',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_rings_grip', 'Pull Up on Gymnastic Rings', 'Dominada en Anillas de Gimnasia',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","core","shoulders"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuelga las anillas a la altura necesaria y agárralas con ambas manos.","Tira hacia arriba. La inestabilidad de las anillas activa más estabilizadores.","Las anillas permiten rotación natural de las muñecas durante el movimiento."}',
+    '3', '3-4', '4',
+    '3-5', '5-8', '8-12',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_band_assisted', 'Band-Assisted Pull Up', 'Dominada con Banda Elástica de Asistencia',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight","bands"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ancla una banda de resistencia en la barra. Apoya una rodilla o el pie en la banda.","La banda asiste el movimiento proporcionando más ayuda en la posición baja.","Reduce la asistencia progresivamente usando bandas más delgadas."}',
+    '3', '4', '4',
+    '6-10', '8-12', '10-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pull_up_rock_grip', 'Rock Climbing Grip Pull Up', 'Dominada con Agarre Arco (Rock Climbing)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","forearms"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarra la barra solo con los dedos (grip de escalada) sin usar el pulgar.","Realiza la dominada con este agarre más estrecho que exige más al antebrazo.","Desarrolla fuerza de agarre y resistencia de los dedos."}',
+    '3', '3', '3-4',
+    '2-4', '4-8', '6-10',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_eccentric', 'Eccentric Pull Up (Negative)', 'Dominada Excéntrica Lenta (Solo Bajada)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sube a la posición alta saltando o con ayuda. Empieza con el mentón sobre la barra.","Baja en 5-8 segundos resistiendo con toda la fuerza del dorsal y bíceps.","Ideal para principiantes que aún no completan la fase concéntrica."}',
+    '3', '3-4', '4',
+    '4-6', '5-8', '6-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pull_up_isometric', 'Isometric Pull Up Hold (Top)', 'Dominada Isométrica en Posición Alta',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'isolation', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sube a la posición alta (mentón sobre la barra) saltando o concéntricamente.","Mantén la posición isométrica todo el tiempo posible. Aprieta el dorsal.","Excelente para fuerza de posición y activación máxima del dorsal."}',
+    '3', '3', '3-4',
+    '5-10s', '10-20s', '20-30s',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'lat_pulldown_close_grip', 'Close Grip Lat Pulldown', 'Jalón al Pecho Agarre Cerrado (Prono)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre prono más cerrado que los hombros. Jala hacia la parte alta del pecho.","El agarre cerrado activa el dorsal interno y aumenta la participación del bíceps.","Regresa con control hasta extensión completa de los brazos."}',
+    '3', '4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_supine_close', 'Reverse Close Grip Lat Pulldown', 'Jalón al Pecho Agarre Supino Cerrado',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre supino (palmas hacia ti) cerrado. Jala hacia la barbilla.","Mayor participación del bíceps. Uno de los mejores para el pico del dorsal inferior.","Regresa controlando la apertura hasta extensión completa."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_supine_wide', 'Wide Reverse Grip Lat Pulldown', 'Jalón al Pecho Agarre Supino Ancho',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre supino ancho (más allá del ancho de hombros, palmas hacia ti).","Jala hacia el pecho superior. El ancho supino activa el dorsal externo.","Regresa con control. Variación menos común pero efectiva."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_vbar', 'V-Bar Lat Pulldown', 'Jalón al Pecho con V-Bar (Agarre Neutro)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa el accesorio V-bar con palmas enfrentadas (agarre neutro).","Jala hacia la parte alta del pecho llevando el V-bar al esternón.","El agarre neutro es más ergonómico y activa bien el dorsal medio."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_rope', 'Rope Lat Pulldown', 'Jalón al Pecho con Cuerda',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta la cuerda a la polea alta. Jala separando las manos al final del movimiento.","La cuerda permite rotación de muñecas y mayor rango de movimiento.","Jala hasta que las manos queden a los lados del cuello apretando dorsales."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_unilateral', 'Unilateral Lat Pulldown', 'Jalón al Pecho Unilateral (Un Brazo)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","core"}', '{"machine","cable"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa un mango individual en la polea alta. Trabaja un brazo a la vez.","Jala el mango hacia el hombro del mismo lado. Mayor estiramiento y contracción.","El trabajo unilateral corrige desequilibrios y activa más el dorsal en cada lado."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'lat_pulldown_behind_neck', 'Behind-the-Neck Lat Pulldown', 'Jalón Tras Nuca (Precaución con Hombros)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre prono ancho. Inclina ligeramente la cabeza hacia adelante.","Jala la barra detrás de la nuca en lugar de hacia el pecho.","Precaución: puede causar molestias en el hombro. Solo para usuarios con buena movilidad."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_pause', 'Lat Pulldown with Contraction Pause', 'Jalón al Pecho con Pausa en Contracción',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine","cable"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Realiza el jalón estándar pero mantén 2-3 segundos en la posición baja.","En la pausa aprieta el dorsal al máximo antes de regresar.","El tiempo isométrico adicional aumenta el estímulo muscular."}',
+    '3', '3-4', '4',
+    '8-10', '8-10', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lever_lat_pulldown', 'Lever Lat Pulldown Machine', 'Jalón al Pecho en Máquina de Palanca',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La máquina de palanca crea un arco fijo de movimiento diferente a la polea.","Ajusta el asiento para que el arco sea cómodo y maximice el estiramiento.","Jala hacia abajo siguiendo el arco de la palanca. Buen aislamiento del dorsal."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'straight_arm_pulldown_rope', 'Straight Arm Pulldown with Rope', 'Jalón de Dorsal con Brazos Rectos y Cuerda',
+    'upperBody', 'back_lats',
+    '{"back"}', '{}', '{"cable"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta cuerda a la polea alta. De pie, ligeramente inclinado hacia adelante.","Lleva la cuerda hacia las caderas separando las manos al final del movimiento.","La cuerda permite mayor rango de movimiento y contracción del dorsal."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'straight_arm_pulldown_unilateral', 'Unilateral Straight Arm Pulldown', 'Jalón de Dorsal con Brazo Recto Unilateral',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"core"}', '{"cable"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Un solo mango en la polea alta. Trabaja un brazo a la vez con brazo recto.","Lleva el cable hacia la cadera del mismo lado manteniendo el codo extendido.","Mayor estiramiento y concentración en el dorsal de cada lado."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_row_vbar', 'Seated Cable Row with V-Bar', 'Remo en Polea Sentado con V-Bar',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"cable","machine"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa el accesorio V-bar (palmas enfrentadas). Siéntate con espalda recta.","Jala el V-bar hacia el abdomen llevando los codos hacia atrás.","Aprieta los romboides y espalda media. Regresa con control."}',
+    '3', '4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_row_supine_wide', 'Seated Cable Row Wide Supine Grip', 'Remo en Polea Sentado Agarre Supino Ancho',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"cable","machine"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa una barra recta con agarre supino (palmas hacia arriba) más ancho que los hombros.","Jala hacia el abdomen-pecho llevando los codos atrás y arriba.","El agarre supino ancho activa la espalda alta y los bíceps de forma diferente."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_row_rope', 'Seated Cable Row with Rope', 'Remo en Polea Sentado con Cuerda',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"cable","machine"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta la cuerda a la polea baja. Tira separando las manos al llegar al abdomen.","La cuerda permite mayor rango de movimiento y rotación de muñeca.","Enfoca la contracción de los codos atrás al máximo antes de regresar."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '10-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_row_unilateral', 'Unilateral Seated Cable Row', 'Remo en Polea Sentado Unilateral (Un Brazo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"cable","machine"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa un mango individual. Trabaja un brazo a la vez.","Jala hacia el abdomen con el brazo activo. El core se activa para estabilizar.","Permite mayor rango de movimiento y corrección de desequilibrios."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_row_pause', 'Seated Cable Row with Pause', 'Remo en Polea Sentado con Pausa en Contracción',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"cable","machine"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Realiza el remo en polea estándar pero mantén 2-3 segundos en la posición final.","Aprieta los codos al máximo hacia atrás durante la pausa.","Mayor tiempo bajo tensión. Excelente para el desarrollo de la espalda media."}',
+    '3', '3-4', '4',
+    '8-10', '8-10', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    't_bar_row', 'T-Bar Row (Plate-Loaded)', 'Remo en T (Con Discos)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"barbell"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca un extremo de la barra en una esquina o usa la máquina de T-bar.","Agarra el extremo con discos usando un accesorio V o tus manos.","Inclina el torso a 45°. Jala hacia el pecho apretando los codos hacia atrás."}',
+    '3', '4', '4-5',
+    '10-12', '8-12', '6-10',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    't_bar_row_machine', 'T-Bar Row Machine', 'Remo en Máquina de T-Bar',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el pecho contra el soporte de la máquina T-bar.","Agarra los mangos con el agarre preferido (prono, neutro o supino).","Jala hacia el pecho apretando la espalda media. La máquina guía el movimiento."}',
+    '3', '4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    't_bar_row_unilateral', 'Unilateral T-Bar Row', 'Remo en T Unilateral (Un Brazo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"barbell"}',
+    3, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"En la barra de T-bar, jala con un solo brazo usando el mango unilateral.","La mano libre puede apoyarse en el muslo para estabilidad.","Mayor rango de giro del tronco. Activa el core para resistir la rotación."}',
+    '3', '3', '3-4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'barbell_row_supine', 'Underhand Barbell Row (Yates Row)', 'Remo con Barra Agarre Supino (Yates Row)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"barbell"}',
+    2, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarra la barra con agarre supino cerrado o al ancho de hombros.","Inclina el torso a 45-70° (más erguido que el remo convencional).","Jala hacia el abdomen bajo. El agarre supino activa dorsales y bíceps."}',
+    '3', '4', '4-5',
+    '8-10', '6-10', '5-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'barbell_row_close_grip', 'Close Grip Bent Over Barbell Row', 'Remo Inclinado con Barra Agarre Cerrado (Prono)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"barbell"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre prono cerrado (manos al ancho de hombros o menos). Torso a 45°.","Jala hacia el abdomen llevando los codos cercanos al cuerpo.","El agarre cerrado activa más el dorsal interno y el romboides."}',
+    '3', '4', '4-5',
+    '8-10', '6-10', '5-8',
+    120, 90, 75,
+    'gym'
+  ),
+  (
+    'pendlay_row', 'Pendlay Row', 'Remo Pendlay (Dead Stop desde el Suelo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"barbell"}',
+    3, 'compound', 2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Torso paralelo al suelo. La barra descansa en el suelo al inicio de cada rep.","Jala la barra explosivamente desde el suelo (dead stop) hacia el pecho.","Devuelve la barra al suelo completamente antes de cada repetición."}',
+    '3', '4', '4-5',
+    '5-6', '4-6', '3-5',
+    150, 120, 90,
+    'gym'
+  ),
+  (
+    'barbell_row_smith', 'Smith Machine Bent Over Row', 'Remo Inclinado en Máquina Smith',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca el banco fuera. Agarra la barra Smith y adopta posición de remo inclinado.","La guía de la Smith fija la trayectoria. Útil para aprender el patrón de movimiento.","Jala hacia el abdomen. Buena opción de iniciación al remo con barra."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'barbell_row_chest_incline', 'Incline Bench Barbell Row', 'Remo con Barra Apoyado en Banco Inclinado',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"barbell","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Apoya el pecho en un banco inclinado a 45°. Los brazos cuelgan libremente.","Jala la barra hacia el pecho apretando la espalda media. El soporte elimina el balanceo.","Mayor aislamiento de la espalda que el remo libre."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'hammer_strength_row', 'Hammer Strength Iso-Lateral Row', 'Remo Hammer Strength Iso-Lateral',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Siéntate con el pecho contra el soporte. Agarra los mangos a la altura del pecho.","Jala los mangos hacia atrás llevando los codos al máximo recorrido.","Los brazos independientes permiten trabajar cada dorsal por separado."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'converging_row_machine', 'Converging Row Machine', 'Máquina de Remo Convergente',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La máquina convergente dirige los brazos desde afuera hacia el centro al remar.","Simula mejor el patrón de contracción natural del dorsal.","Ajusta el asiento y jala hacia el pecho apretando la espalda media."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lever_row_machine', 'Lever Row Machine', 'Máquina de Remo de Palanca',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"machine"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La palanca crea una curva de resistencia diferente al remo en polea.","Ajusta el asiento para que el eje de la palanca quede alineado con el hombro.","Jala los mangos hacia el torso siguiendo el arco de la palanca."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'dumbbell_row_no_support', 'Dumbbell Row (No Bench Support)', 'Remo con Mancuerna sin Apoyo (Cuerpo Libre)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"dumbbell"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"De pie inclinado con ambas piernas en postura amplia. Sin apoyo del banco.","Jala la mancuerna hacia la cadera con el codo hacia atrás. El core se activa.","Mayor demanda estabilizadora que el remo con apoyo."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_row_rotation', 'Dumbbell Row with Trunk Rotation', 'Remo con Mancuerna con Rotación de Tronco',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","obliques"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Apoyo estándar en banco. Al tirar de la mancuerna, rota el tronco hacia arriba.","La rotación permite mayor rango de movimiento y activación del dorsal.","Regresa con control. Similar a un movimiento de remo de kayak."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_row_pause', 'Dumbbell Row with Contraction Pause', 'Remo con Mancuerna con Pausa en Contracción',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Remo estándar en banco. En la posición alta (codo al techo), mantén 2-3 segundos.","Aprieta el dorsal al máximo durante la pausa antes de bajar.","Mayor tiempo bajo tensión. Muy efectivo para el desarrollo muscular."}',
+    '3', '3-4', '4',
+    '8-10', '8-10', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_row_bilateral', 'Bilateral Dumbbell Row (T-Style)', 'Remo con Mancuernas a Dos Manos (Estilo T)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"dumbbell","bench"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Apoya el pecho en un banco inclinado o usa posición de remo inclinado libre.","Jala ambas mancuernas simultáneamente hacia los lados del pecho.","Similar al remo en T pero con mancuernas. Activa bilateralmente la espalda."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'cable_pullover_lats', 'Cable Pullover (Lat Focus)', 'Pullover en Cable (Énfasis Dorsales)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"chest"}', '{"cable"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Adjunta una barra o cuerda a la polea alta. De pie o en banco debajo de la polea.","Lleva los brazos desde arriba hasta las caderas manteniendo los codos extendidos.","Aprieta el dorsal al final. Tensión constante durante todo el recorrido."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'band_lat_pulldown_pronated', 'Band Lat Pulldown Pronated (High Anchor)', 'Jalón al Pecho con Banda Anclada Arriba (Agarre Prono)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"bands"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda en un punto alto (puerta, escalera, barra). Agarre prono ancho.","Arrodíllado o sentado debajo del ancla. Jala hacia el pecho superior.","Simula el jalón en polea. La banda mantiene tensión en todo el rango."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_lat_pulldown_supine', 'Band Lat Pulldown Supine (High Anchor)', 'Jalón al Pecho con Banda Anclada Arriba (Agarre Supino)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"bands"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Banda anclada arriba. Agarre supino (palmas hacia ti) al ancho de hombros.","Jala hacia la barbilla o el pecho superior activando el dorsal.","Mayor activación del bíceps que con el agarre prono."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_lat_pulldown_neutral', 'Band Lat Pulldown Neutral Grip', 'Jalón al Pecho con Banda Agarre Neutro',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"bands"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda arriba. Agarra con palmas enfrentadas (agarre neutro).","Jala hacia el pecho. El agarre neutro es ergonómico y activa bien el dorsal.","Ideal para personas con molestias en los hombros con el agarre prono."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_lat_pulldown_unilateral', 'Band Lat Pulldown Unilateral', 'Jalón al Pecho con Banda Unilateral',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps","core"}', '{"bands"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Banda anclada arriba. Un extremo en cada mano pero trabaja un brazo a la vez.","Jala hacia el hombro del mismo lado. Mayor concentración en cada dorsal.","El trabajo unilateral activa el core para resistir la asimetría."}',
+    '3', '3', '3-4',
+    '10-12', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_row_seated', 'Seated Band Row (Door Anchor)', 'Remo Sentado con Banda Elástica (Ancla en Puerta)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bands"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a la altura del pecho en una puerta. Siéntate en el suelo.","Jala los extremos hacia el abdomen llevando los codos hacia atrás.","Simula el remo en polea baja. Excelente para casa sin equipamiento."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_row_standing', 'Standing Band Row', 'Remo de Pie con Banda Elástica',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bands"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a la altura del pecho. De pie inclinado ligeramente hacia adelante.","Jala los extremos hacia el abdomen apretando los codos hacia atrás.","El trabajo de pie añade demanda de estabilidad y core."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_row_unilateral', 'Unilateral Band Row', 'Remo Unilateral con Banda Elástica',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bands"}',
+    1, 'compound', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Banda anclada al frente. Trabaja un brazo a la vez jalando hacia el costado.","Mantén el cuerpo estable resistiendo la rotación del tronco.","Cada lado trabaja independientemente. Corrige desequilibrios."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '12-15',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_pullover_lats', 'Band Pullover (Lat Focus)', 'Pullover con Banda Elástica (Dorsales)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"chest"}', '{"bands"}',
+    1, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda arriba. Agarra con ambas manos a anchura de hombros.","Lleva los brazos extendidos desde arriba hacia las caderas.","Aprieta el dorsal al final del movimiento. Buena alternativa al pullover con mancuerna."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_row_pronated', 'TRX Row Pronated', 'Remo en TRX Agarre Prono',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bands","bench"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Agarra las asas del TRX con agarre prono. Cuerpo inclinado hacia atrás.","Jala el cuerpo hacia las asas llevando los codos atrás.","Cuanto más horizontal el cuerpo, mayor dificultad."}',
+    '3', '3-4', '4',
+    '10-15', '12-20', '15-25',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_row_neutral', 'TRX Row Neutral Grip', 'Remo en TRX Agarre Neutro',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bands","bench"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Agarra las asas del TRX con palmas enfrentadas (agarre neutro).","Jala el cuerpo hacia las asas manteniendo el cuerpo recto.","El agarre neutro es el más ergonómico para el hombro."}',
+    '3', '3-4', '4',
+    '10-15', '12-20', '15-25',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_row_supine', 'TRX Row Supinated', 'Remo en TRX Agarre Supino',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bands","bench"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Gira las asas del TRX para agarre supino (palmas hacia ti al tirar).","Jala el cuerpo hacia las asas. Mayor activación del bíceps que el agarre prono.","Buena alternativa a la dominada supina cuando no se puede realizarla completa."}',
+    '3', '3-4', '4',
+    '10-15', '12-20', '15-25',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_row_unilateral', 'TRX Row Unilateral', 'Remo en TRX Unilateral (Un Brazo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bands","bench"}',
+    3, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Agarra ambas asas del TRX con una sola mano. Cuerpo inclinado.","Jala hacia el asa con un brazo. Mayor demanda de estabilidad y core.","Muy exigente. Útil para corregir desequilibrios y aumentar la dificultad."}',
+    '3', '3', '3-4',
+    '6-10', '8-12', '10-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'rings_row', 'Rings Row', 'Remo en Anillas de Gimnasia',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bodyweight"}',
+    2, 'compound', 1.6, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Anillas a la altura de la cadera. Cuelga con el cuerpo inclinado hacia atrás.","Jala el cuerpo hacia las anillas. La inestabilidad activa más estabilizadores.","Mayor dificultad que el TRX por la libertad de movimiento de las anillas."}',
+    '3', '3-4', '4',
+    '8-12', '10-15', '12-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'dumbbell_row_chair', 'Dumbbell Row (Supported on Chair)', 'Remo con Mancuerna Apoyado en Silla',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Apoya la mano y la rodilla en la silla como en el remo con banco.","Cualquier silla resistente funciona. Mancuerna colgando, espalda paralela al suelo.","Jala la mancuerna hacia la cadera apretando el dorsal al máximo."}',
+    '3', '3-4', '4',
+    '10-12', '8-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'dumbbell_row_fitball', 'Dumbbell Row Supported on Fitball', 'Remo con Mancuerna Apoyado en Fitball',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"dumbbell","fitball"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Apoya el pecho en el fitball. Los brazos cuelgan con mancuernas.","El fitball añade inestabilidad activando los estabilizadores del tronco.","Jala las mancuernas hacia los lados del torso. Mayor desafío de balance."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '8-10',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pullover_dumbbell_fitball_lats', 'Dumbbell Pullover on Fitball (Lat Focus)', 'Pullover con Mancuerna en Fitball (Énfasis Dorsales)',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"chest"}', '{"dumbbell","fitball"}',
+    2, 'isolation', 1.3, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Espalda sobre el fitball en posición horizontal. Caderas altas.","Baja la mancuerna por detrás de la cabeza enfocando en el estiramiento del dorsal.","El fitball permite mayor rango de movimiento que el banco plano."}',
+    '3', '3-4', '4',
+    '12-15', '10-12', '10-12',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'dumbbell_row_bottles', 'Dumbbell Row with Water Bottles', 'Remo con Botellas de Agua (Pesos Improvisados)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Llena botellas de agua o usa garrafas como mancuernas improvisadas.","Apoya la mano libre en una silla o sofá. Jala la botella hacia la cadera.","Útil para iniciación sin equipamiento. Aumenta el volumen de agua para más carga."}',
+    '3', '3-4', '4',
+    '12-15', '15-20', '20-25',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'dumbbell_row_backpack', 'Dumbbell Row with Weighted Backpack', 'Remo con Mochila Lastrada',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"dumbbell","bench"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Llena una mochila con libros u objetos pesados. Agarra por las asas superiores.","Apoya la mano libre en una silla. Jala la mochila hacia la cadera.","Permite añadir carga progresiva sin mancuernas convencionales."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-18',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pull_up_weighted_backpack', 'Pull Up with Weighted Backpack', 'Dominada con Mochila Lastrada',
+    'upperBody', 'back_lats',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Llena una mochila con libros u objetos pesados y póntela en la espalda.","Realiza la dominada con el peso extra de la mochila.","Permite sobrecarga progresiva sin cinturón de lastre."}',
+    '3', '3-4', '4',
+    '3-5', '5-8', '6-10',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'inverted_row_pronated', 'Inverted Row Pronated (Under Bar)', 'Remo Invertido Agarre Prono (Bajo la Barra)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight","pullup_bar"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca una barra horizontal baja (altura de cadera). Cuélgate debajo con agarre prono.","Cuerpo recto de cabeza a talones, brazos extendidos.","Jala el pecho hacia la barra llevando los codos hacia atrás."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'inverted_row_supine', 'Inverted Row Supinated', 'Remo Invertido Agarre Supino',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight","pullup_bar"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Barra horizontal baja. Agarre supino (palmas hacia ti) al ancho de hombros.","Cuerpo recto. Jala hacia la barra llevando el pecho hacia arriba.","El agarre supino activa más el bíceps y el dorsal inferior."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'inverted_row_neutral', 'Inverted Row Neutral Grip', 'Remo Invertido Agarre Neutro',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight","pullup_bar"}',
+    1, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa barras en paralelo o anillas a baja altura para agarre neutro.","Palmas enfrentadas. Jala el cuerpo hacia las barras/anillas.","Agarre más ergonómico. Excelente punto de entrada para el remo con peso corporal."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'inverted_row_feet_elevated', 'Inverted Row with Feet Elevated', 'Remo Invertido con Pies Elevados',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bodyweight","pullup_bar"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Barra horizontal baja. Coloca los pies en una silla o banco elevado.","El cuerpo queda más horizontal aumentando significativamente la dificultad.","Equivalente a una dominada horizontal pesada. Mayor trabajo de espalda."}',
+    '3', '3-4', '4',
+    '6-10', '8-15', '12-20',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'inverted_row_one_arm', 'One Arm Inverted Row', 'Remo Invertido Unilateral (Una Mano)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps","core"}', '{"bodyweight","pullup_bar"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Barra baja. Agarra con una sola mano. La otra puede tocar el cuerpo o extenderse.","Jala el cuerpo hacia la barra con un solo brazo. Activa intensamente el core.","Progresión avanzada hacia la dominada unilateral."}',
+    '3', '3', '3-4',
+    '3-5 c/lado', '5-8 c/lado', '8-12 c/lado',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'inverted_row_table', 'Inverted Row Under Table', 'Remo Invertido Bajo la Mesa',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa una mesa resistente y firme. Cuélgate debajo agarrando el borde.","Cuerpo recto debajo de la mesa. Jala el pecho hacia el borde superior.","Excelente opción cuando no se tiene barra. Verifica que la mesa aguante tu peso."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'inverted_row_stairs', 'Inverted Row on Horizontal Stair Rail', 'Remo Invertido en Escalera Horizontal',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight"}',
+    1, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Usa el pasamanos horizontal de una escalera o una barra a baja altura.","Cuélgate debajo con el cuerpo recto y pies en el suelo.","Jala el pecho hacia el pasamanos. Varía la dificultad moviendo los pies."}',
+    '3', '3-4', '4',
+    '8-12', '12-15', '15-20',
+    90, 75, 60,
+    'bodyweight'
+  ),
+  (
+    'shrug_barbell_supine', 'Barbell Shrug Supine Grip', 'Encogimiento con Barra Agarre Supino',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"barbell"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sujeta la barra con palmas hacia arriba (agarre supino).","Eleva los hombros hacia las orejas sin doblar los codos.","El agarre supino cambia ligeramente el reclutamiento del trapecio."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_barbell_behind_back', 'Behind-the-Back Barbell Shrug', 'Encogimiento con Barra Tras la Espalda',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"barbell"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sostén la barra detrás de los glúteos con agarre prono.","Eleva los hombros directamente hacia arriba sin inclinar el torso.","Énfasis en la porción posterior del trapecio superior."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_dumbbell_unilateral', 'Unilateral Dumbbell Shrug', 'Encogimiento con Mancuerna Unilateral',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"dumbbell"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Trabaja un lado a la vez para mayor concentración y rango de movimiento.","Eleva el hombro directamente hacia la oreja. Mantén la contracción 1 seg.","Baja de forma controlada para estirar el trapecio."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '10-15 c/lado', '12-15 c/lado',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'shrug_dumbbell_alternating', 'Alternating Dumbbell Shrug', 'Encogimiento con Mancuernas Alternado',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"dumbbell"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Eleva un hombro mientras el otro baja en movimiento alterno.","Mantén el torso estable y no balancees el cuerpo.","Mayor tiempo bajo tensión por repetición comparado al bilateral."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '12-15 c/lado', '15-20 c/lado',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'shrug_smith_front', 'Smith Machine Shrug (Front)', 'Encogimiento en Máquina Smith (Frente)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"machine"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La barra guiada permite mayor estabilidad y cargas más elevadas.","Sitúa la barra al frente de los muslos y eleva los hombros verticalmente.","Ideal para principiantes que aprenden el patrón de movimiento."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_smith_behind', 'Smith Machine Behind-the-Back Shrug', 'Encogimiento en Máquina Smith (Tras Espalda)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"machine"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Coloca la barra Smith detrás del cuerpo a la altura de los glúteos.","Eleva los hombros sin mover la cadera. La guía asegura trayectoria vertical.","Permite mayor carga que con barra libre en posición trasera."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_machine_plate_loaded', 'Plate-Loaded Trap Machine Shrug', 'Encogimiento en Máquina de Trapecio (Plate-Loaded)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"machine"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Las asas de la máquina permiten un recorrido óptimo para el trapecio.","Eleva los hombros en el plano de movimiento de la máquina.","Útil para cargas altas con menor tensión en la columna que con barra."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_machine_selectorized', 'Selectorized Shrug Machine', 'Encogimiento en Máquina Selectorizada',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"machine"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta el asiento para que las asas queden a la altura de los muslos.","Eleva los hombros sin doblar los codos. Contrae en la cima.","Excelente para control preciso de la carga en sesiones de volumen."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_shrug_rope', 'Cable Shrug with Rope', 'Encogimiento con Polea Baja (Cuerda)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Conecta la cuerda a la polea baja. Párate erguido sujetando los extremos.","Eleva los hombros manteniendo tensión constante del cable durante todo el recorrido.","La cuerda permite una posición de agarre más neutral que la barra."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_shrug_straight_bar', 'Cable Shrug Straight Bar', 'Encogimiento con Polea Baja (Barra Recta)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa la barra recta en polea baja. Agarre prono a la anchura de hombros.","La tensión constante del cable mejora el reclutamiento en el rango inferior.","Evita redondear la espalda. Núcleo activado."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'cable_shrug_unilateral', 'Unilateral Cable Shrug', 'Encogimiento con Polea Baja Unilateral',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa un mango de asa en la polea baja. Trabaja un lado a la vez.","Mayor concentración por lado. Útil para corregir asimetrías.","Mantén el torso derecho; evita la inclinación lateral."}',
+    '3', '3', '3-4',
+    '12-15 c/lado', '12-15 c/lado', '15-20 c/lado',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'shrug_trap_bar', 'Trap Bar Shrug', 'Encogimiento con Barra Hexagonal (Trap Bar)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"forearms"}', '{"barbell"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Párate dentro de la barra hexagonal, sujeta las asas laterales.","Eleva los hombros verticalmente. La posición neutra reduce estrés en muñecas.","Permite mayor carga que la barra recta con mejor distribución del peso."}',
+    '3', '3-4', '4',
+    '10-12', '10-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'shrug_isometric', 'Isometric Shrug Hold', 'Encogimiento Isométrico Sostenido',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"barbell"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sube los hombros al máximo y sostén la posición durante 3-5 segundos.","Úsalo con barra, mancuernas o máquina. Contracción isométrica intensa.","Excelente para mejorar la conexión mente-músculo con el trapecio superior."}',
+    '3', '3', '3-4',
+    '6-8 x 3seg', '8-10 x 3seg', '8-10 x 5seg',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_barbell_wide', 'Wide-Grip Barbell Upright Row', 'Remo al Mentón con Barra (Agarre Ancho)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"barbell"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre prono más ancho que los hombros. Barra descansando en los muslos.","Jala la barra hacia el mentón llevando los codos por encima de la barra.","El agarre ancho reduce el riesgo de impingement y enfatiza el trapecio."}',
+    '3', '3-4', '4',
+    '8-10', '8-12', '10-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_barbell_close', 'Close-Grip Barbell Upright Row', 'Remo al Mentón con Barra (Agarre Cerrado)',
+    'upperBody', 'back_upper',
+    '{"back","shoulders"}', '{"biceps"}', '{"barbell"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Agarre a la anchura de los hombros o más cerrado.","Mayor activación del deltoides medio con agarre cerrado.","Precaución: puede causar impingement en personas con hombros sensibles."}',
+    '3', '3-4', '4',
+    '8-10', '8-12', '10-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_smith', 'Smith Machine Upright Row', 'Remo al Mentón en Máquina Smith',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"machine"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"La guía de la Smith permite centrarse en el movimiento sin preocuparse del equilibrio.","Ajusta la anchura del agarre. Jala la barra hacia la barbilla.","Útil para quienes tienen dificultades con la coordinación en la barra libre."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_dumbbell', 'Dumbbell Upright Row', 'Remo al Mentón con Mancuernas',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"dumbbell"}',
+    1, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Sujeta una mancuerna en cada mano frente a los muslos.","Eleva ambas mancuernas juntas hacia el mentón llevando los codos hacia arriba.","Las mancuernas permiten un recorrido más natural que la barra."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'upright_row_dumbbell_unilateral', 'Unilateral Dumbbell Upright Row', 'Remo al Mentón con Mancuerna Unilateral',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"dumbbell"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Trabaja un brazo a la vez. Mayor rango de movimiento y concentración.","Apoya la mano libre en la cadera para estabilidad.","Útil para corregir asimetrías entre lados."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '10-12 c/lado', '12-15 c/lado',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'upright_row_dumbbell_alternating', 'Alternating Dumbbell Upright Row', 'Remo al Mentón con Mancuernas Alternado',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"dumbbell"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Eleva una mancuerna mientras la otra permanece abajo, en movimiento alternado.","Mayor tiempo bajo tensión por set y mejor control de la técnica.","Mantén el núcleo firme para evitar el balanceo."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '12 c/lado', '12-15 c/lado',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'upright_row_cable_low', 'Cable Upright Row (Low Pulley)', 'Remo al Mentón con Cable (Polea Baja)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"cable"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Conecta un agarre estrecho a la polea baja. Párate erguido frente a la polea.","Jala hacia el mentón manteniendo la tensión constante del cable.","La tensión continua del cable es superior a la barra en el rango inferior."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_cable_straight_bar', 'Cable Upright Row Straight Bar', 'Remo al Mentón con Cable y Barra Recta',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"cable"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Barra recta en polea baja. Agarre prono a la anchura de hombros.","Jala la barra hacia el mentón llevando los codos hacia arriba y afuera.","Patrón similar a la barra libre con ventaja de tensión continua."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_cable_rope', 'Cable Upright Row with Rope', 'Remo al Mentón con Cable y Cuerda',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"cable"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuerda en polea baja. Al llegar arriba, separa los extremos hacia afuera.","Mayor activación del deltoides posterior en el punto de contracción.","La cuerda permite un recorrido más natural para las muñecas."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'upright_row_cable_unilateral', 'Unilateral Cable Upright Row', 'Remo al Mentón con Cable Unilateral',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"cable"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Mango de asa en polea baja. Jala con un brazo hacia el mentón.","Mayor rango de movimiento que el bilateral y útil para corregir asimetrías.","Mantén el codo por encima de la mano durante todo el recorrido."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '10-12 c/lado', '12-15 c/lado',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'upright_row_machine', 'Trap Machine Upright Row', 'Remo al Mentón en Máquina de Trapecio',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders"}', '{"machine"}',
+    1, 'compound', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Ajusta la altura de las asas. Jala hacia arriba siguiendo la guía de la máquina.","Mayor estabilidad que la barra libre. Ideal para aislar el movimiento.","Controla la bajada; no dejes caer el peso."}',
+    '3', '3-4', '4',
+    '10-12', '12-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'reverse_fly_machine', 'Reverse Pec Deck Fly', 'Aperturas Inversas en Máquina Pec Deck',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"machine"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Siéntate frente al respaldo del pec deck (al revés). Sujeta las asas laterales.","Lleva los brazos hacia atrás en arco abriendo el pecho. Retrae las escápulas.","Excelente ejercicio de aislamiento para el deltoides posterior y trapecio medio."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'reverse_fly_dumbbell_incline', 'Incline Dumbbell Reverse Fly', 'Aperturas Inversas con Mancuernas en Banco Inclinado',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Recuéstate boca abajo en un banco inclinado (30-45°). Brazos colgando.","Eleva los brazos en arco hacia los lados hasta la altura de los hombros.","La posición inclinada elimina el impulso y aísla mejor el trapecio medio."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'reverse_fly_dumbbell_standing', 'Standing Dumbbell Reverse Fly', 'Aperturas Inversas con Mancuernas de Pie',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"dumbbell"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Inclínate hacia delante con las caderas a 90° y espalda recta.","Eleva las mancuernas en arco hacia los lados con los codos ligeramente flexionados.","Evita el impulso del torso. Controla el movimiento en todo momento."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'reverse_fly_cable_crossover', 'Cable Crossover Reverse Fly', 'Aperturas Inversas con Cable (Cruce Inverso)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas altas cruzadas: toma el cable derecho con la mano izquierda y viceversa.","Párate en el centro e inclínate. Abre los brazos hacia atrás en arco.","La tensión del cable en todo el recorrido supera a las mancuernas."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'reverse_fly_cable_unilateral', 'Unilateral Cable Reverse Fly', 'Aperturas Inversas con Cable Unilateral',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Mango de asa en polea alta. Párate de lado a la polea, inclínate hacia delante.","Jala el cable hacia atrás y afuera en arco. Trabaja un lado a la vez.","Mayor concentración y corrección de asimetrías."}',
+    '3', '3', '3-4',
+    '12-15 c/lado', '12-15 c/lado', '15-20 c/lado',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'reverse_fly_cable_high', 'High Cable Reverse Fly', 'Aperturas Inversas con Polea Alta (Cruce Desde Arriba)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas altas bilaterales. Sujeta los mangos cruzados a la altura del pecho.","Abre los brazos hacia abajo y atrás en arco. No cruces los brazos en el inicio.","Énfasis en el deltoides posterior y porción media del trapecio."}',
+    '3', '3-4', '4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'reverse_fly_band', 'Band Reverse Fly', 'Aperturas Inversas con Banda Elástica',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a la altura del pecho frente a ti. Sujeta los extremos cruzados.","Inclínate hacia delante o realízalo de pie. Abre los brazos hacia atrás.","Ideal como activación o finalizador de sesión de espalda."}',
+    '3', '3', '3-4',
+    '15-20', '15-20', '20-25',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'face_pull_straight_bar', 'Face Pull Short Bar', 'Face Pull con Barra Corta',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Usa la barra de triceps corta en polea alta. Agarre supino o prono.","Jala hacia la frente con los codos en alto, retrayendo las escápulas.","Variante más simple que la cuerda, útil para principiantes."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'face_pull_unilateral', 'Unilateral Face Pull', 'Face Pull Unilateral',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Mango de asa en polea alta. Trabaja un brazo a la vez.","Jala el mango hacia la oreja del mismo lado con el codo alto.","Permite mayor recorrido y corrección de desbalances entre lados."}',
+    '3', '3', '3-4',
+    '12-15 c/lado', '12-15 c/lado', '15-20 c/lado',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'face_pull_band', 'Band Face Pull', 'Face Pull con Banda Elástica',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda a la altura de la cabeza frente a ti. Sujeta los extremos.","Jala hacia la cara con los codos en alto y las manos separándose al final.","Perfecto para activación en casa o como ejercicio correctivo."}',
+    '3', '3', '3-4',
+    '15-20', '15-20', '20-25',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'face_pull_external_rotation', 'Face Pull with External Rotation', 'Face Pull con Rotación Externa',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Cuerda en polea alta. Al llegar a la cara, rota externamente los hombros.","Lleva las manos hacia atrás y arriba al final del movimiento.","Activa trapecio medio, deltoides posterior y rotadores externos simultáneamente."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'pull_up_scapular_depression', 'Pull Up with Scapular Depression', 'Dominada con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'compound', 1.8, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Comienza colgado con las escápulas totalmente elevadas (hombros en las orejas).","Inicia el movimiento deprimiendo las escápulas ANTES de doblar los codos.","Activa el trapecio inferior desde el inicio. Continúa la dominada completa."}',
+    '3', '3-4', '4',
+    '3-5', '5-8', '6-10',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'pull_up_scapular_depression_pause', 'Pull Up Scapular Depression with Pause', 'Dominada con Depresión Escapular y Pausa',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    3, 'compound', 1.9, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Realiza la dominada con depresión escapular.","Haz una pausa de 2-3 segundos en la posición alta (barbilla por encima de la barra).","La pausa maximiza la contracción del trapecio inferior y los dorsales."}',
+    '3', '3', '3-4',
+    '2-4', '4-6', '5-8',
+    120, 90, 90,
+    'home'
+  ),
+  (
+    'lat_pulldown_scapular_depression', 'Lat Pulldown with Scapular Depression', 'Jalón al Pecho con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"cable"}',
+    1, 'compound', 1.6, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Comienza con los hombros elevados hacia las orejas, brazos extendidos.","Inicia bajando las escápulas antes de doblar los codos.","Esta iniciación con el trapecio inferior mejora la activación de los dorsales."}',
+    '3', '3-4', '4',
+    '8-12', '10-12', '10-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'lat_pulldown_scapular_depression_pause', 'Lat Pulldown Scapular Depression with Pause', 'Jalón al Pecho con Depresión y Pausa',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"cable"}',
+    2, 'compound', 1.7, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Jalón al pecho con iniciación de depresión escapular.","Haz una pausa de 2 segundos al final del recorrido con las escápulas deprimidas.","Máxima activación del trapecio inferior y los dorsales en el rango corto."}',
+    '3', '3', '3-4',
+    '8-10', '8-12', '10-12',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'y_raise_dumbbell_incline', 'Incline Y-Raise with Dumbbells', 'Elevación en Y con Mancuernas (Banco Inclinado)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Recuéstate boca abajo en banco inclinado a 45°. Brazos colgando.","Eleva los brazos formando una Y (diagonal hacia arriba). Pulgares apuntan al techo.","Activa intensamente el trapecio inferior y los rotadores del manguito."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'y_raise_dumbbell_standing', 'Standing Y-Raise with Dumbbells', 'Elevación en Y con Mancuernas de Pie',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"dumbbell"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Inclínate hacia delante a 45-60°. Brazos colgando con mancuernas.","Eleva los brazos formando una Y (45° por encima de la horizontal).","Requiere peso muy ligero. La versión de pie exige más estabilidad del core."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'y_raise_cable_low', 'Cable Y-Raise (Low Pulley)', 'Elevación en Y con Cable (Polea Baja)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas bajas bilaterales. Inclínate hacia delante o trabaja de pie.","Eleva los cables formando una Y. La tensión continua mejora la activación.","Usa cargas muy ligeras para mantener la técnica perfecta."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'y_raise_cable_unilateral', 'Unilateral Cable Y-Raise', 'Elevación en Y con Polea Baja Unilateral',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Mango de asa en polea baja. Trabaja un brazo a la vez inclinado hacia delante.","Eleva el cable hacia arriba en diagonal formando la mitad de una Y.","Mayor concentración y corrección de asimetrías entre lados."}',
+    '3', '3', '3-4',
+    '10-12 c/lado', '12-15 c/lado', '15-20 c/lado',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'i_raise_dumbbell_prone', 'Prone I-Raise with Dumbbells', 'Elevación en I con Mancuernas (Boca Abajo)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"dumbbell"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo en el suelo o banco. Brazos extendidos sobre la cabeza en línea recta (I).","Eleva los brazos manteniendo los pulgares apuntando al techo.","Activa el trapecio inferior y los romboides en el rango superior."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'i_raise_dumbbell_incline', 'Incline I-Raise with Dumbbells', 'Elevación en I con Mancuernas en Banco Inclinado',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Recuéstate boca abajo en banco inclinado. Brazos extendidos frente a ti.","Eleva los brazos en línea recta sobre la cabeza formando una I.","El banco inclinado permite mayor rango de movimiento que el suelo."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'i_raise_cable', 'Cable I-Raise', 'Elevación en I con Cable',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea baja bilateral. Inclínate hacia delante con los brazos extendidos hacia abajo.","Eleva los cables sobre la cabeza en línea recta formando una I.","La tensión continua del cable mantiene el trapecio inferior activo en todo el recorrido."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    't_raise_dumbbell_prone', 'Prone T-Raise with Dumbbells', 'Elevación en T con Mancuernas (Boca Abajo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"dumbbell"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, brazos extendidos a los lados formando una T (90° del torso).","Eleva los brazos manteniendo la forma de T. Pulgares apuntan al techo.","Activa el trapecio medio, romboides y deltoides posterior."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    't_raise_dumbbell_incline', 'Incline T-Raise with Dumbbells', 'Elevación en T con Mancuernas en Banco Inclinado',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"dumbbell","bench"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Recuéstate boca abajo en banco inclinado. Brazos colgando a los lados.","Eleva los brazos en T (perpendiculares al torso).","Mayor rango de movimiento que en el suelo."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    't_raise_cable', 'Cable T-Raise', 'Elevación en T con Cable',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas bajas bilaterales. Inclínate hacia delante con brazos extendidos.","Eleva los cables hacia los lados formando una T.","La resistencia continua del cable mejora la activación en todo el arco."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'w_raise_dumbbell_prone', 'Prone W-Raise with Dumbbells', 'Elevación en W con Mancuernas (Boca Abajo)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"dumbbell"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, codos doblados a 90°, brazos formando una W.","Eleva los codos hacia el techo manteniendo la forma de W. Retrae las escápulas.","Activa simultáneamente el trapecio inferior, medio y los rotadores externos."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'w_raise_cable', 'Cable W-Raise', 'Elevación en W con Cable',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"cable"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Poleas bajas con mangos de asa. Inclínate hacia delante.","Jala los cables doblando los codos formando una W en la posición contraída.","Combina retracción escapular con rotación externa de hombro."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    75, 60, 45,
+    'gym'
+  ),
+  (
+    'pullover_barbell', 'Straight Bar Pullover', 'Pullover con Barra Recta',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"chest"}', '{"barbell","bench"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Recostado en banco, sujeta la barra recta con agarre prono a la anchura de hombros.","Con codos ligeramente flexionados, baja la barra sobre la cabeza y regresa.","La barra permite mayor carga que la mancuerna. Énfasis en depresión escapular."}',
+    '3', '3-4', '4',
+    '10-12', '10-12', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'cable_pullover_trap', 'Cable Pullover (Trap Focus)', 'Pullover en Polea Alta (Énfasis Trapecio Inferior)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"chest"}', '{"cable"}',
+    2, 'compound', 1.3, 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop',
+    '{"Polea alta con barra recta o cuerda. Inclínate hacia delante alejado de la polea.","Jala la barra en arco hacia los muslos con brazos casi rectos.","Inicia deprimiendo las escápulas antes de jalar para maximizar el trapecio inferior."}',
+    '3', '3-4', '4',
+    '10-12', '12-15', '12-15',
+    90, 75, 60,
+    'gym'
+  ),
+  (
+    'band_shrug', 'Band Shrug', 'Encogimiento con Banda Elástica',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Párate sobre la banda con los pies a la anchura de hombros. Sujeta los extremos.","Eleva los hombros hacia las orejas. La resistencia de la banda aumenta al subir.","Ajusta la longitud de la banda para modular la tensión."}',
+    '3', '3', '3-4',
+    '15-20', '15-20', '20-25',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'band_upright_row', 'Band Upright Row', 'Remo al Mentón con Banda Elástica',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"bands"}',
+    1, 'compound', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Párate sobre la banda. Sujeta los extremos con agarre prono.","Eleva los codos hacia arriba jalando la banda hacia el mentón.","Excelente para trabajar el trapecio superior en casa sin pesas."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'band_y_raise', 'Band Y-Raise', 'Elevación en Y con Banda Elástica',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda abajo frente a ti. Inclínate hacia delante sujetando los extremos.","Eleva los brazos formando una Y. La resistencia aumenta con el ángulo.","Activa el trapecio inferior de forma efectiva con equipamiento mínimo."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'band_i_raise', 'Band I-Raise', 'Elevación en I con Banda Elástica',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda abajo. Inclínate hacia delante con brazos extendidos frente a ti.","Eleva los brazos sobre la cabeza en línea recta formando una I.","Usa peso ligero o banda de baja resistencia. Técnica antes que intensidad."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'band_t_raise', 'Band T-Raise', 'Elevación en T con Banda Elástica',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda frente a ti a baja altura. Inclínate hacia delante.","Eleva los brazos a los lados formando una T con el torso.","Activa el trapecio medio y los romboides con resistencia de banda."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'band_w_raise', 'Band W-Raise', 'Elevación en W con Banda Elástica',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bands"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda frente a ti. Sujeta los extremos con codos doblados a 90°.","Jala hacia atrás manteniendo la forma de W. Retrae y deprime las escápulas.","Combina retracción y depresión escapular en un solo movimiento."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'home'
+  ),
+  (
+    'band_pullover_trap', 'Band Pullover (Trap Focus)', 'Pullover con Banda Anclada Arriba',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"chest"}', '{"bands"}',
+    2, 'compound', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Ancla la banda arriba (puerta o barra). Párate de cara a ella.","Con brazos casi extendidos, jala la banda en arco hacia los muslos.","Inicia deprimiendo las escápulas para activar el trapecio inferior."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_reverse_fly', 'TRX Reverse Fly', 'Aperturas Inversas en TRX',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"trx"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Sujeta los mangos del TRX con los brazos extendidos frente a ti, cuerpo inclinado.","Abre los brazos hacia los lados en arco como una apertura inversa.","Más difícil cuanto más horizontal sea el cuerpo."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_face_pull', 'TRX Face Pull', 'Face Pull en TRX',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"trx"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Sujeta el TRX con los brazos extendidos, cuerpo inclinado hacia atrás.","Jala los mangos hacia la cara con los codos en alto. Retrae las escápulas.","Equivalente al face pull con cable, excelente para la salud del hombro."}',
+    '3', '3', '3-4',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'trx_row_scapular_depression', 'TRX Row with Scapular Depression', 'Remo en TRX con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"trx"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Cuelga del TRX con brazos extendidos. Inicia el movimiento deprimiendo las escápulas.","Baja las escápulas antes de doblar los codos para jalar.","Activa el trapecio inferior como motor iniciador del movimiento."}',
+    '3', '3', '3-4',
+    '8-10', '10-12', '12-15',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'rings_row_scapular', 'Rings Row with Scapular Depression', 'Dominada en Anillas con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"rings"}',
+    3, 'compound', 1.8, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Cuelga de las anillas. Inicia deprimiendo las escápulas activamente.","Continúa la dominada completa manteniendo las escápulas bajas.","Mayor inestabilidad que la barra aumenta la activación del trapecio inferior."}',
+    '3', '3', '3-4',
+    '2-4', '4-8', '6-10',
+    120, 90, 90,
+    'home'
+  ),
+  (
+    'shrug_bottles', 'Shrug with Water Bottles', 'Encogimiento con Botellas de Agua',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Sostén botellas de agua llenas o cualquier objeto con peso en cada mano.","Eleva los hombros hacia las orejas. Técnica idéntica a los encogimientos con mancuernas.","Útil cuando no se dispone de pesas. Usa mochilas con libros para más carga."}',
+    '3', '3', '3-4',
+    '15-20', '20-25', '25-30',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'shrug_backpack', 'Loaded Backpack Shrug', 'Encogimiento con Mochila Lastrada',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Carga una mochila con libros o botellas de agua. Sostén las asas con las manos.","Eleva los hombros. Ajusta el peso añadiendo o quitando contenido.","Excelente opción casera para cargas moderadas."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '15-20',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'upright_row_bottles', 'Upright Row with Water Bottles', 'Remo al Mentón con Botellas de Agua',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders","biceps"}', '{"bodyweight"}',
+    1, 'compound', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Sostén botellas de agua en cada mano frente a los muslos.","Eleva los codos hacia arriba jalando las botellas hacia el mentón.","Carga ligera pero efectiva para principiantes que aprenden el patrón."}',
+    '3', '3', '3',
+    '15-20', '20-25', '25-30',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'y_raise_bottles', 'Y-Raise with Water Bottles', 'Elevación en Y con Botellas',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo o inclinado hacia delante. Sostén botellas.","Eleva los brazos formando una Y. Pulgares apuntando al techo.","Las botellas son suficiente carga para el trapecio inferior."}',
+    '3', '3', '3',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'i_raise_bottles', 'I-Raise with Water Bottles', 'Elevación en I con Botellas',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo. Brazos extendidos frente a ti sujetando botellas.","Eleva los brazos sobre la cabeza formando una I.","Peso muy ligero es suficiente para activar el trapecio inferior en este ejercicio."}',
+    '3', '3', '3',
+    '12-15', '15-20', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'pullover_bottle', 'Pullover with Large Water Bottle', 'Pullover con Botella Grande',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"chest"}', '{"bodyweight"}',
+    1, 'compound', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Recostado en el suelo o banco, sujeta una botella grande de 5L con ambas manos.","Con brazos casi extendidos, baja la botella sobre la cabeza y regresa.","Inicia deprimiendo las escápulas. Buena opción casera para el trapecio inferior."}',
+    '3', '3', '3',
+    '12-15', '12-15', '15-20',
+    75, 60, 45,
+    'bodyweight'
+  ),
+  (
+    'scapular_push_up', 'Scapular Push Up', 'Plancha con Elevación de Hombros (Scapular Push Up)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"chest"}', '{"bodyweight"}',
+    1, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"En posición de plancha alta, manteniendo los codos extendidos.","Eleva y hunde el pecho retrayendo y protrayendo las escápulas sin doblar los codos.","Activa el trapecio superior y los serratos. Excelente para la salud del hombro."}',
+    '3', '3', '3-4',
+    '10-15', '15-20', '20-25',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'scapular_push_up_pike', 'Pike Scapular Push Up', 'Plancha con Elevación de Hombros a Pico',
+    'upperBody', 'back_upper',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    2, 'isolation', 1.2, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"En posición de pico (cadera alta, piernas y brazos rectos).","Eleva y hunde el pecho con movimiento escapular puro sin doblar codos.","Mayor carga sobre el trapecio que la versión de plancha plana."}',
+    '3', '3', '3-4',
+    '8-12', '12-15', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'dead_hang_to_active', 'Dead Hang to Active Hang', 'Colgar Pasivo a Activo (Depresión Escapular)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{}', '{"pullup_bar","bodyweight"}',
+    1, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Comienza colgado con los hombros completamente elevados (colgar pasivo).","Sin doblar los codos, deprime las escápulas bajando los hombros.","Alterna entre posición pasiva y activa. Fundamental para aprender la dominada."}',
+    '3', '3', '3-4',
+    '8-12', '12-15', '15-20',
+    75, 60, 45,
+    'home'
+  ),
+  (
+    'active_hang_hold', 'Active Hang Hold', 'Colgar Activo Sostenido (Escápulas Bajas)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{}', '{"pullup_bar","bodyweight"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Cuelga de la barra con las escápulas deprimidas (activas).","Mantén los hombros alejados de las orejas durante todo el tiempo.","Desarrolla la resistencia del trapecio inferior. Útil antes de aprender dominadas."}',
+    '3', '3', '3-4',
+    '3 x 10seg', '3 x 20seg', '3 x 30seg',
+    90, 75, 60,
+    'home'
+  ),
+  (
+    'pull_up_negative_scapular', 'Negative Pull Up with Scapular Depression', 'Dominada Negativa con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"biceps"}', '{"pullup_bar","bodyweight"}',
+    2, 'compound', 1.5, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Salta o usa un cajón para llegar a la posición alta con escápulas deprimidas.","Baja de forma muy lenta (4-6 segundos) manteniendo las escápulas bajas.","Desarrolla el trapecio inferior de forma excéntrica sin necesitar fuerza concéntrica."}',
+    '3', '3', '3-4',
+    '3-5', '5-8', '6-10',
+    120, 90, 75,
+    'home'
+  ),
+  (
+    'superman_y', 'Superman Y', 'Supermán con Brazos en Y',
+    'upperBody', 'back_lower',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, brazos en diagonal formando una Y (pulgares arriba).","Eleva los brazos y el pecho del suelo. Contrae el trapecio inferior.","Variante del supermán que enfatiza el trapecio inferior."}',
+    '3', '3', '3-4',
+    '10-15', '15-20', '20-25',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'superman_i', 'Superman I', 'Supermán con Brazos en I',
+    'upperBody', 'back_lower',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, brazos extendidos sobre la cabeza en línea recta (I).","Eleva los brazos y el pecho. Pulgares apuntando al techo.","Activa el trapecio inferior y los dorsales en posición elongada."}',
+    '3', '3', '3-4',
+    '10-15', '15-20', '20-25',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'superman_t', 'Superman T', 'Supermán con Brazos en T',
+    'upperBody', 'back_mid',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, brazos extendidos a los lados formando una T.","Eleva los brazos y el pecho del suelo. Retrae las escápulas.","Activa el trapecio medio y los romboides."}',
+    '3', '3', '3-4',
+    '10-15', '15-20', '20-25',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'superman_w', 'Superman W', 'Supermán con Brazos en W',
+    'upperBody', 'back_lower',
+    '{"back"}', '{}', '{"bodyweight"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo, codos doblados a 90° formando una W.","Eleva los codos del suelo retrayendo y deprimiendo las escápulas.","Combina activación del trapecio inferior, medio y rotadores externos."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'wall_slides', 'Wall Slides', 'Deslizamiento Escapular en Pared',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"De pie con la espalda contra la pared, codos a 90° apoyados en la pared.","Desliza los brazos hacia arriba manteniendo todo el contacto con la pared.","Activa el trapecio inferior y mejora la movilidad del hombro. Ejercicio correctivo."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'wall_slides_y', 'Wall Slides Y', 'Deslizamiento Escapular en Pared con Brazos en Y',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Brazos en posición de Y apoyados en la pared (diagonal hacia arriba).","Desliza hacia arriba manteniendo los brazos en Y contra la pared.","Variante que aumenta el énfasis en el trapecio inferior vs la versión estándar."}',
+    '3', '3', '3-4',
+    '10-12', '12-15', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'wall_slides_w', 'Wall Slides W', 'Deslizamiento Escapular en Pared con Brazos en W',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Codos doblados a 90° formando una W apoyada en la pared.","Mantén todo el contacto mientras subes y bajas los brazos en W.","Variante más demandante que activa trapecio inferior y rotadores externos."}',
+    '3', '3', '3-4',
+    '8-12', '12-15', '15-20',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'reverse_fly_floor', 'Floor Reverse Fly (Prone)', 'Aperturas Inversas en Suelo (Boca Abajo)',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo en el suelo, brazos extendidos a los lados formando una T.","Sin peso adicional, eleva los brazos del suelo retrayendo las escápulas.","Ejercicio de activación para el trapecio medio. Añade peso ligero para progresar."}',
+    '3', '3', '3-4',
+    '15-20', '20-25', '25-30',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'reverse_fly_floor_w', 'Floor W-Fly (Prone)', 'Aperturas Inversas en Suelo (Brazos en W)',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"shoulders"}', '{"bodyweight"}',
+    2, 'isolation', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Tumbado boca abajo con codos doblados a 90° formando una W.","Eleva los codos del suelo con retracción y depresión escapular.","Variante que activa el trapecio inferior simultáneamente con el medio."}',
+    '3', '3', '3-4',
+    '12-15', '15-20', '20-25',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'bird_dog_scapular', 'Bird Dog with Scapular Depression', 'Perro Pájaro con Depresión Escapular',
+    'upperBody', 'back_lower',
+    '{"back"}', '{"core"}', '{"bodyweight"}',
+    1, 'compound', 1.1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"En cuadrupedia, extiende el brazo y la pierna opuesta.","Al extender el brazo, activa conscientemente la depresión escapular.","Combina estabilidad del core con activación del trapecio inferior."}',
+    '3', '3', '3-4',
+    '8-10 c/lado', '10-12 c/lado', '12-15 c/lado',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'neck_flexion_isometric', 'Isometric Neck Flexion', 'Flexión de Cuello Isométrica (Mano en Frente)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca la mano en la frente. Empuja la cabeza hacia delante contra la resistencia de la mano.","Mantén la posición durante 5-10 segundos. La cabeza no se mueve (isométrico).","Fortalece los flexores del cuello y la porción superior del trapecio."}',
+    '3', '3', '3',
+    '5 x 5seg', '8 x 5seg', '8 x 10seg',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'neck_flexion_isometric_lateral', 'Isometric Lateral Neck Flexion', 'Flexión de Cuello Isométrica Lateral',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca la mano en la sien. Empuja la cabeza lateralmente contra la resistencia.","Mantén la contracción isométrica durante 5-10 segundos.","Trabaja la porción superior del trapecio y los escalenos."}',
+    '3', '3', '3',
+    '5 x 5seg c/lado', '8 x 5seg c/lado', '8 x 10seg c/lado',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'neck_extension_isometric', 'Isometric Neck Extension', 'Extensión de Cuello Isométrica (Mano en Nuca)',
+    'upperBody', 'back_upper',
+    '{"back"}', '{}', '{"bodyweight"}',
+    1, 'isolation', 1, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Coloca ambas manos en la nuca. Empuja la cabeza hacia atrás contra la resistencia.","Mantén la contracción isométrica 5-10 segundos. Cabeza quieta.","Fortalece los extensores del cuello y la inserción superior del trapecio."}',
+    '3', '3', '3',
+    '5 x 5seg', '8 x 5seg', '8 x 10seg',
+    60, 45, 30,
+    'bodyweight'
+  ),
+  (
+    'inverted_row_towel', 'Inverted Row with Towel Grip', 'Remo Invertido con Toalla',
+    'upperBody', 'back_mid',
+    '{"back"}', '{"biceps"}', '{"bodyweight"}',
+    2, 'compound', 1.4, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop',
+    '{"Enrolla una toalla alrededor de una barra o poste horizontal resistente.","Cuélgate y realiza el remo invertido agarrando los extremos de la toalla.","Mayor demanda en el agarre y los antebrazos que con barra estándar."}',
+    '3', '3-4', '4',
+    '6-10', '10-12', '12-15',
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'overhead_press_barbell', 'Barbell Overhead Press', 'Press Militar con Barra',
@@ -462,7 +4555,8 @@ INSERT INTO exercises (
     '{"De pie o sentado. Barra a la altura de la clavícula, agarre algo más ancho que hombros.","Empuja hacia arriba mientras metes la cabeza hacia atrás para dejar pasar la barra.","Extiende completamente los brazos arriba y baja con control a la clavícula."}',
     '3', '4', '4-5',
     '8-10', '6-10', '5-8',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'overhead_press_dumbbell', 'Dumbbell Shoulder Press', 'Press de Hombro con Mancuernas',
@@ -472,7 +4566,8 @@ INSERT INTO exercises (
     '{"Sentado o de pie. Mancuernas a la altura de los hombros con codos a 90°.","Empuja hacia arriba y ligeramente adentro hasta casi tocar las mancuernas.","Baja con control hasta la posición inicial. Mayor rango que con barra."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'arnold_press', 'Arnold Press', 'Press Arnold',
@@ -482,7 +4577,8 @@ INSERT INTO exercises (
     '{"Sentado con mancuernas frente al pecho, palmas hacia ti (supino).","Gira las palmas hacia afuera mientras empujas hacia arriba en un movimiento rotacional.","Al extender los brazos, palmas apuntan adelante. Invierte al bajar."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'front_raise_dumbbell', 'Dumbbell Front Raise', 'Elevación Frontal con Mancuernas',
@@ -492,7 +4588,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas frente a los muslos, palmas hacia adentro.","Eleva los brazos al frente hasta la altura de los hombros. Ligeramente flexionados.","Baja lentamente con control. Alterna brazos o muévelos simultáneamente."}',
     '3', '3', '3-4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'front_raise_cable', 'Cable Front Raise', 'Elevación Frontal en Polea',
@@ -502,7 +4599,8 @@ INSERT INTO exercises (
     '{"De pie de espaldas a la polea baja. Agarra el mango con una mano.","Eleva el brazo al frente hasta la altura del hombro manteniendo tensión constante.","Baja con control. La polea mantiene tensión durante todo el recorrido."}',
     '3', '3', '3-4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'machine_shoulder_press', 'Machine Shoulder Press', 'Press de Hombros en Máquina',
@@ -512,7 +4610,8 @@ INSERT INTO exercises (
     '{"Ajusta el asiento para que las asas queden a la altura de los hombros.","Empuja hacia arriba hasta casi extender los codos. No bloquees completamente.","Baja con control hasta la posición inicial manteniendo tensión en los hombros."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'lateral_raise_dumbbell', 'Dumbbell Lateral Raise', 'Elevación Lateral con Mancuernas',
@@ -522,7 +4621,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas a los lados. Ligera flexión de codo (15-20°).","Eleva los brazos hacia los lados hasta la altura de los hombros. Pulgares ligeramente hacia abajo.","Baja con control en 2-3 segundos. No uses impulso."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'lateral_raise_cable', 'Cable Lateral Raise', 'Elevación Lateral en Polea',
@@ -532,7 +4632,8 @@ INSERT INTO exercises (
     '{"De pie al lado de la polea baja. Agarra el mango con la mano alejada.","Eleva el brazo al costado hasta la altura del hombro.","Baja lentamente. La polea mantiene tensión incluso en la posición baja."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'machine_lateral_raise', 'Machine Lateral Raise', 'Elevación Lateral en Máquina',
@@ -542,7 +4643,8 @@ INSERT INTO exercises (
     '{"Ajusta el asiento para que los brazos queden alineados con el pivote.","Empuja los brazos hacia arriba y afuera hasta la altura de los hombros.","Baja con control sin dejar caer el peso. Mayor aislamiento que con mancuernas."}',
     '3', '3', '3-4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'upright_row_barbell', 'Barbell Upright Row', 'Remo al Cuello con Barra',
@@ -552,7 +4654,8 @@ INSERT INTO exercises (
     '{"Agarra la barra con agarre prono al ancho de hombros o más estrecho.","Jala la barra hacia arriba a lo largo del cuerpo hasta la altura del pecho.","Los codos deben ir por encima de la barra. Baja con control."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'rear_delt_fly_dumbbell', 'Rear Delt Fly', 'Apertura de Deltoides Posterior con Mancuernas',
@@ -562,7 +4665,8 @@ INSERT INTO exercises (
     '{"De pie o sentado, inclina el torso a 45-90°. Mancuernas colgando.","Eleva los brazos hacia los lados y arriba hasta la altura de los hombros.","Aprieta los deltoides posteriores al máximo. Baja lentamente."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'rear_delt_fly_machine', 'Pec Deck Rear Delt', 'Apertura Posterior en Contractora',
@@ -572,7 +4676,8 @@ INSERT INTO exercises (
     '{"Siéntate de frente al respaldo de la contractora. Agarra las asas externas.","Abre los brazos hacia atrás apretando el deltoides posterior.","Regresa con control. Mayor aislamiento que con mancuernas."}',
     '3', '3', '3-4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'face_pull_shoulder', 'Face Pull (Rear Delt Focus)', 'Face Pull (Foco Posterior)',
@@ -582,7 +4687,8 @@ INSERT INTO exercises (
     '{"Polea a la altura de los ojos. Cuerda con agarre neutro.","Jala hacia la cara separando manos y llevando codos afuera a 90°.","Mantén el pecho afuera y aprieta los deltoides posteriores."}',
     '3', '3-4', '4',
     '15-20', '15-20', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'bent_over_lateral_raise', 'Bent Over Lateral Raise', 'Elevación Lateral Inclinada',
@@ -592,7 +4698,8 @@ INSERT INTO exercises (
     '{"Sentado al borde del banco, inclina el torso al frente hasta paralelo al suelo.","Eleva las mancuernas hacia los lados con codos ligeramente flexionados.","Aprieta arriba y baja lentamente. No uses el torso para ayudarte."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'reverse_fly_cable', 'Reverse Cable Fly', 'Apertura Inversa en Poleas',
@@ -602,7 +4709,8 @@ INSERT INTO exercises (
     '{"Cruza los cables (polea derecha para mano izquierda y viceversa).","De pie en el centro. Abre los brazos hacia afuera en arco.","Aprieta los deltoides posteriores y romboides al final. Regresa con control."}',
     '3', '3-4', '4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'squat_barbell', 'Barbell Back Squat', 'Sentadilla con Barra',
@@ -612,7 +4720,8 @@ INSERT INTO exercises (
     '{"Barra en la nuca, pies al ancho de hombros o ligeramente más abiertos.","Baja empujando rodillas afuera y cadera hacia atrás hasta muslos paralelos al suelo.","Empuja el suelo con los pies para subir. Mantén el pecho arriba en todo momento."}',
     '3', '4', '4-5',
     '8-10', '6-10', '4-8',
-    150, 120, 90
+    150, 120, 90,
+    'gym'
   ),
   (
     'squat_goblet', 'Goblet Squat', 'Sentadilla Goblet',
@@ -622,7 +4731,8 @@ INSERT INTO exercises (
     '{"Sostén la mancuerna o kettlebell vertical frente al pecho con ambas manos.","Pies al ancho de hombros o algo más. Baja hasta profundidad máxima.","El peso al frente favorece el torso erguido. Empuja hacia arriba."}',
     '3', '3-4', '4',
     '10-15', '10-15', '12-15',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'leg_press', 'Leg Press', 'Prensa de Piernas',
@@ -632,7 +4742,8 @@ INSERT INTO exercises (
     '{"Pies al ancho de hombros en la plataforma. Ajusta el asiento para rodillas a 90°.","Empuja la plataforma hasta casi extender las rodillas (no bloquees).","Baja con control hasta que los muslos queden paralelos o más abajo."}',
     '3', '4', '4-5',
     '10-12', '8-12', '8-12',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'leg_extension', 'Leg Extension', 'Extensión de Pierna en Máquina',
@@ -642,7 +4753,8 @@ INSERT INTO exercises (
     '{"Ajusta el rodillo para que quede en los tobillos. Espalda recta contra el respaldo.","Extiende las piernas hasta arriba apretando el cuádriceps al final.","Baja con control en 2-3 segundos. No dejes caer el peso."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'hack_squat', 'Hack Squat Machine', 'Hack Squat en Máquina',
@@ -652,7 +4764,8 @@ INSERT INTO exercises (
     '{"Espalda y hombros contra los pads. Pies ligeramente adelantados.","Baja hasta que los muslos queden paralelos al suelo o más abajo.","Empuja hacia arriba explosivamente. Gran sobrecarga del cuádriceps."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'bulgarian_split_squat', 'Bulgarian Split Squat', 'Sentadilla Búlgara',
@@ -662,7 +4775,8 @@ INSERT INTO exercises (
     '{"Pie trasero en el banco. Pie delantero adelantado lo suficiente para alineación de rodilla.","Baja la rodilla trasera hacia el suelo manteniendo el torso erguido.","Empuja desde el talón del pie delantero para subir. Glúteo y cuádriceps."}',
     '3', '3-4', '4',
     '8-10 c/u', '8-12 c/u', '8-12 c/u',
-    120, 90, 75
+    120, 90, 75,
+    'home'
   ),
   (
     'lunge_dumbbell', 'Dumbbell Walking Lunge', 'Zancadas con Mancuernas',
@@ -672,7 +4786,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas a los lados. Da un paso largo hacia adelante.","Baja la rodilla trasera casi al suelo manteniendo el torso erguido.","Empuja hacia adelante con el pie delantero y alterna la pierna."}',
     '3', '3-4', '4',
     '10 c/u', '12 c/u', '12-15 c/u',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'bodyweight_squat', 'Bodyweight Squat', 'Sentadilla con Peso Corporal',
@@ -682,7 +4797,8 @@ INSERT INTO exercises (
     '{"Pies al ancho de hombros. Brazos al frente para equilibrio.","Baja empujando caderas hacia atrás y rodillas hacia afuera hasta paralelo.","Empuja hacia arriba apretando glúteos en la posición alta."}',
     '3', '3-4', '4',
     '15-20', '20-30', '30-50',
-    75, 60, 45
+    75, 60, 45,
+    'bodyweight'
   ),
   (
     'romanian_deadlift_barbell', 'Romanian Deadlift', 'Peso Muerto Rumano con Barra',
@@ -692,7 +4808,8 @@ INSERT INTO exercises (
     '{"De pie con barra frente a los muslos. Rodillas ligeramente flexionadas.","Inclina el torso hacia adelante empujando las caderas atrás. Espalda recta.","Siente el estiramiento en los isquiotibiales. Regresa apretando glúteos."}',
     '3', '4', '4-5',
     '10-12', '8-12', '6-10',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'romanian_deadlift_dumbbell', 'Dumbbell Romanian Deadlift', 'Peso Muerto Rumano con Mancuernas',
@@ -702,7 +4819,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas frente a los muslos. Mayor rango de movimiento que con barra.","Inclina el torso hacia adelante deslizando las mancuernas por las piernas.","Regresa a posición erguida apretando isquiotibiales y glúteos."}',
     '3', '3-4', '4',
     '10-12', '10-12', '8-12',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'leg_curl_lying', 'Lying Leg Curl', 'Curl de Pierna Acostado',
@@ -712,7 +4830,8 @@ INSERT INTO exercises (
     '{"Boca abajo en la máquina. Rodillo en la parte baja de los tobillos.","Curva las piernas llevando los talones hacia los glúteos. Aprieta arriba.","Baja con control en 2-3 segundos. No dejes caer el peso."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'leg_curl_seated', 'Seated Leg Curl', 'Curl de Pierna Sentado',
@@ -722,7 +4841,8 @@ INSERT INTO exercises (
     '{"Ajusta el respaldo y el rodillo superior sobre los muslos.","Lleva los pies hacia atrás bajo el asiento apretando los isquiotibiales.","Regresa con control. La posición sentada ofrece mayor rango en el bíceps femoral."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'nordic_curl', 'Nordic Curl', 'Curl Nórdico',
@@ -732,7 +4852,8 @@ INSERT INTO exercises (
     '{"Arrodíllate y asegura los tobillos bajo algo fijo. Cuerpo erguido.","Baja el torso hacia el suelo lo más lento posible resistiendo con los isquiotibiales.","Usa las manos para apoyarte abajo y regresa contrayendo los isquiotibiales."}',
     '2-3', '3', '3-4',
     '3-5', '5-8', '8-10',
-    120, 90, 75
+    120, 90, 75,
+    'bodyweight'
   ),
   (
     'hip_thrust_barbell', 'Barbell Hip Thrust', 'Hip Thrust con Barra',
@@ -742,7 +4863,8 @@ INSERT INTO exercises (
     '{"Espalda alta apoyada en el banco. Barra sobre las caderas con almohadilla.","Empuja las caderas hacia arriba apretando fuerte los glúteos arriba.","Mantén 1-2 segundos en la cima. Baja con control hasta casi tocar el suelo."}',
     '3', '4', '4-5',
     '10-12', '8-12', '8-12',
-    90, 75, 60
+    90, 75, 60,
+    'gym'
   ),
   (
     'hip_thrust_dumbbell', 'Dumbbell Hip Thrust', 'Hip Thrust con Mancuerna',
@@ -752,7 +4874,8 @@ INSERT INTO exercises (
     '{"Espalda alta apoyada en el banco. Mancuerna sobre las caderas.","Empuja las caderas arriba apretando los glúteos al máximo.","Pausa 2 segundos arriba. Baja con control hasta casi el suelo."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'glute_bridge', 'Glute Bridge', 'Puente de Glúteos',
@@ -762,7 +4885,8 @@ INSERT INTO exercises (
     '{"Acuéstate boca arriba con rodillas flexionadas y pies apoyados.","Eleva las caderas apretando los glúteos hasta que el cuerpo forme una línea.","Pausa 2 segundos arriba apretando glúteos. Baja con control."}',
     '3', '3-4', '4',
     '15-20', '15-20', '20-25',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
   ),
   (
     'cable_kickback', 'Cable Glute Kickback', 'Patada de Glúteo en Polea',
@@ -772,7 +4896,8 @@ INSERT INTO exercises (
     '{"Coloca el accesorio en el tobillo. Inclínate ligeramente hacia adelante.","Lleva la pierna hacia atrás y arriba apretando el glúteo al máximo.","Regresa con control. No permitas que la cadera rote."}',
     '3', '3', '3-4',
     '12-15 c/u', '12-15 c/u', '15-20 c/u',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'sumo_squat_dumbbell', 'Sumo Squat', 'Sentadilla Sumo con Mancuerna',
@@ -782,7 +4907,8 @@ INSERT INTO exercises (
     '{"Pies más anchos que los hombros, puntas hacia afuera a 45°. Mancuerna entre piernas.","Baja manteniendo el torso erguido y rodillas en línea con los dedos.","Empuja hacia arriba apretando glúteos e internos de muslo en la cima."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'calf_raise_standing_machine', 'Standing Calf Raise Machine', 'Elevación de Pantorrillas en Máquina',
@@ -792,7 +4918,8 @@ INSERT INTO exercises (
     '{"Coloca los hombros bajo los pads. Pies en el borde de la plataforma.","Eleva los talones lo más alto posible apretando las pantorrillas.","Baja lentamente por debajo del nivel de la plataforma para estirar."}',
     '3', '4', '4-5',
     '15-20', '12-15', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'calf_raise_seated', 'Seated Calf Raise', 'Elevación de Pantorrillas Sentado',
@@ -802,7 +4929,8 @@ INSERT INTO exercises (
     '{"Rodillas bajo el pad. Pies en el borde de la plataforma.","Eleva los talones lo más posible. La posición sentada activa más el sóleo.","Baja hasta estiramiento máximo. Pausa 1 segundo abajo."}',
     '3', '3-4', '4',
     '15-20', '15-20', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'calf_raise_bodyweight', 'Bodyweight Calf Raise', 'Elevación de Pantorrillas con Peso Corporal',
@@ -812,7 +4940,8 @@ INSERT INTO exercises (
     '{"De pie en un escalón o borde. Solo la parte delantera del pie apoyada.","Eleva los talones lo más alto posible. Pausa 2 segundos arriba.","Baja controlado por debajo del nivel del escalón para máximo estiramiento."}',
     '3', '3-4', '4',
     '15-20', '20-30', '30-50',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
   ),
   (
     'calf_raise_leg_press', 'Leg Press Calf Raise', 'Elevación de Pantorrilla en Prensa',
@@ -822,7 +4951,8 @@ INSERT INTO exercises (
     '{"En la prensa, coloca solo la punta de los pies en el borde de la plataforma.","Extiende los tobillos empujando la plataforma con los dedos del pie.","Regresa con control hasta estiramiento completo."}',
     '3', '3-4', '4',
     '15-20', '15-20', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'machine_adduction', 'Inner Thigh Machine', 'Aducción en Máquina',
@@ -832,7 +4962,8 @@ INSERT INTO exercises (
     '{"Siéntate con piernas separadas sobre los pads exteriores.","Cierra las piernas resistiendo el peso. Aprieta los aductores.","Regresa lentamente con control. Mantén la espalda recta."}',
     '3', '3', '3-4',
     '12-15', '12-15', '12-15',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'cable_adduction', 'Cable Hip Adduction', 'Aducción de Cadera en Polea',
@@ -842,7 +4973,8 @@ INSERT INTO exercises (
     '{"Accesorio en tobillo lateral. De pie con la polea al costado.","Cruza la pierna hacia adelante del cuerpo activando los aductores.","Regresa con control manteniendo el balance sobre una pierna."}',
     '3', '3', '3-4',
     '12-15 c/u', '12-15 c/u', '15-20 c/u',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'lateral_lunge', 'Lateral Lunge', 'Zancada Lateral',
@@ -852,7 +4984,8 @@ INSERT INTO exercises (
     '{"De pie. Da un paso amplio hacia el costado. Pierna de apoyo recta.","Dobla la rodilla de la pierna que da el paso empujando la cadera atrás.","Regresa empujando desde el talón. Activa aductores e isquio al subir."}',
     '3', '3-4', '4',
     '10 c/u', '12 c/u', '12-15 c/u',
-    75, 60, 60
+    75, 60, 60,
+    'bodyweight'
   ),
   (
     'barbell_curl', 'Barbell Bicep Curl', 'Curl de Bíceps con Barra',
@@ -862,7 +4995,8 @@ INSERT INTO exercises (
     '{"De pie con barra en agarre supino al ancho de hombros. Codos pegados al cuerpo.","Curva los antebrazos hacia los hombros apretando el bíceps al máximo.","Baja con control en 2-3 segundos. No balancees el torso."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'dumbbell_curl', 'Dumbbell Bicep Curl', 'Curl de Bíceps con Mancuernas',
@@ -872,7 +5006,8 @@ INSERT INTO exercises (
     '{"De pie con mancuernas a los lados. Codos pegados al cuerpo.","Curva los brazos supinando la muñeca al subir (palma hacia arriba al final).","Baja con control. Alterna o ambos brazos simultáneamente."}',
     '3', '3-4', '4',
     '10-12', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'hammer_curl', 'Hammer Curl', 'Curl Martillo',
@@ -882,7 +5017,8 @@ INSERT INTO exercises (
     '{"Mancuernas con agarre neutro (palmas enfrentadas). Posición de martillo.","Curva los brazos manteniendo el agarre neutro. Activa el braquial.","Baja con control. Trabaja el braquial y braquirradial además del bíceps."}',
     '3', '3-4', '4',
     '10-12', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'preacher_curl', 'Preacher Curl', 'Curl en Predicador',
@@ -892,7 +5028,8 @@ INSERT INTO exercises (
     '{"Apoya los brazos en el pad del predicador. Barra o mancuerna en manos.","Baja los brazos hasta extensión casi completa. No hiperextiendas.","Curva apretando el bíceps al máximo. Mayor aislamiento por la fijación."}',
     '3', '3-4', '4',
     '10-12', '8-12', '8-10',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'cable_curl', 'Cable Curl', 'Curl en Polea',
@@ -902,7 +5039,8 @@ INSERT INTO exercises (
     '{"Polea baja con barra recta o EZ. Codos pegados al cuerpo.","Curva los brazos manteniendo tensión constante de la polea.","La polea mantiene más tensión en la posición baja vs. mancuernas."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'incline_dumbbell_curl', 'Incline Dumbbell Curl', 'Curl Inclinado con Mancuernas',
@@ -912,7 +5050,8 @@ INSERT INTO exercises (
     '{"Banco inclinado a 45-60°. Brazos colgando rectos hacia abajo.","Curva los brazos supinando la muñeca. Mayor estiramiento del bíceps largo.","Baja completamente. La posición inclinada maximiza el rango de estiramiento."}',
     '3', '3-4', '4',
     '10-12', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'concentration_curl', 'Concentration Curl', 'Curl de Concentración',
@@ -922,7 +5061,8 @@ INSERT INTO exercises (
     '{"Sentado, codo apoyado en el interior del muslo. Mancuerna colgando.","Curva el brazo girando la muñeca. Máxima contracción arriba.","Baja con control. Excelente pico de bíceps."}',
     '3', '3', '3-4',
     '12-15 c/u', '10-12 c/u', '10-12 c/u',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'machine_curl', 'Machine Curl', 'Curl en Máquina',
@@ -932,7 +5072,8 @@ INSERT INTO exercises (
     '{"Ajusta el asiento para que los codos queden alineados con el pivote.","Curva los brazos hasta la contracción máxima. Pausa 1 segundo.","Baja con control. Ideal para sobrecarga progresiva con control."}',
     '3', '3', '3-4',
     '12-15', '10-12', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'tricep_dip_bench', 'Bench Dip', 'Fondos en Banco para Tríceps',
@@ -942,7 +5083,8 @@ INSERT INTO exercises (
     '{"Manos en el borde del banco, pies extendidos al frente.","Baja el cuerpo flexionando codos hasta 90°. Mantenlos hacia atrás.","Empuja hacia arriba extendiendo los codos. No bloquees completamente."}',
     '3', '3-4', '4',
     '10-12', '12-15', '15-20',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'close_grip_bench_press', 'Close Grip Bench Press', 'Press de Banca Agarre Cerrado',
@@ -952,7 +5094,8 @@ INSERT INTO exercises (
     '{"Agarra la barra algo más estrecho que los hombros. No demasiado cerrado.","Baja la barra al pecho con codos pegados al cuerpo (45°).","Empuja explosivamente. Activa principalmente los tríceps."}',
     '3', '4', '4-5',
     '8-10', '6-10', '6-8',
-    120, 90, 75
+    120, 90, 75,
+    'gym'
   ),
   (
     'tricep_pushdown_cable', 'Tricep Pushdown', 'Extensión de Tríceps en Polea',
@@ -962,7 +5105,8 @@ INSERT INTO exercises (
     '{"Polea alta. Agarra la barra o cuerda con codos pegados al cuerpo.","Extiende los brazos hacia abajo hasta extensión completa. Aprieta el tríceps.","Regresa con control hasta codos a 90°. No muevas los codos."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'skullcrusher', 'Skull Crusher', 'Rompecráneos con Barra',
@@ -972,7 +5116,8 @@ INSERT INTO exercises (
     '{"Acuéstate en banco. Brazos extendidos sobre el pecho sosteniendo la barra.","Flexiona los codos bajando la barra hacia la frente. Codos fijos.","Extiende los codos regresando arriba. Máximo aislamiento del tríceps."}',
     '3', '3-4', '4',
     '10-12', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'overhead_tricep_dumbbell', 'Overhead Tricep Extension', 'Extensión de Tríceps sobre la Cabeza',
@@ -982,7 +5127,8 @@ INSERT INTO exercises (
     '{"Sentado o de pie. Sostén la mancuerna sobre la cabeza con ambas manos.","Baja la mancuerna detrás de la cabeza flexionando los codos. Codos fijos.","Extiende los codos hacia arriba apretando el tríceps. Mayor activación de la cabeza larga."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'tricep_kickback', 'Tricep Kickback', 'Extensión de Tríceps en Patada',
@@ -992,7 +5138,8 @@ INSERT INTO exercises (
     '{"Inclina el torso a 45-90°. Codo fijo al lado del cuerpo a 90°.","Extiende el brazo hacia atrás hasta extensión completa del codo.","Regresa con control. Mantén el codo fijo durante todo el movimiento."}',
     '3', '3', '3-4',
     '12-15 c/u', '12-15 c/u', '12-15 c/u',
-    60, 60, 45
+    60, 60, 45,
+    'home'
   ),
   (
     'diamond_push_up', 'Diamond Push Up', 'Flexión Diamante',
@@ -1002,7 +5149,8 @@ INSERT INTO exercises (
     '{"Manos formando un triángulo (diamante) bajo el pecho. Pulgares e índices se tocan.","Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.","Empuja hacia arriba apretando los tríceps. Mayor activación que push up normal."}',
     '3', '3-4', '4',
     '6-10', '10-15', '15-20',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'cable_overhead_tricep', 'Cable Overhead Tricep Extension', 'Extensión de Tríceps sobre la Cabeza en Polea',
@@ -1012,7 +5160,8 @@ INSERT INTO exercises (
     '{"Polea alta con cuerda. De espaldas a la máquina, inclínate ligeramente.","Lleva la cuerda hacia adelante extendiendo los codos frente a ti.","Regresa con control. La polea mantiene tensión en el estiramiento."}',
     '3', '3-4', '4',
     '12-15', '10-12', '10-12',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'wrist_curl_dumbbell', 'Wrist Curl', 'Curl de Muñeca con Mancuerna',
@@ -1022,7 +5171,8 @@ INSERT INTO exercises (
     '{"Sentado, antebrazo sobre el muslo con la muñeca fuera del borde. Palma arriba.","Baja la mancuerna arqueando la muñeca hacia abajo.","Sube apretando los flexores del antebrazo al máximo."}',
     '3', '3', '3-4',
     '15-20', '15-20', '15-20',
-    60, 45, 45
+    60, 45, 45,
+    'home'
   ),
   (
     'reverse_wrist_curl', 'Reverse Wrist Curl', 'Curl Inverso de Muñeca',
@@ -1032,7 +5182,8 @@ INSERT INTO exercises (
     '{"Antebrazo sobre el muslo, palma hacia abajo. Barra o mancuerna en mano.","Extiende la muñeca hacia arriba. Trabaja los extensores del antebrazo.","Baja con control. Complementa el curl de muñeca regular."}',
     '3', '3', '3',
     '15-20', '15-20', '15-20',
-    60, 45, 45
+    60, 45, 45,
+    'gym'
   ),
   (
     'farmer_carry', 'Farmer Carry', 'Caminata del Granjero',
@@ -1042,7 +5193,8 @@ INSERT INTO exercises (
     '{"Sostén mancuernas pesadas a los lados. Torso erguido, hombros atrás.","Camina a paso controlado por 20-40 metros.","Desarrolla fuerza de agarre y resistencia del antebrazo funcionalmente."}',
     '3', '3-4', '4',
     '20m', '30m', '40m',
-    90, 75, 60
+    90, 75, 60,
+    'home'
   ),
   (
     'crunch', 'Crunch', 'Crunch Abdominal',
@@ -1052,7 +5204,8 @@ INSERT INTO exercises (
     '{"Acuéstate boca arriba. Rodillas flexionadas, pies apoyados. Manos en la nuca.","Eleva solo los hombros del suelo apretando el abdomen. No jales el cuello.","Baja con control sin que la cabeza toque el suelo entre repeticiones."}',
     '3', '3-4', '4',
     '15-20', '20-25', '25-30',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'cable_crunch', 'Cable Crunch', 'Crunch en Polea',
@@ -1062,7 +5215,8 @@ INSERT INTO exercises (
     '{"Arrodíllate frente a la polea alta. Agarra la cuerda detrás de la cabeza.","Flexiona el torso hacia abajo apretando el abdomen. Caderas fijas.","Regresa con control. Permite sobrecarga progresiva a diferencia del crunch normal."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'hanging_leg_raise', 'Hanging Leg Raise', 'Elevación de Piernas Colgado',
@@ -1072,7 +5226,8 @@ INSERT INTO exercises (
     '{"Cuelga de la barra con agarre prono. Evita balancearte.","Eleva las piernas hasta que queden paralelas al suelo (o más). Aprieta el abdomen.","Baja con control. Curvea la pelvis al subir para mayor activación abdominal."}',
     '3', '3-4', '4',
     '8-10', '10-12', '12-15',
-    75, 60, 60
+    75, 60, 60,
+    'home'
   ),
   (
     'plank', 'Plank', 'Plancha Abdominal',
@@ -1082,7 +5237,8 @@ INSERT INTO exercises (
     '{"Posición de plancha sobre antebrazos. Cuerpo recto de cabeza a talones.","Aprieta abdomen, glúteos y cuádriceps. No dejes caer la cadera.","Mantén la posición el tiempo objetivo. Respira normalmente."}',
     '3', '3-4', '4',
     '20-30 seg', '30-60 seg', '60-90 seg',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
   ),
   (
     'ab_wheel_rollout', 'Ab Wheel Rollout', 'Rodillo Abdominal',
@@ -1092,7 +5248,8 @@ INSERT INTO exercises (
     '{"Arrodíllado con el rodillo bajo los hombros. Espalda recta.","Extiende el cuerpo hacia adelante rodando lentamente. Abdomen activado.","Regresa jalando con el abdomen. Uno de los mejores ejercicios de core."}',
     '2-3', '3', '3-4',
     '5-8', '8-12', '12-15',
-    90, 75, 60
+    90, 75, 60,
+    'bodyweight'
   ),
   (
     'sit_up', 'Sit Up', 'Abdominales Completos',
@@ -1102,7 +5259,8 @@ INSERT INTO exercises (
     '{"Acuéstate boca arriba con rodillas flexionadas. Manos cruzadas en el pecho.","Sube el torso hasta quedar sentado usando el abdomen. No el cuello.","Baja con control hasta que la espalda casi toque el suelo."}',
     '3', '3-4', '4',
     '15-20', '20-25', '25-30',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'v_up', 'V-Up', 'Elevación en V',
@@ -1112,7 +5270,8 @@ INSERT INTO exercises (
     '{"Acuéstate con brazos extendidos sobre la cabeza y piernas rectas.","Eleva simultáneamente el torso y las piernas formando una \"V\".","Baja con control sin que piernas ni brazos toquen el suelo entre reps."}',
     '3', '3-4', '4',
     '8-12', '12-15', '15-20',
-    75, 60, 60
+    75, 60, 60,
+    'bodyweight'
   ),
   (
     'machine_crunch', 'Machine Crunch', 'Crunch en Máquina',
@@ -1122,7 +5281,8 @@ INSERT INTO exercises (
     '{"Ajusta los pads a la altura del pecho. Siéntate con pies asegurados.","Flexiona el torso hacia adelante apretando el abdomen al máximo.","Regresa con control. Permite sobrecarga progresiva constante."}',
     '3', '3-4', '4',
     '12-15', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'gym'
   ),
   (
     'russian_twist', 'Russian Twist', 'Giro Ruso',
@@ -1132,7 +5292,8 @@ INSERT INTO exercises (
     '{"Sentado con torso a 45°, pies elevados. Manos juntas frente al pecho.","Gira el torso de lado a lado tocando el suelo junto a las caderas.","Para más difícil: sostén un disco o mancuerna. Mantén el pecho alto."}',
     '3', '3-4', '4',
     '20 (10c/u)', '30 (15c/u)', '40 (20c/u)',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'side_plank', 'Side Plank', 'Plancha Lateral',
@@ -1142,7 +5303,8 @@ INSERT INTO exercises (
     '{"Apoya un antebrazo en el suelo. Cuerpo en línea recta lateral.","Eleva las caderas del suelo. Aprieta oblicuos y glúteos.","Mantén la posición. Cambia de lado después del tiempo objetivo."}',
     '3 c/u', '3-4 c/u', '4 c/u',
     '20-30 seg', '30-45 seg', '45-60 seg',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'cable_woodchop', 'Cable Woodchop', 'Leñador en Polea',
@@ -1152,7 +5314,8 @@ INSERT INTO exercises (
     '{"Polea alta al costado. Agarra el mango con ambas manos. Pies al ancho de hombros.","Gira el torso jalando la polea hacia abajo y al frente en diagonal.","Regresa controlado a la posición inicial. Trabaja la cadena de rotación."}',
     '3', '3-4', '4',
     '10-12 c/u', '12-15 c/u', '12-15 c/u',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   ),
   (
     'oblique_crunch', 'Oblique Crunch', 'Crunch Oblicuo',
@@ -1162,7 +5325,8 @@ INSERT INTO exercises (
     '{"Acuéstate con rodillas a un lado (o cruza una pierna). Manos en la nuca.","Eleva el hombro opuesto hacia las rodillas rotando el torso.","Siente la contracción en el oblicuo. Baja con control y cambia de lado."}',
     '3', '3-4', '4',
     '12-15 c/u', '15-20 c/u', '20-25 c/u',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'bicycle_crunch', 'Bicycle Crunch', 'Crunch de Bicicleta',
@@ -1172,7 +5336,8 @@ INSERT INTO exercises (
     '{"Acuéstate boca arriba. Manos en la nuca, piernas levantadas a 45°.","Lleva el codo derecho hacia la rodilla izquierda y viceversa alternando.","Mueve las piernas simulando el pedaleo. Activación alta de oblicuos."}',
     '3', '3-4', '4',
     '20 (10c/u)', '30 (15c/u)', '40 (20c/u)',
-    60, 45, 45
+    60, 45, 45,
+    'bodyweight'
   ),
   (
     'hyperextension_back', 'Hyperextension', 'Hiperextensión Lumbar',
@@ -1182,7 +5347,8 @@ INSERT INTO exercises (
     '{"Posiciona las caderas en el borde del banco GHD. Pies asegurados.","Baja el torso hacia el suelo manteniendo la espalda neutra.","Eleva hasta que el cuerpo forme una línea recta. Aprieta glúteos arriba."}',
     '3', '3-4', '4',
     '12-15', '15-20', '15-20',
-    75, 60, 60
+    75, 60, 60,
+    'bodyweight'
   ),
   (
     'superman_back', 'Superman Hold', 'Superman',
@@ -1192,7 +5358,8 @@ INSERT INTO exercises (
     '{"Boca abajo con brazos extendidos al frente. Piernas rectas.","Eleva brazos, pecho y piernas simultáneamente del suelo.","Pausa 2-3 segundos en la posición alta. Baja con control."}',
     '3', '3', '3-4',
     '10-12', '12-15', '15-20',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
   ),
   (
     'bird_dog', 'Bird Dog', 'Perro Pájaro',
@@ -1202,7 +5369,8 @@ INSERT INTO exercises (
     '{"A cuatro patas con espalda recta. Manos bajo hombros, rodillas bajo caderas.","Extiende el brazo derecho y la pierna izquierda simultáneamente. Pausa 2 seg.","Regresa y alterna. Activa músculos estabilizadores profundos de la columna."}',
     '3', '3', '3-4',
     '8 c/u', '10 c/u', '12 c/u',
-    60, 60, 45
+    60, 60, 45,
+    'bodyweight'
   ),
   (
     'cable_pull_through', 'Cable Pull Through', 'Tirón en Polea entre Piernas',
@@ -1212,8 +5380,9 @@ INSERT INTO exercises (
     '{"De espaldas a la polea baja. Agarra la cuerda entre las piernas.","Inclina el torso hacia adelante empujando las caderas atrás.","Regresa a posición erguida apretando glúteos y lumbar. Similar al peso muerto."}',
     '3', '3-4', '4',
     '12-15', '12-15', '12-15',
-    75, 60, 60
+    75, 60, 60,
+    'gym'
   )
 ;
 
--- Total: 120 exercises
+-- Total: 488 exercises

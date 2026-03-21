@@ -32,6 +32,9 @@ CREATE TABLE exercises (
   rest_beginner      INTEGER     NOT NULL,
   rest_intermediate  INTEGER     NOT NULL,
   rest_advanced      INTEGER     NOT NULL,
+  -- Training environment (derived from equipment, used to filter exercises by user context)
+  training_location  TEXT        NOT NULL DEFAULT 'gym'
+                                 CHECK (training_location IN ('gym','home','bodyweight')),
   -- Extended for program system (populated later)
   method_compatible  TEXT[]      NOT NULL DEFAULT '{}',
   movement_pattern   TEXT,       -- 'push'|'pull'|'squat'|'hinge'|'carry'|'core'

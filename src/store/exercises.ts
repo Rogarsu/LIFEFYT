@@ -58,6 +58,7 @@ export const useExerciseStore = create<ExerciseStore>((set, get) => ({
           intermediate: row.rest_intermediate as number,
           advanced:     row.rest_advanced as number,
         },
+        trainingLocation: row.training_location as Exercise['trainingLocation'],
       }))
       set({ exercises: mapped, status: 'ready', source: 'supabase' })
     } else {

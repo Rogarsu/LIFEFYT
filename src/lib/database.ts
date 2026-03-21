@@ -259,30 +259,62 @@ export async function getExercisesByEquipment(equipment: string[]) {
 }
 
 // ─── User Programs ────────────────────────────────────────────────────────────
-export async function saveUserProgram(
-  userId: string,
-  program: {
-    duration_months: number
-    start_date: string
-    training_method: string
-    goal: string
-    experience: string
-    days_per_week: number
-    equipment: string
-  }
-) {
+import type { UserProgram } from '../types'
+
+/**
+ * Saves a full UserProgram to Supabase:
+ * 1. Deactivates any previous active program
+ * 2. Inserts user_programs row (metadata + full program JSON)
+ * 3. Inserts all program_blocks rows
+ */
+export async function saveProgram(userId: string, program: UserProgram) {
   // Deactivate previous programs
   await supabase
     .from('user_programs')
     .update({ is_active: false })
     .eq('user_id', userId)
 
-  const { data, error } = await supabase
+  const firstMethod = program.blocks[0]?.method ?? 'hypertrophy'
+
+  const { data: progData, error: progError } = await supabase
     .from('user_programs')
-    .insert({ user_id: userId, ...program, is_active: true })
+    .insert({
+      user_id:         userId,
+      duration_months: program.durationMonths,
+      start_date:      program.startDate,
+      current_block:   1,
+      current_week:    1,
+      training_method: firstMethod,
+      goal:            program.goal,
+      experience:      program.experience,
+      days_per_week:   program.daysPerWeek,
+      equipment:       program.equipment,
+      is_active:       true,
+    })
     .select()
     .single()
-  return { data, error }
+
+  if (progError || !progData) return { data: null, error: progError }
+
+  // Insert one row per block; store days + slots in exercise_slots JSONB
+  const blockRows = program.blocks.map(block => ({
+    program_id:    progData.id,
+    block_number:  block.blockNumber,
+    weeks:         block.weeks,
+    method:        block.method,
+    is_deload:     block.isDeload,
+    exercise_slots: { days: block.days },
+    sets_override: block.setsOverride  ?? null,
+    reps_override: block.repsOverride  ?? null,
+    rest_override: block.restOverride  ?? null,
+    tempo:         block.tempo         ?? null,
+  }))
+
+  const { error: blocksError } = await supabase
+    .from('program_blocks')
+    .insert(blockRows)
+
+  return { data: progData, error: blocksError }
 }
 
 export async function getActiveProgram(userId: string) {
@@ -294,5 +326,15 @@ export async function getActiveProgram(userId: string) {
     .order('created_at', { ascending: false })
     .limit(1)
     .maybeSingle()
+  return { data, error }
+}
+
+export async function advanceProgramBlock(programId: string, nextBlock: number) {
+  const { data, error } = await supabase
+    .from('user_programs')
+    .update({ current_block: nextBlock, current_week: 1 })
+    .eq('id', programId)
+    .select()
+    .single()
   return { data, error }
 }

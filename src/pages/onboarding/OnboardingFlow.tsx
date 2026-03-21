@@ -10,7 +10,8 @@ import { Step06_Experience }  from './Step06_Experience'
 import { Step07_Equipment }   from './Step07_Equipment'
 import { Step08_Schedule }    from './Step08_Schedule'
 import { Step09_Injuries }    from './Step09_Injuries'
-import { Step10_Summary }     from './Step10_Summary'
+import { Step10_Summary }      from './Step10_Summary'
+import { Step11_ProgramSetup } from './Step11_ProgramSetup'
 
 interface Props {
   onComplete: () => void
@@ -34,7 +35,8 @@ export function OnboardingFlow({ onComplete }: Props) {
         {step === 8  && <Step07_Equipment    key="s8"  onNext={noop} />}
         {step === 9  && <Step08_Schedule     key="s9"  onNext={noop} />}
         {step === 10 && <Step09_Injuries     key="s10" onNext={noop} />}
-        {step === 11 && <Step10_Summary      key="s11" onFinish={onComplete} />}
+        {step === 11 && <Step10_Summary      key="s11" onNext={nextStep} />}
+        {step === 12 && <Step11_ProgramSetup key="s12" onFinish={onComplete} />}
       </AnimatePresence>
     </div>
   )

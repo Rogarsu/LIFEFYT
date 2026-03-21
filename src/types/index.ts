@@ -136,6 +136,11 @@ export type EquipmentTag =
   | 'kettlebell'
   | 'pullup_bar'
   | 'bench'
+  | 'bands'
+  | 'fitball'
+
+/** Where the exercise can be performed */
+export type TrainingLocation = 'gym' | 'home' | 'bodyweight'
 
 export type MuscleTarget =
   // Pecho
@@ -169,6 +174,8 @@ export interface Exercise {
   sets: { beginner: string; intermediate: string; advanced: string }
   reps: { beginner: string; intermediate: string; advanced: string }
   rest: { beginner: number; intermediate: number; advanced: number }  // seconds
+  /** Derived from equipment — populated from Supabase or computed via getTrainingLocation() */
+  trainingLocation?: TrainingLocation
 }
 
 // ─── Routine ──────────────────────────────────────────────────────────────────
@@ -194,6 +201,51 @@ export interface GeneratedRoutine {
   weekDays:     WorkoutDay[]
   weightMap:    UserWeightMap
   generatedAt:  string
+}
+
+// ─── Program System ───────────────────────────────────────────────────────────
+export type TrainingMethod = 'hypertrophy' | 'volume' | 'strength' | 'deload'
+
+/** One exercise position in a workout day. The pool rotates each block. */
+export interface ExerciseSlot {
+  slotId:       string    // e.g. 'day1_slot0_chest'
+  label:        string    // primary muscle label
+  exercisePool: string[]  // ordered exercise IDs — best first
+  currentIdx:   number    // index active this block = (blockNumber-1) % pool.length
+}
+
+export interface ProgramDay {
+  dayNumber: number
+  name:      string
+  focus:     string
+  slots:     ExerciseSlot[]
+}
+
+export interface ProgramBlock {
+  blockNumber:   number
+  weeks:         number          // always 4
+  method:        TrainingMethod
+  isDeload:      boolean
+  label:         string          // 'Bloque 1 — Hipertrofia'
+  setsOverride?: string
+  repsOverride?: string
+  restOverride?: number
+  tempo?:        string          // e.g. '3-0-2-0' for TUT blocks
+  days:          ProgramDay[]
+}
+
+export interface UserProgram {
+  id?:            string
+  durationMonths: number
+  startDate:      string
+  currentBlock:   number
+  currentWeek:    number
+  goal:           BodyCompositionGoal
+  experience:     ExperienceLevel
+  equipment:      EquipmentType
+  daysPerWeek:    DaysPerWeek
+  weightMap:      UserWeightMap
+  blocks:         ProgramBlock[]
 }
 
 // ─── Session Logging ──────────────────────────────────────────────────────────

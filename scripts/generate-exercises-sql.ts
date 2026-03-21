@@ -4,6 +4,13 @@
  */
 import { EXERCISES } from '../src/constants/exerciseBank/index'
 
+/** Derives training_location from equipment — no need to store it in each exercise object */
+function getLocation(equipment: string[]): string {
+  if (equipment.some(e => ['barbell', 'cable', 'machine'].includes(e))) return 'gym'
+  if (equipment.every(e => ['bodyweight', 'bench'].includes(e))) return 'bodyweight'
+  return 'home'
+}
+
 function pgArray(arr: string[]): string {
   if (!arr.length) return "'{}'"
   const escaped = arr.map(s => `"${s.replace(/"/g, '\\"')}"`)
@@ -29,13 +36,15 @@ const lines: string[] = [
   '  instructions,',
   '  sets_beginner, sets_intermediate, sets_advanced,',
   '  reps_beginner, reps_intermediate, reps_advanced,',
-  '  rest_beginner, rest_intermediate, rest_advanced',
+  '  rest_beginner, rest_intermediate, rest_advanced,',
+  '  training_location',
   ') VALUES',
 ]
 
 const rows = EXERCISES.map((ex, i) => {
   const isLast = i === EXERCISES.length - 1
   const instructionsArr = pgArray(ex.instructions)
+  const location = pgText(getLocation(ex.equipment as string[]))
   return [
     `  (`,
     `    ${pgText(ex.id)}, ${pgText(ex.name)}, ${pgText(ex.nameEs)},`,
@@ -45,7 +54,8 @@ const rows = EXERCISES.map((ex, i) => {
     `    ${instructionsArr},`,
     `    ${pgText(ex.sets.beginner)}, ${pgText(ex.sets.intermediate)}, ${pgText(ex.sets.advanced)},`,
     `    ${pgText(ex.reps.beginner)}, ${pgText(ex.reps.intermediate)}, ${pgText(ex.reps.advanced)},`,
-    `    ${ex.rest.beginner}, ${ex.rest.intermediate}, ${ex.rest.advanced}`,
+    `    ${ex.rest.beginner}, ${ex.rest.intermediate}, ${ex.rest.advanced},`,
+    `    ${location}`,
     `  )${isLast ? '' : ','}`,
   ].join('\n')
 })
