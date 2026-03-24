@@ -230,6 +230,15 @@ export async function getPersonalRecords(userId: string) {
   return { data, error }
 }
 
+export async function getPersonalRecordsForExercises(userId: string, exerciseIds: string[]) {
+  const { data, error } = await supabase
+    .from('personal_records')
+    .select('exercise_id, weight_kg, reps')
+    .eq('user_id', userId)
+    .in('exercise_id', exerciseIds)
+  return { data, error }
+}
+
 // ─── Exercises ────────────────────────────────────────────────────────────────
 /** Fetch all exercises from Supabase (public, no auth required) */
 export async function getExercises() {

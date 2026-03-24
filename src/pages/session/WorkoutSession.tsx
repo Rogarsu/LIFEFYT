@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSessionStore } from '../../store/session'
 import { useAuthStore }    from '../../store/auth'
-import { saveSession }     from '../../lib/database'
+import { saveSession, getPersonalRecordsForExercises } from '../../lib/database'
 import { RestTimer }       from '../../components/ui/RestTimer'
 import type { CompletedSession } from '../../types'
 
@@ -106,6 +106,7 @@ export function WorkoutSession({ onClose, onComplete }: Props) {
   const [timerSeconds, setTimerSeconds] = useState(60)
   const [elapsed,      setElapsed]      = useState(0)
   const [finishing,    setFinishing]    = useState(false)
+  const [prMap,        setPrMap]        = useState<Map<string, { weightKg: number; reps: number }>>(new Map())
   const startRef = useRef(Date.now())
 
   // Elapsed time counter
@@ -114,7 +115,33 @@ export function WorkoutSession({ onClose, onComplete }: Props) {
     return () => clearInterval(id)
   }, [])
 
+  // Fetch personal records for all exercises in this session
+  useEffect(() => {
+    if (!user || !active) return
+    const ids = active.exercises.map(e => e.exerciseId)
+    getPersonalRecordsForExercises(user.id, ids).then(({ data }) => {
+      if (!data) return
+      const m = new Map<string, { weightKg: number; reps: number }>()
+      data.forEach(r => m.set(r.exercise_id, { weightKg: r.weight_kg, reps: r.reps }))
+      setPrMap(m)
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   if (!active) return null
+
+  // ── Weight suggestion helpers ──────────────────────────────────────────────
+  const roundTo2_5 = (v: number) => Math.round(v / 2.5) * 2.5
+
+  const getSuggestion = (exerciseIdx: number, exerciseId: string, targetRepsStr: string) => {
+    const pr = prMap.get(exerciseId)
+    if (!pr || pr.weightKg === 0) return null
+    const targetReps = parseInt(targetRepsStr.split('-')[0]) || 10
+    const orm        = pr.weightKg * (1 + pr.reps / 30)
+    const fatigue    = Math.max(0.7, 1 - exerciseIdx * 0.03)
+    const suggested  = roundTo2_5((orm / (1 + targetReps / 30)) * fatigue)
+    return { suggested, pr }
+  }
 
   const currentEx  = active.exercises[active.currentExerciseIdx]
   const currentSet = currentEx?.sets[active.currentSetIdx]
@@ -357,6 +384,19 @@ export function WorkoutSession({ onClose, onComplete }: Props) {
                         {/* Input for current set */}
                         {isCurrentSet && !isDone && (
                           <div className="px-4 pb-4 space-y-3">
+                            {/* Weight suggestion hint */}
+                            {(() => {
+                              const hint = getSuggestion(active.currentExerciseIdx, currentEx.exerciseId, currentEx.targetReps)
+                              if (!hint) return null
+                              return (
+                                <div className="flex items-center justify-between bg-dark-700/60 rounded-xl px-3 py-2 border border-white/5">
+                                  <span className="text-xs text-white/35">
+                                    Último: <span className="text-white/55 font-semibold">{hint.pr.weightKg} kg × {hint.pr.reps} reps</span>
+                                  </span>
+                                  <span className="text-xs text-brand-400 font-bold">~{hint.suggested} kg</span>
+                                </div>
+                              )
+                            })()}
                             <div>
                               <p className="text-xs text-white/30 font-semibold mb-1.5">Peso (kg) — 0 = peso corporal</p>
                               <NumberInput
