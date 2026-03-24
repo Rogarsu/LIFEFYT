@@ -211,7 +211,7 @@ function CompletedDayView({ session, day, onRepeat }: {
 
 // ─── ProgramView ──────────────────────────────────────────────────────────────
 function ProgramView() {
-  const { program, advancing, advance } = useProgramStore()
+  const { program } = useProgramStore()
   const [shownBlock,   setShownBlock]   = useState<number | null>(null)
   const [shownSession, setShownSession] = useState<number | null>(null)
 
@@ -237,8 +237,6 @@ function ProgramView() {
   const isLastBlock       = program.currentBlock >= program.blocks.length
   const isBlockDone       = program.currentSession >= sessionsPerBlock
   const isViewingCurrent  = isCurrentBlock && activeSession === program.currentSession
-  const nextBlockMethod   = program.blocks.find(b => b.blockNumber === program.currentBlock + 1)?.method
-  const nextBlockLabel    = nextBlockMethod ? METHOD_PARAMS[nextBlockMethod].label : null
 
   const completedInBlock  = program.completedSessions.filter(cs => cs.b === (block?.blockNumber ?? 0)).length
   const sessionPct        = Math.round((completedInBlock / sessionsPerBlock) * 100)
@@ -250,16 +248,6 @@ function ProgramView() {
   function handleBlockSelect(bn: number) {
     setShownBlock(bn)
     setShownSession(bn === program!.currentBlock ? program!.currentSession : 1)
-  }
-
-  async function handleAdvance() {
-    const movedBlock = await advance()
-    if (movedBlock) {
-      setShownBlock(null)
-      setShownSession(null)
-    } else {
-      setShownSession(null)
-    }
   }
 
   const activeDayIndex = sessionToDayIndex(activeSession, program.daysPerWeek)
@@ -489,46 +477,6 @@ function ProgramView() {
                     })()}
                   </div>
 
-                  {/* Advance button — only for current session */}
-                  {isViewingCurrent && !isLastBlock && (
-                    <motion.button
-                      whileTap={{ scale: 0.97 }}
-                      disabled={advancing}
-                      onClick={handleAdvance}
-                      className={[
-                        'w-full py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 transition-all',
-                        advancing
-                          ? 'bg-white/5 border border-white/10 text-white/30 cursor-not-allowed'
-                          : isBlockDone
-                          ? 'bg-gradient-to-r from-brand-500 to-electric-400 text-white shadow-glow-sm-red'
-                          : 'bg-dark-700 border border-white/10 text-white/70 hover:border-white/20',
-                      ].join(' ')}
-                    >
-                      {advancing ? (
-                        <>
-                          <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                          </svg>
-                          Guardando...
-                        </>
-                      ) : isBlockDone ? (
-                        <>
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                          Completar bloque → {nextBlockLabel ?? `Bloque ${program.currentBlock + 1}`}
-                        </>
-                      ) : (
-                        <>
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                          Completar sesión → {program.currentSession + 1}
-                        </>
-                      )}
-                    </motion.button>
-                  )}
 
                   {/* Program complete */}
                   {isViewingCurrent && isLastBlock && isBlockDone && (

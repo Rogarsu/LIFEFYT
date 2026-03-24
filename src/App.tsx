@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore }     from './store/auth'
 import { useSessionStore }  from './store/session'
+import { useProgramStore }  from './store/program'
 import { AuthPage }         from './pages/auth/AuthPage'
 import { VerifyEmail }      from './pages/auth/VerifyEmail'
 import { OnboardingFlow }   from './pages/onboarding/OnboardingFlow'
@@ -35,6 +36,7 @@ function LoadingScreen() {
 function MainApp() {
   const [tab, setTab] = useState<NavTab>('home')
   const { active: session, endSession } = useSessionStore()
+  const { advance } = useProgramStore()
 
   // Increments every time a session is saved — triggers re-fetch in Dashboard/RoutinePage
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0)
@@ -69,6 +71,8 @@ function MainApp() {
       totalVolume: Math.round(totalVolume),
     })
     setSessionRefreshKey(k => k + 1)
+    // Advance program session — marks current session green and moves to next
+    advance()
   }
 
   return (
