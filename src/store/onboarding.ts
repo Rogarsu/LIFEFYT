@@ -15,11 +15,11 @@ import type {
   CoreDetailWeights,
 } from '../types'
 
-const TOTAL_STEPS = 11
+const TOTAL_STEPS = 12
 
 const initialState: OnboardingState = {
   step:            1,
-  totalSteps:      11,
+  totalSteps:      12,
   goalCategory:    null,
   bodyGoal:        null,
   profile:         { fullName: '', age: 0, gender: '', weightKg: 0, heightCm: 0 },

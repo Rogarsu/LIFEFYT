@@ -2,9 +2,43 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAuthStore }    from '../../store/auth'
 import { useRoutineStore } from '../../store/routine'
-import { getActiveRoutine, getThisWeekSessions } from '../../lib/database'
+import { useProgramStore } from '../../store/program'
+import { getActiveRoutine, getActiveProgram, getThisWeekSessions } from '../../lib/database'
+import { METHOD_PARAMS }   from '../../lib/programEngine'
 import { SPLIT_NAMES }     from '../../lib/weightEngine'
-import type { GeneratedRoutine } from '../../types'
+import type { GeneratedRoutine, UserProgram, ProgramBlock, TrainingMethod, UserWeightMap } from '../../types'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function dbToProgram(d: any): UserProgram {
+  const blocks: ProgramBlock[] = (d.program_blocks ?? [])
+    .sort((a: any, b: any) => a.block_number - b.block_number)
+    .map((b: any) => ({
+      blockNumber:  b.block_number,
+      weeks:        b.weeks ?? 4,
+      method:       b.method as TrainingMethod,
+      isDeload:     b.is_deload ?? false,
+      label:        METHOD_PARAMS[b.method as TrainingMethod]?.label ?? b.method,
+      setsOverride: b.sets_override ?? undefined,
+      repsOverride: b.reps_override ?? undefined,
+      restOverride: b.rest_override ?? undefined,
+      tempo:        b.tempo ?? undefined,
+      days:         (b.exercise_slots?.days ?? []),
+    }))
+  return {
+    id:             d.id,
+    durationMonths: d.duration_months,
+    startDate:      d.start_date,
+    currentBlock:      d.current_block      ?? 1,
+    currentSession:    d.current_week       ?? 1,
+    completedSessions: d.completed_sessions ?? [],
+    goal:           d.goal,
+    experience:     d.experience,
+    equipment:      d.equipment,
+    daysPerWeek:    d.days_per_week,
+    weightMap:      null as unknown as UserWeightMap,
+    blocks,
+  }
+}
 
 interface Props {
   onGoToRoutine: () => void
@@ -26,6 +60,7 @@ const EXP_SHORT: Record<string, string> = {
 export function Dashboard({ onGoToRoutine, refreshKey }: Props) {
   const { user }                    = useAuthStore()
   const { routine, setRoutine, setLoading } = useRoutineStore()
+  const { program, setProgram }     = useProgramStore()
   const [completedDays, setCompletedDays] = useState<Set<number>>(new Set())
 
   // Load routine from Supabase on mount
@@ -38,6 +73,14 @@ export function Dashboard({ onGoToRoutine, refreshKey }: Props) {
       } else {
         setLoading(false)
       }
+    })
+  }, [user])
+
+  // Load active program from Supabase on mount
+  useEffect(() => {
+    if (!user || program) return
+    getActiveProgram(user.id).then(({ data }) => {
+      if (data) setProgram(dbToProgram(data))
     })
   }, [user])
 
@@ -225,58 +268,64 @@ export function Dashboard({ onGoToRoutine, refreshKey }: Props) {
         )}
 
         {/* Weekly overview mini */}
-        {routine && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="mb-5"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-xs text-white/40 font-bold uppercase tracking-wider">Semana</p>
-              <button onClick={onGoToRoutine} className="text-brand-400 text-xs font-bold hover:text-brand-300 transition-colors">
-                Ver todo →
-              </button>
-            </div>
-            <div className="flex gap-2 overflow-x-auto no-scrollbar">
-              {routine.weekDays.map((day, i) => {
-                const isToday = i === adjustedIdx % routine.weekDays.length
-                const isDone  = completedDays.has(day.dayNumber)
-                return (
+        {/* Active program block */}
+        {program && (() => {
+          const cb = program.blocks.find(b => b.blockNumber === program.currentBlock) ?? program.blocks[0]
+          if (!cb) return null
+          const params          = METHOD_PARAMS[cb.method]
+          const sessionsPerBlock = program.daysPerWeek * 4
+          const sessionPct      = Math.round((program.currentSession / sessionsPerBlock) * 100)
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28 }}
+              className="mb-5"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-xs text-white/40 font-bold uppercase tracking-wider">Mi programa</p>
+                <button onClick={onGoToRoutine} className="text-brand-400 text-xs font-bold hover:text-brand-300 transition-colors">
+                  Ver bloques →
+                </button>
+              </div>
+              <div className="glass rounded-2xl p-4 border border-white/8">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <p className="text-white/40 text-xs mb-0.5">
+                      Bloque {program.currentBlock} de {program.blocks.length} · Sesión {program.currentSession}/{sessionsPerBlock}
+                    </p>
+                    <p className="text-white font-black text-lg leading-tight">{params.label}</p>
+                    <p className="text-white/40 text-xs mt-0.5">{params.sets} series · {params.reps} reps · {params.rest}s descanso</p>
+                  </div>
+                  <div className="flex-shrink-0 flex gap-1">
+                    {program.blocks.map(b => (
+                      <div
+                        key={b.blockNumber}
+                        className={[
+                          'w-2 h-8 rounded-full transition-all',
+                          b.blockNumber === program.currentBlock
+                            ? 'bg-brand-500 shadow-glow-sm-red'
+                            : b.blockNumber < program.currentBlock
+                            ? 'bg-green-500/60'
+                            : 'bg-white/10',
+                        ].join(' ')}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="h-1.5 bg-dark-600 rounded-full overflow-hidden">
                   <motion.div
-                    key={i}
-                    whileTap={{ scale: 0.92 }}
-                    onClick={onGoToRoutine}
-                    className={[
-                      'flex-shrink-0 w-16 py-3 rounded-xl border text-center cursor-pointer transition-all relative',
-                      isToday && isDone ? 'border-green-500/60 bg-green-500/12'
-                      : isToday         ? 'border-brand-500/60 bg-brand-500/15'
-                      : isDone          ? 'border-green-500/35 bg-green-500/8'
-                      :                   'border-white/8 bg-dark-700/40',
-                    ].join(' ')}
-                  >
-                    {isDone && (
-                      <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                    )}
-                    <p className={`text-xs font-bold ${isToday && isDone ? 'text-green-400' : isToday ? 'text-brand-400' : isDone ? 'text-green-500/60' : 'text-white/25'}`}>
-                      Día
-                    </p>
-                    <p className={`text-xl font-black ${isDone ? 'text-white' : isToday ? 'text-white' : 'text-white/40'}`}>
-                      {day.dayNumber}
-                    </p>
-                    <p className={`text-[9px] font-medium mt-0.5 ${isDone ? 'text-green-500/50' : 'text-white/25'}`}>
-                      {isDone ? '✓' : `${day.exercises.length} ej.`}
-                    </p>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        )}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${sessionPct}%` }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="h-full bg-gradient-to-r from-brand-500 to-electric-400 rounded-full"
+                  />
+                </div>
+                <p className="text-white/25 text-[10px] mt-1.5 text-right">{sessionPct}% del bloque completado</p>
+              </div>
+            </motion.div>
+          )
+        })()}
 
         {/* Coming soon */}
         <motion.div

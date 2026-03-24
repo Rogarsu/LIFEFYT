@@ -136,12 +136,32 @@ export type EquipmentTag =
   | 'kettlebell'
   | 'pullup_bar'
   | 'bench'
+  | 'bands'
+  | 'fitball'
+
+/** Where the exercise can be performed */
+export type TrainingLocation = 'gym' | 'home' | 'bodyweight'
+
+export type MuscleTarget =
+  // Pecho
+  | 'chest_upper' | 'chest_mid' | 'chest_lower'
+  // Espalda
+  | 'back_lats' | 'back_upper' | 'back_mid' | 'back_lower'
+  // Hombros
+  | 'shoulder_front' | 'shoulder_side' | 'shoulder_rear'
+  // Piernas
+  | 'quad' | 'hamstring' | 'glute' | 'calf' | 'adductor'
+  // Brazos
+  | 'bicep' | 'tricep' | 'forearm'
+  // Core
+  | 'abs' | 'obliques' | 'lower_back'
 
 export interface Exercise {
   id: string
   name: string
   nameEs: string
   muscleGroup: MuscleGroupArea
+  muscleTarget: MuscleTarget
   primaryMuscles: string[]
   secondaryMuscles: string[]
   equipment: EquipmentTag[]
@@ -154,6 +174,8 @@ export interface Exercise {
   sets: { beginner: string; intermediate: string; advanced: string }
   reps: { beginner: string; intermediate: string; advanced: string }
   rest: { beginner: number; intermediate: number; advanced: number }  // seconds
+  /** Derived from equipment — populated from Supabase or computed via getTrainingLocation() */
+  trainingLocation?: TrainingLocation
 }
 
 // ─── Routine ──────────────────────────────────────────────────────────────────
@@ -179,6 +201,52 @@ export interface GeneratedRoutine {
   weekDays:     WorkoutDay[]
   weightMap:    UserWeightMap
   generatedAt:  string
+}
+
+// ─── Program System ───────────────────────────────────────────────────────────
+export type TrainingMethod = 'hypertrophy' | 'volume' | 'strength' | 'deload'
+
+/** One exercise position in a workout day. The pool rotates each block. */
+export interface ExerciseSlot {
+  slotId:       string    // e.g. 'day1_slot0_chest'
+  label:        string    // primary muscle label
+  exercisePool: string[]  // ordered exercise IDs — best first
+  currentIdx:   number    // index active this block = (blockNumber-1) % pool.length
+}
+
+export interface ProgramDay {
+  dayNumber: number
+  name:      string
+  focus:     string
+  slots:     ExerciseSlot[]
+}
+
+export interface ProgramBlock {
+  blockNumber:   number
+  weeks:         number          // always 4
+  method:        TrainingMethod
+  isDeload:      boolean
+  label:         string          // 'Bloque 1 — Hipertrofia'
+  setsOverride?: string
+  repsOverride?: string
+  restOverride?: number
+  tempo?:        string          // e.g. '3-0-2-0' for TUT blocks
+  days:          ProgramDay[]
+}
+
+export interface UserProgram {
+  id?:               string
+  durationMonths:    number
+  startDate:         string
+  currentBlock:      number
+  currentSession:    number                      // stored in DB as current_week
+  completedSessions: { b: number; s: number }[]  // stored in DB as completed_sessions
+  goal:              BodyCompositionGoal
+  experience:        ExperienceLevel
+  equipment:         EquipmentType
+  daysPerWeek:       DaysPerWeek
+  weightMap:         UserWeightMap
+  blocks:            ProgramBlock[]
 }
 
 // ─── Session Logging ──────────────────────────────────────────────────────────

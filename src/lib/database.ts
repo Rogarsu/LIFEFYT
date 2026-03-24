@@ -229,3 +229,149 @@ export async function getPersonalRecords(userId: string) {
     .order('achieved_at', { ascending: false })
   return { data, error }
 }
+
+// ─── Exercises ────────────────────────────────────────────────────────────────
+/** Fetch all exercises from Supabase (public, no auth required) */
+export async function getExercises() {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .order('muscle_group', { ascending: true })
+  return { data, error }
+}
+
+/** Fetch exercises filtered by muscle_target (for program block generation) */
+export async function getExercisesByTarget(muscleTarget: string) {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .eq('muscle_target', muscleTarget)
+  return { data, error }
+}
+
+/** Fetch exercises filtered by equipment availability */
+export async function getExercisesByEquipment(equipment: string[]) {
+  const { data, error } = await supabase
+    .from('exercises')
+    .select('*')
+    .overlaps('equipment', equipment)
+  return { data, error }
+}
+
+// ─── User Programs ────────────────────────────────────────────────────────────
+import type { UserProgram } from '../types'
+
+/**
+ * Saves a full UserProgram to Supabase:
+ * 1. Deactivates any previous active program
+ * 2. Inserts user_programs row (metadata + full program JSON)
+ * 3. Inserts all program_blocks rows
+ */
+export async function saveProgram(userId: string, program: UserProgram) {
+  // Deactivate previous programs
+  await supabase
+    .from('user_programs')
+    .update({ is_active: false })
+    .eq('user_id', userId)
+
+  const firstMethod = program.blocks[0]?.method ?? 'hypertrophy'
+
+  const { data: progData, error: progError } = await supabase
+    .from('user_programs')
+    .insert({
+      user_id:         userId,
+      duration_months: program.durationMonths,
+      start_date:      program.startDate,
+      current_block:   1,
+      current_week:    1,
+      training_method: firstMethod,
+      goal:            program.goal,
+      experience:      program.experience,
+      days_per_week:   program.daysPerWeek,
+      equipment:       program.equipment,
+      is_active:       true,
+    })
+    .select()
+    .single()
+
+  if (progError || !progData) return { data: null, error: progError }
+
+  // Insert one row per block; store days + slots in exercise_slots JSONB
+  const blockRows = program.blocks.map(block => ({
+    program_id:    progData.id,
+    block_number:  block.blockNumber,
+    weeks:         block.weeks,
+    method:        block.method,
+    is_deload:     block.isDeload,
+    exercise_slots: { days: block.days },
+    sets_override: block.setsOverride  ?? null,
+    reps_override: block.repsOverride  ?? null,
+    rest_override: block.restOverride  ?? null,
+    tempo:         block.tempo         ?? null,
+  }))
+
+  const { error: blocksError } = await supabase
+    .from('program_blocks')
+    .insert(blockRows)
+
+  return { data: progData, error: blocksError }
+}
+
+export async function getActiveProgram(userId: string) {
+  const { data, error } = await supabase
+    .from('user_programs')
+    .select('*, program_blocks(*)')
+    .eq('user_id', userId)
+    .eq('is_active', true)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  return { data, error }
+}
+
+export async function advanceProgramBlock(programId: string, nextBlock: number) {
+  const { data, error } = await supabase
+    .from('user_programs')
+    .update({ current_block: nextBlock, current_week: 1 })
+    .eq('id', programId)
+    .select()
+    .single()
+  return { data, error }
+}
+
+/**
+ * Marks current session as complete, then advances to the next session (or next block).
+ * Also appends {b, s} to completed_sessions JSONB array in user_programs.
+ */
+export async function advanceSession(
+  programId:        string,
+  currentBlock:     number,
+  currentSession:   number,
+  sessionsPerBlock: number,
+) {
+  // Read existing completed_sessions
+  const { data: current } = await supabase
+    .from('user_programs')
+    .select('completed_sessions')
+    .eq('id', programId)
+    .single()
+
+  const prev = ((current?.completed_sessions ?? []) as { b: number; s: number }[])
+  const alreadyDone = prev.some(cs => cs.b === currentBlock && cs.s === currentSession)
+  const completedSessions = alreadyDone
+    ? prev
+    : [...prev, { b: currentBlock, s: currentSession }]
+
+  const isLastSession = currentSession >= sessionsPerBlock
+  const nextBlock     = isLastSession ? currentBlock + 1 : currentBlock
+  const nextSession   = isLastSession ? 1 : currentSession + 1
+
+  const { data, error } = await supabase
+    .from('user_programs')
+    .update({ current_block: nextBlock, current_week: nextSession, completed_sessions: completedSessions })
+    .eq('id', programId)
+    .select()
+    .single()
+
+  return { data, error, nextBlock, nextSession, advancedBlock: isLastSession, completedSessions }
+}
