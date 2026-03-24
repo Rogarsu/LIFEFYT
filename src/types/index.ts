@@ -138,6 +138,8 @@ export type EquipmentTag =
   | 'bench'
   | 'bands'
   | 'fitball'
+  | 'trx'
+  | 'rings'
 
 /** Where the exercise can be performed */
 export type TrainingLocation = 'gym' | 'home' | 'bodyweight'

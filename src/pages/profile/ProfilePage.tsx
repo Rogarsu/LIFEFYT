@@ -364,7 +364,7 @@ export function ProfilePage() {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setConfirming(true)}
-                className="w-full py-4 rounded-2xl border border-white/10 text-white/40 font-bold text-sm hover:text-white/60 hover:border-white/20 transition-all"
+                className="w-full py-4 rounded-2xl border border-red-500/40 bg-red-500/10 text-red-400 font-bold text-sm hover:bg-red-500/20 transition-all"
               >
                 Cerrar sesión
               </motion.button>
