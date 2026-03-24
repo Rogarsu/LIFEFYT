@@ -107,7 +107,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export function ProfilePage() {
   const { user, signOut }           = useAuthStore()
   const { routine, setRoutine }     = useRoutineStore()
-  const { setProgram }              = useProgramStore()
+  const { setProgram, clear: clearProgram } = useProgramStore()
 
   // Profile fields
   const [fullName,  setFullName]  = useState('')
@@ -184,17 +184,19 @@ export function ProfilePage() {
     if (!user || !activeGoalData) return
     setRegenSaving(true)
     setRegenError(null)
+    clearProgram()  // clear store so Dashboard re-fetches fresh data
     try {
       const { weight_map: weightMap, body_goal: goal, id: goalId } = activeGoalData
       const newRoutine = generateRoutine(weightMap)
       const newProgram = generateProgram(weightMap, regenDuration, goal as never)
 
-      await Promise.all([
+      const [progResult] = await Promise.all([
         saveProgram(user.id, newProgram),
         saveRoutine(user.id, goalId, newRoutine),
       ])
 
-      setProgram({ ...newProgram })
+      // Store the program with its real DB id so advance() works immediately
+      setProgram({ ...newProgram, id: progResult.data?.id })
       setRoutine(newRoutine)
       setRegenDone(true)
       setTimeout(() => {
