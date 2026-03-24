@@ -338,3 +338,40 @@ export async function advanceProgramBlock(programId: string, nextBlock: number) 
     .single()
   return { data, error }
 }
+
+/**
+ * Marks current session as complete, then advances to the next session (or next block).
+ * Also appends {b, s} to completed_sessions JSONB array in user_programs.
+ */
+export async function advanceSession(
+  programId:        string,
+  currentBlock:     number,
+  currentSession:   number,
+  sessionsPerBlock: number,
+) {
+  // Read existing completed_sessions
+  const { data: current } = await supabase
+    .from('user_programs')
+    .select('completed_sessions')
+    .eq('id', programId)
+    .single()
+
+  const prev = ((current?.completed_sessions ?? []) as { b: number; s: number }[])
+  const alreadyDone = prev.some(cs => cs.b === currentBlock && cs.s === currentSession)
+  const completedSessions = alreadyDone
+    ? prev
+    : [...prev, { b: currentBlock, s: currentSession }]
+
+  const isLastSession = currentSession >= sessionsPerBlock
+  const nextBlock     = isLastSession ? currentBlock + 1 : currentBlock
+  const nextSession   = isLastSession ? 1 : currentSession + 1
+
+  const { data, error } = await supabase
+    .from('user_programs')
+    .update({ current_block: nextBlock, current_week: nextSession, completed_sessions: completedSessions })
+    .eq('id', programId)
+    .select()
+    .single()
+
+  return { data, error, nextBlock, nextSession, advancedBlock: isLastSession, completedSessions }
+}

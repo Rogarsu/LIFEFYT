@@ -269,8 +269,9 @@ export function generateProgram(
   return {
     durationMonths,
     startDate:    new Date().toISOString().split('T')[0],
-    currentBlock: 1,
-    currentWeek:  1,
+    currentBlock:      1,
+    currentSession:    1,
+    completedSessions: [],
     goal,
     experience:   map.experience,
     equipment:    map.equipment,
@@ -312,7 +313,32 @@ export function getActiveBlockDay(
 export function advanceBlock(program: UserProgram): UserProgram {
   const next = program.currentBlock + 1
   if (next > program.blocks.length) return program  // already at end
-  return { ...program, currentBlock: next, currentWeek: 1 }
+  return { ...program, currentBlock: next, currentSession: 1 }
+}
+
+// ─── Session-based exercise rotation ─────────────────────────────────────────
+/**
+ * Returns the exercise ID for a given slot, block, and session number.
+ * sessionsPerBlock = daysPerWeek × 4  (e.g. 4 days → 16 sessions/block)
+ * The global index ensures exercises rotate continuously across all blocks.
+ */
+export function resolveExerciseId(
+  pool:             string[],
+  blockNumber:      number,
+  sessionNumber:    number,
+  sessionsPerBlock: number,
+): string | undefined {
+  if (!pool.length) return undefined
+  const globalIdx = (blockNumber - 1) * sessionsPerBlock + (sessionNumber - 1)
+  return pool[globalIdx % pool.length]
+}
+
+/**
+ * Maps a session number (1-based) to the day index within the weekly cycle.
+ * e.g. session 5 with daysPerWeek=4 → dayIndex 0 (Day 1 again)
+ */
+export function sessionToDayIndex(sessionNumber: number, daysPerWeek: number): number {
+  return (sessionNumber - 1) % daysPerWeek
 }
 
 // ─── Display helpers ─────────────────────────────────────────────────────────

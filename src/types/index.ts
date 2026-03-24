@@ -235,17 +235,18 @@ export interface ProgramBlock {
 }
 
 export interface UserProgram {
-  id?:            string
-  durationMonths: number
-  startDate:      string
-  currentBlock:   number
-  currentWeek:    number
-  goal:           BodyCompositionGoal
-  experience:     ExperienceLevel
-  equipment:      EquipmentType
-  daysPerWeek:    DaysPerWeek
-  weightMap:      UserWeightMap
-  blocks:         ProgramBlock[]
+  id?:               string
+  durationMonths:    number
+  startDate:         string
+  currentBlock:      number
+  currentSession:    number                      // stored in DB as current_week
+  completedSessions: { b: number; s: number }[]  // stored in DB as completed_sessions
+  goal:              BodyCompositionGoal
+  experience:        ExperienceLevel
+  equipment:         EquipmentType
+  daysPerWeek:       DaysPerWeek
+  weightMap:         UserWeightMap
+  blocks:            ProgramBlock[]
 }
 
 // ─── Session Logging ──────────────────────────────────────────────────────────

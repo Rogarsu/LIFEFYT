@@ -39,10 +39,11 @@ const BLOCK_SEQUENCES: Record<string, TrainingMethod[]> = {
 }
 
 export function Step11_ProgramSetup({ onFinish }: Props) {
-  const state                     = useOnboardingStore()
-  const { user, refreshProfile }  = useAuthStore()
-  const [duration, setDuration]   = useState<number>(3)
-  const [saving, setSaving]       = useState(false)
+  const state                 = useOnboardingStore()
+  const { user, setStatus }   = useAuthStore()
+  const [duration, setDuration] = useState<number>(3)
+  const [saving, setSaving]     = useState(false)
+  const [saveStep, setSaveStep] = useState('')
   const [saveError, setSaveError] = useState<string | null>(null)
 
   const goal         = state.bodyGoal ?? 'hypertrophy'
@@ -52,64 +53,51 @@ export function Step11_ProgramSetup({ onFinish }: Props) {
   const handleCreate = async () => {
     setSaving(true)
     setSaveError(null)
+    setSaveStep('Generando tu programa...')
 
-    const timeout = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('TIMEOUT')), 20000),
-    )
-
-    const save = async () => {
-      // 1. Build weight map (re-use from store if available)
+    try {
+      // ── Build data synchronously ───────────────────────────────────────────
       const weightMap = state.weightMap ?? buildWeightMap(state)
       if (!state.weightMap) state.setWeightMap(weightMap)
-
-      // 2. Generate routine + program
       const routine = generateRoutine(weightMap)
       const program = generateProgram(weightMap, duration, goal)
 
       if (!user) { onFinish(); return }
 
-      // 3. Save profile
-      if (state.profile.fullName) {
-        const profileData: Record<string, unknown> = {
-          full_name: state.profile.fullName,
-          age:       state.profile.age      || null,
-          weight_kg: state.profile.weightKg || null,
-          height_cm: state.profile.heightCm || null,
-        }
-        if (state.profile.gender) profileData.gender = state.profile.gender
-        await updateProfile(user.id, profileData)
+      setSaveStep('Guardando...')
+
+      const profileData: Record<string, unknown> = {
+        full_name: state.profile.fullName || null,
+        age:       state.profile.age      || null,
+        weight_kg: state.profile.weightKg || null,
+        height_cm: state.profile.heightCm || null,
       }
+      if (state.profile.gender) profileData.gender = state.profile.gender
 
-      // 4. Save goal
-      const { data: goalData, error: goalErr } = await saveUserGoal(user.id, state)
-      if (goalErr) console.error('[ProgramSetup] Goal save failed:', goalErr)
+      // ── Everything in one parallel batch ──────────────────────────────────
+      const [, goalResult] = await Promise.all([
+        updateProfile(user.id, profileData).catch(e => console.error('[profile]', e)),
+        saveUserGoal(user.id, state).catch(e => { console.error('[goal]', e); return { data: null, error: e } }),
+        saveProgram(user.id, program).catch(e => console.error('[program]', e)),
+        markOnboardingComplete(user.id).catch(e => console.error('[onboarding]', e)),
+      ])
 
-      // 5. Save routine
+      // ── Await routine save before navigating (avoids race with Dashboard fetch) ──
+      const goalData = (goalResult as Awaited<ReturnType<typeof saveUserGoal>>)?.data
       if (goalData) {
-        const { error: routineErr } = await saveRoutine(user.id, goalData.id, routine)
-        if (routineErr) console.error('[ProgramSetup] Routine save failed:', routineErr)
+        await saveRoutine(user.id, goalData.id, routine).catch(e => console.error('[routine]', e))
       }
 
-      // 6. Save program
-      const { error: programErr } = await saveProgram(user.id, program)
-      if (programErr) console.error('[ProgramSetup] Program save failed:', programErr)
+      // ── Update auth status directly — no extra round trip ─────────────────
+      setStatus('authenticated')
 
-      // 7. Mark onboarding complete + refresh auth
-      await markOnboardingComplete(user.id)
-      await refreshProfile()
-    }
-
-    try {
-      await Promise.race([save(), timeout])
       setSaving(false)
       onFinish()
+
     } catch (e) {
-      const msg = e instanceof Error && e.message === 'TIMEOUT'
-        ? 'La conexión tardó demasiado. Revisa tu internet e inténtalo de nuevo.'
-        : 'Hubo un error al guardar. Inténtalo de nuevo.'
       console.error('[ProgramSetup] Save failed:', e)
       setSaving(false)
-      setSaveError(msg)
+      setSaveError('Hubo un error al guardar. Inténtalo de nuevo.')
     }
   }
 
@@ -278,11 +266,11 @@ export function Step11_ProgramSetup({ onFinish }: Props) {
         >
           {saving ? (
             <span className="flex items-center gap-2 justify-center">
-              <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 animate-spin flex-shrink-0" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Creando tu programa...
+              <span className="truncate">{saveStep || 'Creando tu programa...'}</span>
             </span>
           ) : saveError
             ? 'Reintentar'
