@@ -244,7 +244,7 @@ function ProgramView() {
   const sessionPct        = Math.round((completedInBlock / sessionsPerBlock) * 100)
 
   function isDone(blockNum: number, sessionNum: number) {
-    return program.completedSessions.some(cs => cs.b === blockNum && cs.s === sessionNum)
+    return program!.completedSessions.some(cs => cs.b === blockNum && cs.s === sessionNum)
   }
 
   function handleBlockSelect(bn: number) {
