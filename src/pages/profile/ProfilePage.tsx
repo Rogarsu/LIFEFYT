@@ -2,10 +2,31 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore }    from '../../store/auth'
 import { useRoutineStore } from '../../store/routine'
-import { getProfile, updateProfile, getRecentSessions } from '../../lib/database'
-import { SPLIT_NAMES } from '../../lib/weightEngine'
+import { useProgramStore } from '../../store/program'
+import { getProfile, updateProfile, getRecentSessions, getActiveGoal, saveProgram, saveRoutine } from '../../lib/database'
+import { SPLIT_NAMES, generateRoutine } from '../../lib/weightEngine'
+import { generateProgram, METHOD_PARAMS, METHOD_BG, METHOD_COLORS } from '../../lib/programEngine'
+import type { TrainingMethod, UserWeightMap } from '../../types'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
+const BLOCK_SEQUENCES: Record<string, TrainingMethod[]> = {
+  hypertrophy:   ['hypertrophy', 'volume',      'strength',    'deload', 'hypertrophy', 'volume'     ],
+  weight_loss:   ['volume',      'hypertrophy', 'volume',      'deload', 'volume',      'hypertrophy'],
+  toning:        ['volume',      'hypertrophy', 'volume',      'deload', 'volume',      'hypertrophy'],
+  recomposition: ['hypertrophy', 'strength',    'volume',      'deload', 'hypertrophy', 'strength'   ],
+  weight_gain:   ['hypertrophy', 'strength',    'hypertrophy', 'deload', 'strength',    'hypertrophy'],
+  maintenance:   ['hypertrophy', 'volume',      'hypertrophy', 'deload', 'hypertrophy', 'volume'     ],
+}
+
+const GOAL_LABELS: Record<string, string> = {
+  hypertrophy:   'Hipertrofia',
+  weight_loss:   'Pérdida de Peso',
+  toning:        'Tonificación',
+  recomposition: 'Recomposición',
+  weight_gain:   'Ganancia de Masa',
+  maintenance:   'Mantenimiento',
+}
+
 const EXP_NAMES: Record<string, string> = {
   beginner:     'Principiante',
   intermediate: 'Intermedio',
@@ -84,8 +105,9 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 // ─── ProfilePage ──────────────────────────────────────────────────────────────
 export function ProfilePage() {
-  const { user, signOut }  = useAuthStore()
-  const { routine }        = useRoutineStore()
+  const { user, signOut }           = useAuthStore()
+  const { routine, setRoutine }     = useRoutineStore()
+  const { setProgram }              = useProgramStore()
 
   // Profile fields
   const [fullName,  setFullName]  = useState('')
@@ -101,6 +123,14 @@ export function ProfilePage() {
   const [confirming,  setConfirming]  = useState(false)
   const [signingOut,  setSigningOut]  = useState(false)
   const [totalSessions, setTotalSessions] = useState<number | null>(null)
+
+  // Regenerate program state
+  const [regenOpen,     setRegenOpen]     = useState(false)
+  const [regenDuration, setRegenDuration] = useState(3)
+  const [regenSaving,   setRegenSaving]   = useState(false)
+  const [regenDone,     setRegenDone]     = useState(false)
+  const [regenError,    setRegenError]    = useState<string | null>(null)
+  const [activeGoalData, setActiveGoalData] = useState<{ id: string; body_goal: string; weight_map: UserWeightMap } | null>(null)
 
   // Load profile on mount
   useEffect(() => {
@@ -138,6 +168,46 @@ export function ProfilePage() {
   const handleSignOut = async () => {
     setSigningOut(true)
     await signOut()
+  }
+
+  // Load active goal when regen panel opens
+  useEffect(() => {
+    if (!regenOpen || !user || activeGoalData) return
+    getActiveGoal(user.id).then(({ data }) => {
+      if (data?.weight_map && data?.body_goal) {
+        setActiveGoalData({ id: data.id, body_goal: data.body_goal, weight_map: data.weight_map as UserWeightMap })
+      }
+    })
+  }, [regenOpen, user])
+
+  const handleRegenerate = async () => {
+    if (!user || !activeGoalData) return
+    setRegenSaving(true)
+    setRegenError(null)
+    try {
+      const { weight_map: weightMap, body_goal: goal, id: goalId } = activeGoalData
+      const newRoutine = generateRoutine(weightMap)
+      const newProgram = generateProgram(weightMap, regenDuration, goal as never)
+
+      await Promise.all([
+        saveProgram(user.id, newProgram),
+        saveRoutine(user.id, goalId, newRoutine),
+      ])
+
+      setProgram({ ...newProgram })
+      setRoutine(newRoutine)
+      setRegenDone(true)
+      setTimeout(() => {
+        setRegenOpen(false)
+        setRegenDone(false)
+        setActiveGoalData(null)
+      }, 1800)
+    } catch (e) {
+      console.error('[regen]', e)
+      setRegenError('Error al generar. Inténtalo de nuevo.')
+    } finally {
+      setRegenSaving(false)
+    }
   }
 
   const bmiVal   = bmi(parseFloat(weightKg), parseFloat(heightCm))
@@ -337,6 +407,117 @@ export function ProfilePage() {
             </div>
           </motion.div>
         )}
+
+        {/* ── Nuevo programa ────────────────────────────────────────────────── */}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}>
+          <SectionTitle>Programa</SectionTitle>
+          <AnimatePresence mode="wait">
+            {!regenOpen ? (
+              <motion.button
+                key="regen-btn"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setRegenOpen(true)}
+                className="w-full py-4 rounded-2xl border border-white/10 bg-white/5 text-white/70 font-bold text-sm hover:border-brand-500/40 hover:text-brand-400 hover:bg-brand-500/8 transition-all flex items-center justify-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Crear nuevo programa
+              </motion.button>
+            ) : (
+              <motion.div
+                key="regen-panel"
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                className="glass rounded-2xl p-4"
+              >
+                {regenDone ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center gap-3 py-4"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <p className="text-green-400 font-black text-sm">¡Programa creado!</p>
+                    <p className="text-white/40 text-xs text-center">Ve a Rutina → Mi programa para verlo.</p>
+                  </motion.div>
+                ) : (
+                  <>
+                    {/* Goal badge */}
+                    {activeGoalData && (
+                      <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-brand-500/10 border border-brand-500/20">
+                        <div className="w-2 h-2 rounded-full bg-brand-400 flex-shrink-0" />
+                        <p className="text-white/60 text-xs">Objetivo: <span className="text-brand-400 font-bold">{GOAL_LABELS[activeGoalData.body_goal] ?? activeGoalData.body_goal}</span></p>
+                      </div>
+                    )}
+
+                    {/* Duration */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Duración</p>
+                    <div className="grid grid-cols-6 gap-1.5 mb-4">
+                      {([1,2,3,4,5,6] as const).map(n => (
+                        <button
+                          key={n}
+                          onClick={() => setRegenDuration(n)}
+                          className={[
+                            'flex flex-col items-center py-2.5 rounded-xl border transition-all',
+                            regenDuration === n
+                              ? 'bg-brand-500 border-brand-500 text-white shadow-glow-sm-red'
+                              : 'border-white/10 text-white/40 hover:text-white',
+                          ].join(' ')}
+                        >
+                          <span className="text-base font-black leading-none">{n}</span>
+                          <span className="text-[9px] mt-0.5 opacity-70">{n === 1 ? 'mes' : 'meses'}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Block sequence preview */}
+                    {activeGoalData && (
+                      <div className="flex flex-col gap-1.5 mb-4">
+                        {(BLOCK_SEQUENCES[activeGoalData.body_goal] ?? BLOCK_SEQUENCES.hypertrophy)
+                          .slice(0, regenDuration)
+                          .map((method, i) => {
+                            const p = METHOD_PARAMS[method]
+                            return (
+                              <div key={i} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl border ${METHOD_BG[method]}`}>
+                                <span className="text-[10px] font-black text-white/40 w-4">{i + 1}</span>
+                                <p className={`text-xs font-bold flex-1 ${METHOD_COLORS[method]}`}>{p.label}</p>
+                                <p className="text-white/40 text-[10px] font-bold tabular-nums">{p.sets}×{p.reps}</p>
+                              </div>
+                            )
+                          })}
+                      </div>
+                    )}
+
+                    {regenError && (
+                      <p className="text-red-400 text-xs text-center mb-3">{regenError}</p>
+                    )}
+
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => { setRegenOpen(false); setRegenError(null) }}
+                        className="flex-1 py-3 rounded-xl border border-white/10 text-white/40 font-bold text-sm hover:text-white/60 transition-colors"
+                      >
+                        Cancelar
+                      </button>
+                      <motion.button
+                        whileTap={{ scale: 0.97 }}
+                        onClick={handleRegenerate}
+                        disabled={regenSaving || !activeGoalData}
+                        className="flex-1 btn-primary py-3 text-sm disabled:opacity-50"
+                      >
+                        {regenSaving ? 'Creando…' : 'Crear programa'}
+                      </motion.button>
+                    </div>
+                  </>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
         {/* ── Account ───────────────────────────────────────────────────────── */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
