@@ -6,7 +6,7 @@ import { useProgramStore } from '../../store/program'
 import { getProfile, updateProfile, getRecentSessions, getActiveGoal, saveProgram, saveRoutine } from '../../lib/database'
 import { SPLIT_NAMES, generateRoutine } from '../../lib/weightEngine'
 import { generateProgram, METHOD_PARAMS, METHOD_BG, METHOD_COLORS } from '../../lib/programEngine'
-import type { TrainingMethod, UserWeightMap } from '../../types'
+import type { TrainingMethod, UserWeightMap, ExperienceLevel, EquipmentType, DaysPerWeek, SessionDuration, TrainingSplit } from '../../types'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const BLOCK_SEQUENCES: Record<string, TrainingMethod[]> = {
@@ -33,9 +33,24 @@ const EXP_NAMES: Record<string, string> = {
   advanced:     'Avanzado',
 }
 const EQ_NAMES: Record<string, string> = {
-  full_gym:   'Gimnasio Completo',
-  home_gym:   'Gimnasio en Casa',
-  bodyweight: 'Peso Corporal',
+  full_gym:   'Gimnasio',
+  home_gym:   'Casa',
+  bodyweight: 'Sin equipo',
+}
+
+// Experience → program multipliers (mirrors weightEngine)
+const EXP_CONFIG: Record<ExperienceLevel, { volume: number; intensity: number; rest: number }> = {
+  beginner:     { volume: 0.7, intensity: 0.8, rest: 120 },
+  intermediate: { volume: 1.0, intensity: 1.0, rest: 90  },
+  advanced:     { volume: 1.3, intensity: 1.2, rest: 70  },
+}
+
+// Days → split (mirrors weightEngine.determineSplit with all-areas assumption)
+function splitForDays(days: DaysPerWeek): TrainingSplit {
+  if (days === 3) return 'full_body'
+  if (days === 4) return 'upper_lower'
+  if (days === 5) return 'push_pull_legs'
+  return 'push_pull_legs'  // 6
 }
 
 function bmi(weightKg: number, heightCm: number) {
@@ -125,12 +140,17 @@ export function ProfilePage() {
   const [totalSessions, setTotalSessions] = useState<number | null>(null)
 
   // Regenerate program state
-  const [regenOpen,     setRegenOpen]     = useState(false)
-  const [regenDuration, setRegenDuration] = useState(3)
-  const [regenSaving,   setRegenSaving]   = useState(false)
-  const [regenDone,     setRegenDone]     = useState(false)
-  const [regenError,    setRegenError]    = useState<string | null>(null)
-  const [activeGoalData, setActiveGoalData] = useState<{ id: string; body_goal: string; weight_map: UserWeightMap } | null>(null)
+  const [regenOpen,        setRegenOpen]        = useState(false)
+  const [regenDuration,    setRegenDuration]    = useState(3)
+  const [regenGoal,        setRegenGoal]        = useState<string>('hypertrophy')
+  const [regenExp,         setRegenExp]         = useState<ExperienceLevel>('intermediate')
+  const [regenDays,        setRegenDays]        = useState<DaysPerWeek>(4)
+  const [regenDuration2,   setRegenDuration2]   = useState<SessionDuration>(60)
+  const [regenEquipment,   setRegenEquipment]   = useState<EquipmentType>('full_gym')
+  const [regenSaving,      setRegenSaving]      = useState(false)
+  const [regenDone,        setRegenDone]        = useState(false)
+  const [regenError,       setRegenError]       = useState<string | null>(null)
+  const [activeGoalData,   setActiveGoalData]   = useState<{ id: string; body_goal: string; weight_map: UserWeightMap } | null>(null)
 
   // Load profile on mount
   useEffect(() => {
@@ -170,12 +190,18 @@ export function ProfilePage() {
     await signOut()
   }
 
-  // Load active goal when regen panel opens
+  // Load active goal when regen panel opens and pre-fill controls with current values
   useEffect(() => {
     if (!regenOpen || !user || activeGoalData) return
     getActiveGoal(user.id).then(({ data }) => {
       if (data?.weight_map && data?.body_goal) {
-        setActiveGoalData({ id: data.id, body_goal: data.body_goal, weight_map: data.weight_map as UserWeightMap })
+        const wm = data.weight_map as UserWeightMap
+        setActiveGoalData({ id: data.id, body_goal: data.body_goal, weight_map: wm })
+        setRegenGoal(data.body_goal)
+        setRegenExp(wm.experience)
+        setRegenDays(wm.daysPerWeek)
+        setRegenDuration2(wm.sessionDuration)
+        setRegenEquipment(wm.equipment)
       }
     })
   }, [regenOpen, user])
@@ -186,9 +212,21 @@ export function ProfilePage() {
     setRegenError(null)
     clearProgram()  // clear store so Dashboard re-fetches fresh data
     try {
-      const { weight_map: weightMap, body_goal: goal, id: goalId } = activeGoalData
+      const { weight_map: baseMap, id: goalId } = activeGoalData
+      const expCfg = EXP_CONFIG[regenExp]
+      const weightMap: UserWeightMap = {
+        ...baseMap,
+        experience:          regenExp,
+        equipment:           regenEquipment,
+        daysPerWeek:         regenDays,
+        sessionDuration:     regenDuration2,
+        suggestedSplit:      splitForDays(regenDays),
+        volumeMultiplier:    expCfg.volume,
+        intensityMultiplier: expCfg.intensity,
+        restSeconds:         expCfg.rest,
+      }
       const newRoutine = generateRoutine(weightMap)
-      const newProgram = generateProgram(weightMap, regenDuration, goal as never)
+      const newProgram = generateProgram(weightMap, regenDuration, regenGoal as never)
 
       const [progResult] = await Promise.all([
         saveProgram(user.id, newProgram),
@@ -448,28 +486,67 @@ export function ProfilePage() {
                   </motion.div>
                 ) : (
                   <>
-                    {/* Goal badge */}
-                    {activeGoalData && (
-                      <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-brand-500/10 border border-brand-500/20">
-                        <div className="w-2 h-2 rounded-full bg-brand-400 flex-shrink-0" />
-                        <p className="text-white/60 text-xs">Objetivo: <span className="text-brand-400 font-bold">{GOAL_LABELS[activeGoalData.body_goal] ?? activeGoalData.body_goal}</span></p>
-                      </div>
-                    )}
+                    {/* Objetivo */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Objetivo</p>
+                    <div className="grid grid-cols-2 gap-1.5 mb-4">
+                      {Object.entries(GOAL_LABELS).map(([k, v]) => (
+                        <button key={k} onClick={() => setRegenGoal(k)}
+                          className={['py-2 rounded-xl border text-xs font-bold transition-all', regenGoal === k ? 'bg-brand-500/20 border-brand-500/60 text-brand-400' : 'border-white/10 text-white/35 hover:text-white/60'].join(' ')}>
+                          {v}
+                        </button>
+                      ))}
+                    </div>
 
-                    {/* Duration */}
-                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Duración</p>
+                    {/* Experiencia */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Experiencia</p>
+                    <div className="grid grid-cols-3 gap-1.5 mb-4">
+                      {(['beginner','intermediate','advanced'] as ExperienceLevel[]).map(e => (
+                        <button key={e} onClick={() => setRegenExp(e)}
+                          className={['py-2 rounded-xl border text-xs font-bold transition-all', regenExp === e ? 'bg-brand-500/20 border-brand-500/60 text-brand-400' : 'border-white/10 text-white/35 hover:text-white/60'].join(' ')}>
+                          {EXP_NAMES[e]}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Días / semana */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Días por semana</p>
+                    <div className="grid grid-cols-4 gap-1.5 mb-4">
+                      {([3,4,5,6] as DaysPerWeek[]).map(d => (
+                        <button key={d} onClick={() => setRegenDays(d)}
+                          className={['py-2.5 rounded-xl border text-sm font-black transition-all', regenDays === d ? 'bg-brand-500 border-brand-500 text-white shadow-glow-sm-red' : 'border-white/10 text-white/35 hover:text-white/60'].join(' ')}>
+                          {d}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Duración sesión */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Duración de sesión</p>
+                    <div className="grid grid-cols-3 gap-1.5 mb-4">
+                      {([45,60,90] as SessionDuration[]).map(m => (
+                        <button key={m} onClick={() => setRegenDuration2(m)}
+                          className={['py-2 rounded-xl border text-xs font-bold transition-all', regenDuration2 === m ? 'bg-brand-500/20 border-brand-500/60 text-brand-400' : 'border-white/10 text-white/35 hover:text-white/60'].join(' ')}>
+                          {m} min
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Equipo */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Equipo disponible</p>
+                    <div className="grid grid-cols-3 gap-1.5 mb-4">
+                      {(['full_gym','home_gym','bodyweight'] as EquipmentType[]).map(eq => (
+                        <button key={eq} onClick={() => setRegenEquipment(eq)}
+                          className={['py-2 rounded-xl border text-xs font-bold transition-all', regenEquipment === eq ? 'bg-brand-500/20 border-brand-500/60 text-brand-400' : 'border-white/10 text-white/35 hover:text-white/60'].join(' ')}>
+                          {EQ_NAMES[eq]}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Duración */}
+                    <p className="text-xs text-white/40 font-bold uppercase tracking-wider mb-2">Duración del programa</p>
                     <div className="grid grid-cols-6 gap-1.5 mb-4">
                       {([1,2,3,4,5,6] as const).map(n => (
-                        <button
-                          key={n}
-                          onClick={() => setRegenDuration(n)}
-                          className={[
-                            'flex flex-col items-center py-2.5 rounded-xl border transition-all',
-                            regenDuration === n
-                              ? 'bg-brand-500 border-brand-500 text-white shadow-glow-sm-red'
-                              : 'border-white/10 text-white/40 hover:text-white',
-                          ].join(' ')}
-                        >
+                        <button key={n} onClick={() => setRegenDuration(n)}
+                          className={['flex flex-col items-center py-2.5 rounded-xl border transition-all', regenDuration === n ? 'bg-brand-500 border-brand-500 text-white shadow-glow-sm-red' : 'border-white/10 text-white/40 hover:text-white'].join(' ')}>
                           <span className="text-base font-black leading-none">{n}</span>
                           <span className="text-[9px] mt-0.5 opacity-70">{n === 1 ? 'mes' : 'meses'}</span>
                         </button>
@@ -477,22 +554,20 @@ export function ProfilePage() {
                     </div>
 
                     {/* Block sequence preview */}
-                    {activeGoalData && (
-                      <div className="flex flex-col gap-1.5 mb-4">
-                        {(BLOCK_SEQUENCES[activeGoalData.body_goal] ?? BLOCK_SEQUENCES.hypertrophy)
-                          .slice(0, regenDuration)
-                          .map((method, i) => {
-                            const p = METHOD_PARAMS[method]
-                            return (
-                              <div key={i} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl border ${METHOD_BG[method]}`}>
-                                <span className="text-[10px] font-black text-white/40 w-4">{i + 1}</span>
-                                <p className={`text-xs font-bold flex-1 ${METHOD_COLORS[method]}`}>{p.label}</p>
-                                <p className="text-white/40 text-[10px] font-bold tabular-nums">{p.sets}×{p.reps}</p>
-                              </div>
-                            )
-                          })}
-                      </div>
-                    )}
+                    <div className="flex flex-col gap-1.5 mb-4">
+                      {(BLOCK_SEQUENCES[regenGoal] ?? BLOCK_SEQUENCES.hypertrophy)
+                        .slice(0, regenDuration)
+                        .map((method, i) => {
+                          const p = METHOD_PARAMS[method]
+                          return (
+                            <div key={i} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl border ${METHOD_BG[method]}`}>
+                              <span className="text-[10px] font-black text-white/40 w-4">{i + 1}</span>
+                              <p className={`text-xs font-bold flex-1 ${METHOD_COLORS[method]}`}>{p.label}</p>
+                              <p className="text-white/40 text-[10px] font-bold tabular-nums">{p.sets}×{p.reps}</p>
+                            </div>
+                          )
+                        })}
+                    </div>
 
                     {regenError && (
                       <p className="text-red-400 text-xs text-center mb-3">{regenError}</p>
@@ -500,7 +575,7 @@ export function ProfilePage() {
 
                     <div className="flex gap-2">
                       <button
-                        onClick={() => { setRegenOpen(false); setRegenError(null) }}
+                        onClick={() => { setRegenOpen(false); setRegenError(null); setActiveGoalData(null) }}
                         className="flex-1 py-3 rounded-xl border border-white/10 text-white/40 font-bold text-sm hover:text-white/60 transition-colors"
                       >
                         Cancelar
